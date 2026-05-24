@@ -5,4 +5,7 @@
 
 @theme {
     --font-sans: 'Manrope', sans-serif;
+    --color-background: #ffffff;
+    --color-primary: #145f60;
+    --color-card: #eef0ef;
 }
