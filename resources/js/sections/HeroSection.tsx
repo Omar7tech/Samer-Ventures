@@ -4,36 +4,44 @@ import { useRef, useState } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
+const services = [
+  'Sales Outsourcing',
+  'Business Development',
+  'Corporate Relations',
+  'PR & Sponsorships',
+  'Market Research'
+];
+
 const HeroSection = () => {
   const [isOpen, setIsOpen] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const items = contentRef.current?.children[0].children;
+    const items = gsap.utils.toArray<HTMLElement>('.service-item');
 
     if (isOpen) {
       const tl = gsap.timeline();
-      
+
       tl.to(contentRef.current, {
         height: 'auto',
         opacity: 1,
         duration: 0.6,
         ease: 'power3.inOut'
       })
-      .fromTo(items as HTMLCollectionOf<HTMLElement>,
+      .fromTo(items,
         { y: 15, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
-        "-=0.4" 
+        "-=0.4"
       );
     } else {
       const tl = gsap.timeline();
-      
-      tl.to(items as HTMLCollectionOf<HTMLElement>, {
+
+      tl.to(items, {
         y: -10,
         opacity: 0,
         duration: 0.2,
-        stagger: -0.03,
+        stagger: { each: 0.03, from: 'end' },
         ease: 'power2.inOut'
       })
       .to(contentRef.current, {
@@ -41,7 +49,7 @@ const HeroSection = () => {
         opacity: 0,
         duration: 0.5,
         ease: 'power3.inOut'
-      }, "-=0.1"); 
+      }, "-=0.1");
     }
   }, { scope: containerRef, dependencies: [isOpen] });
 
@@ -71,9 +79,9 @@ const HeroSection = () => {
           </h1>
         </div>
 
-        {/* What We Do - Fluid width using w-full and max-w */}
-        <div className="relative z-20 lg:col-span-1 mt-auto lg:mt-0 md:flex md:items-end md:justify-end md:pb-12 md:pr-12 w-full md:w-auto px-6 pb-8 md:p-0">
-          <div className="overflow-hidden bg-black/20 backdrop-blur-md rounded-2xl border border-white/10 md:bg-transparent md:backdrop-blur-none md:border-none w-full max-w-[420px]">
+        {/* What We Do */}
+        <div className="relative z-20 lg:col-span-1 mt-auto lg:mt-0 md:flex md:items-end md:justify-end md:pb-12 md:pr-12 w-full md:w-auto pb-8 md:p-0">
+          <div className="overflow-hidden w-full md:max-w-[420px]">
             
             {/* Toggle Button */}
             <button
@@ -91,21 +99,14 @@ const HeroSection = () => {
               style={{ opacity: 1, height: 'auto' }}
             >
               <div className="px-5 pb-5 lg:px-8 lg:pb-6 space-y-2">
-                <div className="border-t border-white/30 pt-2">
-                  <p className="text-base lg:text-lg text-white"><span className="font-semibold mr-4">01</span> Sales Outsourcing</p>
-                </div>
-                <div className="border-t border-white/30 pt-2">
-                  <p className="text-base lg:text-lg text-white"><span className="font-semibold mr-4">02</span> Business Development</p>
-                </div>
-                <div className="border-t border-white/30 pt-2">
-                  <p className="text-base lg:text-lg text-white"><span className="font-semibold mr-4">03</span> Corporate Relations</p>
-                </div>
-                <div className="border-t border-white/30 pt-2">
-                  <p className="text-base lg:text-lg text-white"><span className="font-semibold mr-4">04</span> PR & Sponsorships</p>
-                </div>
-                <div className="border-t border-white/30 pt-2">
-                  <p className="text-base lg:text-lg text-white"><span className="font-semibold mr-4">05</span> Market Research</p>
-                </div>
+                {services.map((service, index) => (
+                  <div key={service} className="service-item border-t border-white/30 pt-2">
+                    <p className="text-base lg:text-lg text-white">
+                      <span className="font-semibold mr-4">{String(index + 1).padStart(2, '0')}</span>
+                      {service}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
