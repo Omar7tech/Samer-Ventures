@@ -1,29 +1,47 @@
-import { useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { useRef, useState } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
 const HeroSection = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const contentRef = useRef(null);
-  const containerRef = useRef(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP((context, contextSafe) => {
+  useGSAP(() => {
+    const items = contentRef.current?.children[0].children;
+
     if (isOpen) {
-      gsap.to(contentRef.current, {
+      const tl = gsap.timeline();
+      
+      tl.to(contentRef.current, {
         height: 'auto',
         opacity: 1,
-        duration: 0.5,
-        ease: 'power2.out'
-      });
+        duration: 0.6,
+        ease: 'power3.inOut'
+      })
+      .fromTo(items as HTMLCollectionOf<HTMLElement>,
+        { y: 15, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
+        "-=0.4" 
+      );
     } else {
-      gsap.to(contentRef.current, {
+      const tl = gsap.timeline();
+      
+      tl.to(items as HTMLCollectionOf<HTMLElement>, {
+        y: -10,
+        opacity: 0,
+        duration: 0.2,
+        stagger: -0.03,
+        ease: 'power2.inOut'
+      })
+      .to(contentRef.current, {
         height: 0,
         opacity: 0,
         duration: 0.5,
-        ease: 'power2.in'
-      });
+        ease: 'power3.inOut'
+      }, "-=0.1"); 
     }
   }, { scope: containerRef, dependencies: [isOpen] });
 
@@ -44,18 +62,18 @@ const HeroSection = () => {
           alt="Hero background"
         />
 
-        {/* Hero Text: Perfectly scaled to ensure lines never break prematurely */}
+        {/* Hero Text: Removed whitespace-nowrap and adjusted line-height for safer desktop scaling */}
         <div className="relative z-10 lg:col-span-2 flex items-center px-6 sm:px-16 md:px-24 lg:px-20 xl:px-32 pt-20 pb-12 lg:py-0 min-w-0">
-          <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-7xl font-extrabold leading-tight tracking-wider whitespace-nowrap">
+          <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-7xl font-extrabold leading-[1.1] tracking-wider break-words">
             WE ARE YOUR<br />
             SALES & BUSINESS<br />
             VENTURES
           </h1>
         </div>
 
-        {/* What We Do - Bottom Center on Mobile, Bottom Right on Desktop */}
+        {/* What We Do - Fluid width using w-full and max-w */}
         <div className="relative z-20 lg:col-span-1 mt-auto lg:mt-0 md:flex md:items-end md:justify-end md:pb-12 md:pr-12 w-full md:w-auto px-6 pb-8 md:p-0">
-          <div className="overflow-hidden bg-black/20 backdrop-blur-md rounded-2xl border border-white/10 md:bg-transparent md:backdrop-blur-none md:border-none md:w-[380px] lg:w-[360px] xl:w-[400px]">
+          <div className="overflow-hidden bg-black/20 backdrop-blur-md rounded-2xl border border-white/10 md:bg-transparent md:backdrop-blur-none md:border-none w-full max-w-[420px]">
             
             {/* Toggle Button */}
             <button

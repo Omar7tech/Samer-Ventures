@@ -1,6 +1,6 @@
-import { useRef, useState } from "react"
-import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
+import { gsap } from "gsap"
+import { useRef, useState } from "react"
 import Logo from "./logo"
 
 const Nav = () => {
