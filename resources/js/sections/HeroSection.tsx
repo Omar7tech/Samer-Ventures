@@ -62,21 +62,21 @@ const HeroSection = () => {
             className="overflow-hidden"
             style={{ opacity: 1, height: 'auto' }}
           >
-            <div className="px-8 pb-6 space-y-4">
-              <div className="border-t border-white/30 pt-4">
-                <p className="text-lg text-white"><span className="font-semibold">01</span> Sales Outsourcing</p>
+            <div className="px-8 pb-6 space-y-2">
+              <div className="border-t border-white/30 pt-2">
+                <p className="text-lg text-white"><span className="font-semibold mr-4">01</span> Sales Outsourcing</p>
               </div>
-              <div className="border-t border-white/30 pt-4">
-                <p className="text-lg text-white"><span className="font-semibold">02</span> Business Development</p>
+              <div className="border-t border-white/30 pt-2">
+                <p className="text-lg text-white"><span className="font-semibold mr-4">02</span> Business Development</p>
               </div>
-              <div className="border-t border-white/30 pt-4">
-                <p className="text-lg text-white"><span className="font-semibold">03</span> Corporate Relations</p>
+              <div className="border-t border-white/30 pt-2">
+                <p className="text-lg text-white"><span className="font-semibold mr-4">03</span> Corporate Relations</p>
               </div>
-              <div className="border-t border-white/30 pt-4">
-                <p className="text-lg text-white"><span className="font-semibold">04</span> PR & Sponsorships</p>
+              <div className="border-t border-white/30 pt-2">
+                <p className="text-lg text-white"><span className="font-semibold mr-4">04</span> PR & Sponsorships</p>
               </div>
-              <div className="border-t border-white/30 pt-4">
-                <p className="text-lg text-white"><span className="font-semibold">05</span> Market Research</p>
+              <div className="border-t border-white/30 pt-2">
+                <p className="text-lg text-white"><span className="font-semibold mr-4">05</span> Market Research</p>
               </div>
             </div>
           </div>
