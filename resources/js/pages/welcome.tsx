@@ -1,6 +1,7 @@
 import { Head } from '@inertiajs/react';
 import Nav from '@/components/Nav';
 import HeroSection from '@/sections/HeroSection';
+import AboutSection from '@/sections/AboutSection';
 
 export default function Welcome() {
     return (
@@ -10,7 +11,7 @@ export default function Welcome() {
             <div className='mt-30 lg:mt-0'>
                <HeroSection />
             </div>
-
+            <AboutSection />
         </>
     );
 }

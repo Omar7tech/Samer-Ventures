@@ -58,7 +58,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="p-3 md:p-5 relative w-full overflow-hidden" ref={containerRef}>
+    <div className="p-3 md:p-5 relative w-full overflow-hidden max-w-[1700px] mx-auto" ref={containerRef}>
       
       {/* Main Layout Container */}
       <div className="relative w-full min-h-[600px] lg:h-[calc(100vh-4rem)] flex flex-col justify-between lg:grid lg:grid-cols-3 lg:gap-8 rounded-2xl md:rounded-3xl overflow-hidden">
