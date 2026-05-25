@@ -1,8 +1,20 @@
-const Logo = () => {
+interface LogoProps {
+  size?: "sm" | "md" | "lg"
+}
+
+const Logo = ({ size = "lg" }: LogoProps) => {
+  const sizeClasses = {
+    sm: { img: "h-10", text: "text-lg" },
+    md: { img: "h-12", text: "text-xl" },
+    lg: { img: "h-15", text: "text-2xl" },
+  }
+
+  const { img, text } = sizeClasses[size]
+
   return (
     <div className="flex items-center gap-2">
-      <img src="/logo/small-on-light.png" alt="Logo" className="h-15" />
-      <div className="flex flex-col text-primary text-2xl font-normal tracking-tight leading-none">
+      <img src="/logo/small-on-light.png" alt="Logo" className={img} />
+      <div className={`flex flex-col font-normal leading-none tracking-tight text-primary ${text}`}>
         <span>Samer</span>
         <span>Ventures</span>
       </div>
