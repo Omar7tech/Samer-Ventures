@@ -8,7 +8,7 @@ export default function Welcome() {
         <>
             <Head title="Welcome" />
             <Nav />
-            <div className='mt-30 md:mt-0'>
+            <div className='mt-30 lg:mt-0'>
                <HeroSection />
             </div>
 
