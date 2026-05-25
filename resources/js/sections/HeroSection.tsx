@@ -35,18 +35,18 @@ const HeroSection = () => {
     <div className="p-3 md:p-5 relative w-full overflow-hidden" ref={containerRef}>
       
       {/* Main Layout Container */}
-      <div className="relative w-full min-h-[600px] lg:h-[calc(100vh-4rem)] flex flex-col justify-between lg:block rounded-2xl md:rounded-3xl overflow-hidden">
-        
+      <div className="relative w-full min-h-[600px] lg:h-[calc(100vh-4rem)] flex flex-col justify-between lg:grid lg:grid-cols-3 lg:gap-8 rounded-2xl md:rounded-3xl overflow-hidden">
+
         {/* Background Image Wrapper */}
-        <img 
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0" 
-          src="/hero-bg.jpg" 
-          alt="Hero background" 
+        <img
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
+          src="/hero-bg.jpg"
+          alt="Hero background"
         />
 
         {/* Hero Text: Perfectly scaled to ensure lines never break prematurely */}
-        <div className="relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-0 z-10 flex items-center px-6 sm:px-16 md:px-24 lg:px-20 xl:px-32 pt-20 pb-12 lg:py-0">
-          <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-wider whitespace-nowrap">
+        <div className="relative z-10 lg:col-span-2 flex items-center px-6 sm:px-16 md:px-24 lg:px-20 xl:px-32 pt-20 pb-12 lg:py-0 min-w-0">
+          <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-7xl font-extrabold leading-tight tracking-wider whitespace-nowrap">
             WE ARE YOUR<br />
             SALES & BUSINESS<br />
             VENTURES
@@ -54,8 +54,8 @@ const HeroSection = () => {
         </div>
 
         {/* What We Do - Bottom Center on Mobile, Bottom Right on Desktop */}
-        <div className="relative lg:absolute z-20 mt-auto lg:mt-0 lg:bottom-12 lg:right-12 w-full sm:max-w-[420px] lg:w-[360px] xl:w-[400px] px-6 pb-8 sm:px-16 md:px-24 lg:p-0">
-          <div className="overflow-hidden bg-black/20 backdrop-blur-md rounded-2xl border border-white/10 lg:bg-transparent lg:backdrop-blur-none lg:border-none">
+        <div className="relative z-20 lg:col-span-1 mt-auto lg:mt-0 md:flex md:items-end md:justify-end md:pb-12 md:pr-12 w-full md:w-auto px-6 pb-8 md:p-0">
+          <div className="overflow-hidden bg-black/20 backdrop-blur-md rounded-2xl border border-white/10 md:bg-transparent md:backdrop-blur-none md:border-none md:w-[380px] lg:w-[360px] xl:w-[400px]">
             
             {/* Toggle Button */}
             <button
