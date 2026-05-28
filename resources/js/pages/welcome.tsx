@@ -9,9 +9,9 @@ export default function Welcome() {
             <Head title="Welcome" />
             <Nav />
             <div className='mt-30 lg:mt-0'>
-               <HeroSection />
+                <HeroSection />
+                <AboutSection />
             </div>
-            <AboutSection />
         </>
     );
 }
