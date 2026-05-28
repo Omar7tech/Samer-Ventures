@@ -17,8 +17,8 @@ const AboutSection = () => {
       stagger: 0.1,
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 75%', 
-        end: 'top 25%',   
+        start: 'top 75%',
+        end: 'top 25%',
         scrub: true,
       },
     });
@@ -52,18 +52,17 @@ const AboutSection = () => {
           <div className="space-y-6">
             <h2 className="text-3xl sm:text-4xl md:text-[45px] font-medium leading-[1.2] md:leading-[1.15] tracking-normal sm:tracking-wide md:tracking-widest text-primary">
               <span className="italic">"</span>
-              
+
               {/* These stay permanently at 100% full primary color */}
               <span>At SamerVentures® We Help </span>
               <span className="underline decoration-4 underline-offset-4 md:underline-offset-8 tracking-normal inline">
                 BusinessesGrow{' '}
               </span>
-              
+
               {/* Only these words animate from 20% to 50% on scroll */}
               <span>
                 {renderRevealWords('Through Strategic Partnerships, Outsourced Business Development, And Relationship-Driven Commercial Solutions.')}
               </span>
-              
               <span className="italic">"</span>
             </h2>
           </div>
