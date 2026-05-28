@@ -3,7 +3,6 @@ import React from 'react';
 
 interface Logo {
   src: string;
-  alt: string;
   link?: string;
 }
 
@@ -50,14 +49,14 @@ const LogoSlider = ({
                     >
                       <img
                         src={logo.src}
-                        alt={logo.alt}
+                        alt="Partner logo"
                         className="h-12 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
                       />
                     </a>
                   ) : (
                     <img
                       src={logo.src}
-                      alt={logo.alt}
+                      alt="Partner logo"
                       className="h-12 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
                     />
                   )}
