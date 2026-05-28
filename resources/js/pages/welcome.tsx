@@ -20,7 +20,7 @@ export default function Welcome() {
             <div className='mt-30 lg:mt-0'>
                 <HeroSection />
                 <AboutSection />
-                <LogoSlider logos={logos} duration={20} />
+                <LogoSlider logos={logos} duration={30} />
             </div>
         </>
     );
