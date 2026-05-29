@@ -2,7 +2,7 @@ import { Head } from '@inertiajs/react';
 import Nav from '@/components/Nav';
 import HeroSection from '@/sections/HeroSection';
 import AboutSection from '@/sections/AboutSection';
-import LogoSlider from '@/sections/LogoSlider';
+import LogoMarquee from '@/sections/LogoMarquee';
 import SmallSentence from '@/sections/smallSentence';
 import ExperienceSection from '@/sections/ExperienceSection';
 import ValueSection from '@/sections/ValueSection';
@@ -24,7 +24,7 @@ export default function Welcome() {
             <div className='mt-30 lg:mt-0'>
                 <HeroSection />
                 <AboutSection />
-                <LogoSlider logos={logos} duration={30} />
+                <LogoMarquee logos={logos} duration={30} pauseOnHover={true} />
                 <SmallSentence />
                 <ExperienceSection />
                 <ValueSection />

@@ -72,7 +72,7 @@ const StrategicServicesSection = () => {
                 <p className={baseSubtitleStyles}>{service.subtitle}</p>
               </div>
               <div className="pt-4 md:pt-6 mt-auto">
-                <AnimatedButton text="Let's Collaborate" href="#contact" />
+                <AnimatedButton text="Book a call" href="#contact" />
               </div>
             </div>
           ))}
@@ -95,7 +95,7 @@ const StrategicServicesSection = () => {
                   <p className={baseSubtitleStyles}>{service.subtitle}</p>
                 </div>
                 <div className="shrink-0 self-start w-full md:w-auto pt-2 md:pt-0">
-                  <AnimatedButton text="Let's Collaborate" href="#contact" />
+                  <AnimatedButton text="Book a call" href="#contact" />
                 </div>
               </div>
 
