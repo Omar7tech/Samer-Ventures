@@ -3,7 +3,7 @@ const ExperienceSection = () => {
     <section className='p-3 md:p-5 w-full'>
       <div className='mx-auto max-w-[1700px] px-6 py-5 md:px-20 lg:px-24'>
         <div
-          className='relative overflow-hidden rounded-2xl md:rounded-4xl shadow-2xl bg-cover bg-top h-[280px] md:h-[350px] transition-all duration-300 ease-in-out'
+          className='relative overflow-hidden rounded-2xl md:rounded-4xl  bg-cover bg-top h-[280px] md:h-[350px] transition-all duration-300 ease-in-out'
           style={{ backgroundImage: 'url(/images/experience.jpg)' }}
         >
           {/* Dark Overlay */}

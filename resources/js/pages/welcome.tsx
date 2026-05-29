@@ -5,6 +5,7 @@ import AboutSection from '@/sections/AboutSection';
 import LogoSlider from '@/sections/LogoSlider';
 import SmallSentence from '@/sections/smallSentence';
 import ExperienceSection from '@/sections/ExperienceSection';
+import ValueSection from '@/sections/ValueSection';
 
 export default function Welcome() {
     const logos = [
@@ -25,6 +26,7 @@ export default function Welcome() {
                 <LogoSlider logos={logos} duration={30} />
                 <SmallSentence />
                 <ExperienceSection />
+                <ValueSection />
             </div>
         </>
     );
