@@ -1,12 +1,33 @@
 @import 'tailwindcss';
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @theme {
+    /* Pure light-mode branding tokens */
     --font-sans: 'Manrope', sans-serif;
     --font-inter: 'Inter', sans-serif;
+    
     --color-background: #ffffff;
-    --color-primary: #145f60;
-    --color-card: #eef0ef;
+    --color-primary: #145f60;         /* Your rich dark teal titles */
+    --color-card: #eef0ef;            /* Your soft grey-green card background */
+    
+    /* Shadcn system mappings safely targeted for light mode only */
+    --color-border: #d9dedc;
+    --color-ring: #145f60;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-primary;
+  }
+  html {
+    @apply font-sans;
+  }
 }
