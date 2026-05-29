@@ -14,6 +14,9 @@ export default defineConfig({
                 google('Manrope', {
                     weights: [300, 400, 500, 600, 700, 800, 900],
                 }),
+                google('Inter', {
+                    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+                }),
             ],
         }),
         inertia({ ssr: false }),

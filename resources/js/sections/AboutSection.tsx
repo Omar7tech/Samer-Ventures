@@ -37,7 +37,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section ref={containerRef} className="p-3 md:p-5 w-full">
+    <section ref={containerRef} className="p-3 md:p-5 w-full font-inter">
       <div className="mx-auto max-w-[1700px] px-6 py-10 md:px-20 lg:px-24 md:py-20">
 
         {/* Grid Layout */}

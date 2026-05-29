@@ -6,6 +6,7 @@ import LogoSlider from '@/sections/LogoSlider';
 import SmallSentence from '@/sections/smallSentence';
 import ExperienceSection from '@/sections/ExperienceSection';
 import ValueSection from '@/sections/ValueSection';
+import StrategicServicesSection from '@/sections/StrategicServicesSection';
 
 export default function Welcome() {
     const logos = [
@@ -27,6 +28,7 @@ export default function Welcome() {
                 <SmallSentence />
                 <ExperienceSection />
                 <ValueSection />
+                <StrategicServicesSection />
             </div>
         </>
     );
