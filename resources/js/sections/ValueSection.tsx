@@ -35,8 +35,8 @@ const ValueSection = () => {
   return (
     <section className='p-3 md:p-5 w-full bg-white relative overflow-hidden'>
       <div className='mx-auto max-w-[1700px] px-6 py-10 md:px-20 lg:px-50 md:py-20 relative'>
-        {/* Title */}
-        <h2 className='text-3xl sm:text-4xl md:text-5xl font-black text-center mb-12 md:mb-20 text-gray-300 tracking-tighter'>
+        {/* Title: Left-aligned on mobile, centered on desktop */}
+        <h2 className='text-3xl sm:text-4xl md:text-5xl font-black text-left md:text-center mb-12 md:mb-20 text-gray-300 tracking-tighter'>
           The Value Of Working With Us ?
         </h2>
 
@@ -46,7 +46,8 @@ const ValueSection = () => {
             <div key={rowIndex}>
               <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16'>
                 {services.slice(rowIndex * 3, (rowIndex + 1) * 3).map((service, index) => (
-                  <div key={index} className='text-center space-y-4'>
+                  /* Left-aligned on mobile, centered on desktop */
+                  <div key={index} className='text-left md:text-center space-y-4'>
                     <h3 className='text-xl sm:text-2xl font-black text-teal-800 whitespace-pre-line tracking-tighter leading-tight'>
                       {service.title}
                     </h3>
@@ -57,9 +58,9 @@ const ValueSection = () => {
                 ))}
               </div>
 
-              {/* Horizontal Divider Line - show only if not the last row */}
+              {/* Horizontal Divider Line - hidden on mobile, block on desktop */}
               {rowIndex < Math.ceil(services.length / 3) - 1 && (
-                <div className='w-full h-px bg-gray-300 mt-12 md:mt-16 lg:mt-20'></div>
+                <div className='hidden md:block w-full h-px bg-gray-300 mt-12 md:mt-16 lg:mt-20'></div>
               )}
             </div>
           ))}

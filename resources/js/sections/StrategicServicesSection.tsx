@@ -42,8 +42,9 @@ const StrategicServicesSection = () => {
   const cardServices = services.filter((s) => s.layout === 'card');
   const horizontalServices = services.filter((s) => s.layout === 'horizontal');
 
-  // Unified styling helper variables to enforce identical mobile layout rules
-  const baseCardStyles = "bg-card rounded-[24px] md:rounded-[32px] p-4 md:p-6 flex flex-col justify-between";
+  // FIXED: Removed 'group'. Added an arbitrary child selector '[&_img]:hover:scale-105' 
+  // This targets only the img element directly when the card is hovered, keeping the button fully isolated.
+  const baseCardStyles = "bg-card rounded-[24px] md:rounded-[32px] p-4 md:p-6 flex flex-col justify-between transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] [&_img]:hover:scale-105 will-change-transform";
   const baseImageWrapper = "w-full overflow-hidden rounded-[18px] md:rounded-[24px] shrink-0 mb-4";
   const baseTitleStyles = "text-xl sm:text-3xl font-black text-primary tracking-tight mb-1.5 md:mb-3";
   const baseSubtitleStyles = "text-[14px] sm:text-[18px] font-light text-primary/80 leading-tight tracking-tight md:tracking-tighter pr-2";
@@ -53,7 +54,7 @@ const StrategicServicesSection = () => {
       <div className="mx-auto max-w-[1700px] px-2 py-2 md:px-20 lg:px-24">
         
         {/* Section Header */}
-        <h2 className="text-[28px] sm:text-5xl font-bold text-primary leading-[1.1] md:leading-[0.9] tracking-tight mb-6 md:mb-10">
+        <h2 className="text-[28px] sm:text-5xl font-bold text-primary stroke-primary leading-[1.1] md:leading-[0.9] tracking-tight mb-6 md:mb-10">
           Strategic Services <br />
           Built For Business Growth
         </h2> 
@@ -64,7 +65,11 @@ const StrategicServicesSection = () => {
             <div key={service.id} className={`${baseCardStyles} min-h-[380px] sm:min-h-[440px] md:min-h-[540px]`}>
               <div>
                 <div className={`${baseImageWrapper} h-[180px] sm:h-[200px] md:h-[260px]`}>
-                  <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                  <img 
+                    src={service.image} 
+                    alt={service.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out" 
+                  />
                 </div>
                 <h3 className={baseTitleStyles}>{service.title}</h3>
                 <p className={baseSubtitleStyles}>{service.subtitle}</p>
@@ -83,7 +88,11 @@ const StrategicServicesSection = () => {
               
               {/* Image box scales up on desktop but stays identical to cards on mobile */}
               <div className={`${baseImageWrapper} h-[180px] sm:h-[200px] md:h-[150px] md:w-[280px] md:mb-0`}>
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                <img 
+                  src={service.image} 
+                  alt={service.title} 
+                  className="w-full h-full object-cover transition-transform duration-500 ease-out" 
+                />
               </div>
 
               {/* Text Content block wrapped cleanly for desktop columns */}

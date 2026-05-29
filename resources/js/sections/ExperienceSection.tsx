@@ -15,8 +15,8 @@ const ExperienceSection = () => {
           />
 
           {/* Premium Gradient Overlay: Injected dark cinematic depth exactly where the text lives */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/40 to-transparent mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-tr from-black/80 via-black/40 to-transparent mix-blend-multiply" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
 
           {/* Text Content - Positioned Left Bottom Corner */}
           <div className="relative h-full flex items-end p-6 md:p-12 lg:p-16">
