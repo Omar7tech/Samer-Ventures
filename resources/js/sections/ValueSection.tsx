@@ -40,21 +40,30 @@ const ValueSection = () => {
           The Value Of Working With Us ?
         </h2>
 
-        {/* Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16'>
-          {services.map((service, index) => (
-            <div key={index} className='text-center space-y-4'>
-              <h3 className='text-xl sm:text-2xl font-black text-teal-800 whitespace-pre-line tracking-tighter leading-tight'>
-                {service.title}
-              </h3>
-              <p className='text-sm text-gray-400 leading-relaxed'>
-                {service.description}
-              </p>
+        {/* Grid with automatic dividers every 3 items */}
+        <div className='space-y-12 md:space-y-16 lg:space-y-20'>
+          {Array.from({ length: Math.ceil(services.length / 3) }).map((_, rowIndex) => (
+            <div key={rowIndex}>
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16'>
+                {services.slice(rowIndex * 3, (rowIndex + 1) * 3).map((service, index) => (
+                  <div key={index} className='text-center space-y-4'>
+                    <h3 className='text-xl sm:text-2xl font-black text-teal-800 whitespace-pre-line tracking-tighter leading-tight'>
+                      {service.title}
+                    </h3>
+                    <p className='text-sm text-gray-400 leading-relaxed'>
+                      {service.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Horizontal Divider Line - show only if not the last row */}
+              {rowIndex < Math.ceil(services.length / 3) - 1 && (
+                <div className='w-full h-px bg-gray-300 mt-12 md:mt-16 lg:mt-20'></div>
+              )}
             </div>
           ))}
         </div>
-
-        <div className='w-full h-px bg-gray-300 mt-12 md:mt-16 lg:mt-20 mb-8 md:mb-12'></div>
       </div>
     </section>
   )
