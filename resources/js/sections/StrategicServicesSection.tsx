@@ -1,6 +1,4 @@
 import AnimatedButton from '@/components/shadcn-space/button/button-01';
-import { Button } from '@/components/ui/button';
-import React from 'react';
 
 const StrategicServicesSection = () => {
   const services = [

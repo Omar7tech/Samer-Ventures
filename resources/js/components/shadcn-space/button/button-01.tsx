@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { ArrowUpRight } from "lucide-react";
 import { Link } from "@inertiajs/react";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface AnimatedButtonProps {
   text: string;
