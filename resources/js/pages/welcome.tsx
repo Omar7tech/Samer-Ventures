@@ -1,5 +1,4 @@
 import { Head } from '@inertiajs/react';
-import Nav from '@/components/Nav';
 import AboutSection from '@/sections/AboutSection';
 import ExperienceSection from '@/sections/ExperienceSection';
 import HeroSection from '@/sections/HeroSection';
@@ -9,8 +8,9 @@ import SmallSentence from '@/sections/smallSentence';
 import StrategicServicesSection from '@/sections/StrategicServicesSection';
 import TestimonialsSection from '@/sections/TestimonialsSection';
 import ValueSection from '@/sections/ValueSection';
+import MainLayout from '@/layouts/MainLayout';
 
-export default function Welcome() {
+const Welcome = () => {
     const logos = [
         { src: 'https://placehold.co/600x400' },
         { src: 'https://placehold.co/600x400' },
@@ -60,18 +60,19 @@ export default function Welcome() {
     return (
         <>
             <Head title="Welcome " />
-            <Nav />
-            <div className='mt-30 lg:mt-0'>
-                <HeroSection />
-                <AboutSection />
-                <LogoMarquee logos={logos} duration={30} pauseOnHover={true} />
-                <SmallSentence />
-                <ExperienceSection />
-                <ValueSection />
-                <StrategicServicesSection />
-                <TestimonialsSection testimonials={testimonials} />
-                <PartnershipSection />
-            </div>
+            <HeroSection />
+            <AboutSection />
+            <LogoMarquee logos={logos} duration={30} pauseOnHover={true} />
+            <SmallSentence />
+            <ExperienceSection />
+            <ValueSection />
+            <StrategicServicesSection />
+            <TestimonialsSection testimonials={testimonials} />
+            <PartnershipSection />
         </>
     );
-}
+};
+
+Welcome.layout = (page: React.ReactNode) => <MainLayout>{page}</MainLayout>;
+
+export default Welcome;
