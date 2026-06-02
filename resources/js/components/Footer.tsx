@@ -44,6 +44,7 @@ const Footer = () => {
             <div>
               <h3 className="text-lg md:text-2xl lg:text-3xl font-bold uppercase mb-6 tracking-wider">CONTACT</h3>
               <ul className="space-y-3 text-base md:text-lg font-light">
+                <li><Link href="/contact" className="hover:opacity-70 transition-opacity">Contact Us</Link></li>
                 <li><a href="#" className="hover:opacity-70 transition-opacity">Whatsapp</a></li>
                 <li><a href="#" className="hover:opacity-70 transition-opacity">Instagram</a></li>
                 <li><a href="#" className="hover:opacity-70 transition-opacity">LinkedIn</a></li>

@@ -114,7 +114,7 @@ const Nav = () => {
         <div className="flex flex-col gap-3 text-2xl font-normal uppercase">
           <Link href="/" className="cursor-pointer transition-opacity hover:opacity-70">Home</Link>
           <Link href="/services" className="cursor-pointer transition-opacity hover:opacity-70">Services</Link>
-          <div className="cursor-pointer transition-opacity hover:opacity-70">Contact</div>
+          <Link href="/contact" className="cursor-pointer transition-opacity hover:opacity-70">Contact</Link>
         </div>
 
         <button className="rounded-full bg-primary px-10 py-4 text-xl font-semibold uppercase tracking-wider text-white transition-transform hover:scale-105">
@@ -157,9 +157,9 @@ const Nav = () => {
               <Link href="/services" className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
                 Services
               </Link>
-              <div className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
+              <Link href="/contact" className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
                 Contact
-              </div>
+              </Link>
             </div>
 
             <button className="menu-item mb-5 mt-4 w-full rounded-2xl bg-primary px-8 py-4 text-lg font-semibold uppercase tracking-wider text-white shadow-lg shadow-primary/20">
