@@ -2,6 +2,7 @@ import { Head } from '@inertiajs/react';
 import MainLayout from '@/layouts/MainLayout';
 import ServicesHero from '@/sections/ServicesHero';
 import ServicesGrid from '@/sections/ServicesGrid';
+import ServicesIntro from '@/sections/ServicesIntro';
 
 const Services = () => {
   return (
@@ -9,6 +10,7 @@ const Services = () => {
       <Head title="Services" />
       <ServicesHero />
       <ServicesGrid />
+      <ServicesIntro />
     </>
   );
 };
