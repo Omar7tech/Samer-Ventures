@@ -26,21 +26,27 @@ const TestimonialsSection = ({ testimonials = [] }: TestimonialsSectionProps) =>
   }
 
   return (
-    <section className="font-inter w-full py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="mx-auto max-w-[1700px] px-2 md:px-20 lg:px-24">
+    <section className="font-inter w-full py-12 md:py-16 bg-white">
+      <div className="mx-auto max-w-[1700px]">
 
         {/* Section Header */}
-        <h2 className="text-[32px] sm:text-5xl md:text-6xl font-bold text-primary leading-[1.1] md:leading-[0.95] tracking-tight mb-8 md:mb-12">
+        <h2 className="text-[32px] sm:text-5xl md:text-6xl font-bold text-primary leading-[1.1] md:leading-[0.95] tracking-tight mb-8 md:mb-12 px-4 md:px-20 lg:px-24">
           Trusted By
           <br />
           Growing Businesses
         </h2>
 
         {/* Carousel */}
+        <div className="px-0 md:px-20 lg:px-24">
         <Carousel
           opts={{
             align: 'start',
             loop: true,
+            breakpoints: {
+              '(max-width: 767px)': {
+                align: 'center',
+              }
+            }
           }}
           className="w-full"
         >
@@ -48,7 +54,7 @@ const TestimonialsSection = ({ testimonials = [] }: TestimonialsSectionProps) =>
             {testimonials.map((testimonial) => (
               <CarouselItem
                 key={testimonial.id}
-                className="pl-4 md:pl-6 basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                className="pl-4 md:pl-6 basis-[85%] sm:basis-[90%] md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
               >
                 <TestimonialCard
                   rating={testimonial.rating}
@@ -63,6 +69,7 @@ const TestimonialsSection = ({ testimonials = [] }: TestimonialsSectionProps) =>
           <CarouselPrevious className="hidden md:flex" />
           <CarouselNext className="hidden md:flex" />
         </Carousel>
+        </div>
       </div>
     </section>
   );
