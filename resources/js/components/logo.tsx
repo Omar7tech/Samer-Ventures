@@ -10,12 +10,12 @@ const Logo = ({ size = "lg", layout = "horizontal", isGradient = false, isWhite 
     sm: { img: "h-10", text: "text-lg" },
     md: { img: "h-12", text: "text-xl" },
     lg: { img: "h-15", text: "text-2xl" },
-    full: { img: "h-[clamp(4rem,10vw,8rem)]", text: "text-[clamp(2rem,5vw,4rem)]" },
+    full: { img: "h-[clamp(5rem,12vw,10rem)]", text: "text-[clamp(2rem,5vw,4rem)]" },
   }
 
   const { img, text } = sizeClasses[size]
 
-  const baseClasses = `flex flex-col font-normal leading-none tracking-tight ${text}`
+  const baseClasses = `flex flex-col font-sans font-light leading-none tracking-tight ${text}`
   const colorClasses = isWhite
     ? 'text-white'
     : isGradient
