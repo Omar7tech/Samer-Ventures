@@ -1,3 +1,4 @@
+import { Link } from '@inertiajs/react';
 import Logo from './logo';
 
 const Footer = () => {
@@ -21,9 +22,9 @@ const Footer = () => {
             <div>
               <h3 className="text-lg md:text-2xl lg:text-3xl font-bold uppercase mb-6 tracking-wider">HOME</h3>
               <ul className="space-y-3 text-base md:text-lg font-light">
-                <li><a href="#" className="hover:opacity-70 transition-opacity">About</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">Work</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">Clients</a></li>
+                <li><Link href="/#about" className="hover:opacity-70 transition-opacity">About</Link></li>
+                <li><Link href="/#work" className="hover:opacity-70 transition-opacity">Work</Link></li>
+                <li><Link href="/#clients" className="hover:opacity-70 transition-opacity">Clients</Link></li>
               </ul>
             </div>
 
@@ -31,11 +32,11 @@ const Footer = () => {
             <div>
               <h3 className="text-lg md:text-2xl lg:text-3xl font-bold uppercase mb-6 tracking-wider">SERVICES</h3>
               <ul className="space-y-3 text-base md:text-lg font-light">
-                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Growth</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Relations</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Insights</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Connect</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Pitch</a></li>
+                <li><Link href="/services" className="hover:opacity-70 transition-opacity">SV Growth</Link></li>
+                <li><Link href="/services" className="hover:opacity-70 transition-opacity">SV Relations</Link></li>
+                <li><Link href="/services" className="hover:opacity-70 transition-opacity">SV Insights</Link></li>
+                <li><Link href="/services" className="hover:opacity-70 transition-opacity">SV Connect</Link></li>
+                <li><Link href="/services" className="hover:opacity-70 transition-opacity">SV Pitch</Link></li>
               </ul>
             </div>
 

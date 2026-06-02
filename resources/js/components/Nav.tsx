@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react"
 import { gsap } from "gsap"
 import { useRef, useState } from "react"
+import { Link } from "@inertiajs/react"
 import Logo from "./logo"
 
 const Nav = () => {
@@ -111,8 +112,8 @@ const Nav = () => {
         </div>
 
         <div className="flex flex-col gap-3 text-2xl font-normal uppercase">
-          <div className="cursor-pointer transition-opacity hover:opacity-70">Home</div>
-          <div className="cursor-pointer transition-opacity hover:opacity-70">Services</div>
+          <Link href="/" className="cursor-pointer transition-opacity hover:opacity-70">Home</Link>
+          <Link href="/services" className="cursor-pointer transition-opacity hover:opacity-70">Services</Link>
           <div className="cursor-pointer transition-opacity hover:opacity-70">Contact</div>
         </div>
 
@@ -150,12 +151,12 @@ const Nav = () => {
             </div>
 
             <div className="mt-5 flex flex-col gap-1">
-              <div className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
+              <Link href="/" className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
                 Home
-              </div>
-              <div className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
+              </Link>
+              <Link href="/services" className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
                 Services
-              </div>
+              </Link>
               <div className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
                 Contact
               </div>
