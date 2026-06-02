@@ -33,7 +33,7 @@ const TestimonialCard = ({
         </div>
 
         {/* Quote */}
-        <p className="text-[14px] md:text-[15px] leading-relaxed text-primary/80 font-light">
+        <p className="text-[14px] md:text-[15px] leading-[1.1] text-primary/80 font-light">
           {quote}
         </p>
       </div>
