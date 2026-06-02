@@ -1,5 +1,5 @@
 interface LogoProps {
-  size?: "sm" | "md" | "lg"
+  size?: "sm" | "md" | "lg" | "full"
   layout?: "horizontal" | "vertical"
   isGradient?: boolean
   isWhite?: boolean
@@ -10,6 +10,7 @@ const Logo = ({ size = "lg", layout = "horizontal", isGradient = false, isWhite 
     sm: { img: "h-10", text: "text-lg" },
     md: { img: "h-12", text: "text-xl" },
     lg: { img: "h-15", text: "text-2xl" },
+    full: { img: "h-[clamp(4rem,10vw,8rem)]", text: "text-[clamp(2rem,5vw,4rem)]" },
   }
 
   const { img, text } = sizeClasses[size]

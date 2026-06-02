@@ -7,7 +7,7 @@ const Footer = () => {
         {/* Top Section - Tagline & Navigation */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 mb-16">
           {/* Tagline */}
-          <div className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          <div className="text-3xl md:text-4xl lg:text-5xl leading-none tracking-tighter">
             Business. Growth
             <br />
             & Sales
@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {/* Home Column */}
             <div>
-              <h3 className="text-lg md:text-xl font-bold uppercase mb-6 tracking-wider">HOME</h3>
+              <h3 className="text-lg md:text-2xl lg:text-3xl font-bold uppercase mb-6 tracking-wider">HOME</h3>
               <ul className="space-y-3 text-base md:text-lg font-light">
                 <li><a href="#" className="hover:opacity-70 transition-opacity">About</a></li>
                 <li><a href="#" className="hover:opacity-70 transition-opacity">Work</a></li>
@@ -27,7 +27,7 @@ const Footer = () => {
 
             {/* Services Column */}
             <div>
-              <h3 className="text-lg md:text-xl font-bold uppercase mb-6 tracking-wider">SERVICES</h3>
+              <h3 className="text-lg md:text-2xl lg:text-3xl font-bold uppercase mb-6 tracking-wider">SERVICES</h3>
               <ul className="space-y-3 text-base md:text-lg font-light">
                 <li><a href="#" className="hover:opacity-70 transition-opacity">SV Growth</a></li>
                 <li><a href="#" className="hover:opacity-70 transition-opacity">SV Relations</a></li>
@@ -39,7 +39,7 @@ const Footer = () => {
 
             {/* Contact Column */}
             <div>
-              <h3 className="text-lg md:text-xl font-bold uppercase mb-6 tracking-wider">CONTACT</h3>
+              <h3 className="text-lg md:text-2xl lg:text-3xl font-bold uppercase mb-6 tracking-wider">CONTACT</h3>
               <ul className="space-y-3 text-base md:text-lg font-light">
                 <li><a href="#" className="hover:opacity-70 transition-opacity">Whatsapp</a></li>
                 <li><a href="#" className="hover:opacity-70 transition-opacity">Instagram</a></li>
@@ -54,7 +54,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center mb-16 pb-16 border-b border-white/20">
           {/* Logo */}
           <div>
-            <Logo isWhite layout="horizontal" size="lg" />
+            <Logo isWhite layout="horizontal" size="full" />
           </div>
 
           {/* Newsletter */}
