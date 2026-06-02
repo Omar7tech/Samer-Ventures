@@ -1,5 +1,6 @@
 import Nav from '@/components/Nav';
 import FooterCTA from '@/components/FooterCTA';
+import Footer from '@/components/Footer';
 import { ReactNode } from 'react';
 
 interface MainLayoutProps {
@@ -14,6 +15,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
         {children}
       </div>
       <FooterCTA />
+      <Footer />
     </>
   );
 }
