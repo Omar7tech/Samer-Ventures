@@ -40,7 +40,7 @@ const TestimonialCard = ({
 
       {/* Author */}
       <div className="flex items-center gap-4 mt-8">
-        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#d9dedc] flex items-center justify-center overflow-hidden shrink-0">
+        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-border flex items-center justify-center overflow-hidden shrink-0">
           {avatar ? (
             <img src={avatar} alt={name} className="w-full h-full object-cover" />
           ) : (

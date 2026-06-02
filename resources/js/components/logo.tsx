@@ -4,7 +4,7 @@ interface LogoProps {
   isGradient?: boolean
 }
 
-const Logo = ({ size = "lg", layout = "horizontal", isGradient = true }: LogoProps) => {
+const Logo = ({ size = "lg", layout = "horizontal", isGradient = false }: LogoProps) => {
   const sizeClasses = {
     sm: { img: "h-10", text: "text-lg" },
     md: { img: "h-12", text: "text-xl" },
@@ -13,9 +13,11 @@ const Logo = ({ size = "lg", layout = "horizontal", isGradient = true }: LogoPro
 
   const { img, text } = sizeClasses[size]
 
-  const textClasses = isGradient
-    ? `flex flex-col font-normal leading-none tracking-tight bg-gradient-to-r from-black from-[-15%] to-primary to-[60%] bg-clip-text text-transparent ${text}`
-    : `flex flex-col font-normal leading-none tracking-tight text-primary ${text}`
+  const baseClasses = `flex flex-col font-normal leading-none tracking-tight ${text}`
+  const colorClasses = isGradient
+    ? 'bg-gradient-to-r from-black from-[-15%] to-primary to-[60%] bg-clip-text text-transparent'
+    : 'text-primary'
+  const textClasses = `${baseClasses} ${colorClasses}`
 
   if (layout === "vertical") {
     return (
