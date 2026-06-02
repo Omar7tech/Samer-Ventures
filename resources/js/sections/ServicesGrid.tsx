@@ -97,7 +97,7 @@ const ServicesGrid = () => {
 
                   {/* Tab Labels */}
                   <div className="flex flex-col leading-tight">
-                    <span className="text-base md:text-lg font-bold tracking-wider uppercase text-primary">
+                    <span className="text-lg md:text-xl lg:text-2xl font-extrabold tracking-wider uppercase text-primary">
                       {service.title}
                     </span>
                     <span className="text-xs md:text-sm font-medium text-primary/80 tracking-wide mt-0.5">
