@@ -1,6 +1,8 @@
 import Logo from './logo';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="w-full bg-primary text-white font-inter">
       <div className="max-w-[1700px] mx-auto px-6 md:px-20 lg:px-24 py-12 md:py-16">
@@ -78,8 +80,10 @@ const Footer = () => {
 
         {/* Bottom Section - Copyright */}
         <div className="text-center text-sm md:text-base font-light opacity-80">
-          <p>© 2026 Samer Ventures. All Rights Reserved.</p>
-          <p className="mt-1">Crafted By YamenCreates®</p>
+          <p>© {currentYear} Samer Ventures. All Rights Reserved.</p>
+          <p className="mt-1">
+            Crafted By <a href="https://yamencreates.com/" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">YamenCreates®</a>
+          </p>
         </div>
       </div>
     </footer>
