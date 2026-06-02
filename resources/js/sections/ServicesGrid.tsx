@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ServiceTab {
   id: string;
@@ -41,7 +41,32 @@ const ServicesGrid = () => {
   ];
 
   const [activeTab, setActiveTab] = useState<string>("growth");
+  const [isImageLoading, setIsImageLoading] = useState(true);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const currentService = services.find((s) => s.id === activeTab) || services[0];
+
+  // Preload all images on mount
+  useEffect(() => {
+    services.forEach((service) => {
+      const img = new Image();
+      img.src = service.image;
+    });
+  }, []);
+
+  // Handle tab change with loading state
+  const handleTabChange = (id: string) => {
+    const service = services.find((s) => s.id === id);
+    if (service && !loadedImages.has(service.image)) {
+      setIsImageLoading(true);
+    }
+    setActiveTab(id);
+  };
+
+  // Reset loading state when image loads
+  const handleImageLoad = () => {
+    setLoadedImages(prev => new Set(prev).add(currentService.image));
+    setIsImageLoading(false);
+  };
 
   return (
     <section className="w-full bg-white py-16 px-6 md:px-16 lg:px-32 font-inter">
@@ -76,10 +101,10 @@ const ServicesGrid = () => {
             {services.map((service) => {
               const isActive = activeTab === service.id;
               return (
-                <button
+                <div
                   key={service.id}
-                  onClick={() => setActiveTab(service.id)}
-                  className={`w-full flex items-start gap-4 py-6 border-b text-left transition-all duration-300 relative group
+                  onMouseEnter={() => handleTabChange(service.id)}
+                  className={`w-full flex items-start gap-4 py-6 border-b text-left transition-all duration-300 relative group cursor-pointer
                     ${isActive
                       ? "border-gray-200 opacity-100"
                       : "border-gray-100 opacity-25 hover:opacity-50"
@@ -104,7 +129,7 @@ const ServicesGrid = () => {
                       {service.subtitle}
                     </span>
                   </div>
-                </button>
+                </div>
               );
             })}
           </div>
@@ -112,11 +137,21 @@ const ServicesGrid = () => {
           {/* Right Column: Display Card Asset Showcase */}
           <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[1.45/1] rounded-[32px] overflow-hidden bg-[#EBF0F3] transition-all duration-500">
 
+            {/* Loading State */}
+            {isImageLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-[#EBF0F3] z-20">
+                <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
+              </div>
+            )}
+
             {/* The Visual Image Asset - Full Container */}
             <img
               src={currentService.image}
-              alt={currentService.title}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out hover:scale-105"
+              alt=""
+              onLoad={handleImageLoad}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out hover:scale-105 ${
+                isImageLoading ? 'opacity-0' : 'opacity-100'
+              }`}
             />
 
             {/* Floating Top Right Content Badge - Overlaid */}
