@@ -4,46 +4,49 @@ const Footer = () => {
   return (
     <footer className="w-full bg-primary text-white font-inter">
       <div className="max-w-[1700px] mx-auto px-6 md:px-20 lg:px-24 py-12 md:py-16">
-        {/* Top Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-16">
+        {/* Top Section - Tagline & Navigation */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 mb-16">
           {/* Tagline */}
-          <div className="text-xl md:text-2xl font-light leading-tight">
+          <div className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
             Business. Growth
             <br />
             & Sales
           </div>
 
-          {/* Home Column */}
-          <div>
-            <h3 className="text-lg md:text-xl font-bold uppercase mb-6 tracking-wider">HOME</h3>
-            <ul className="space-y-3 text-base md:text-lg font-light">
-              <li><a href="#" className="hover:opacity-70 transition-opacity">About</a></li>
-              <li><a href="#" className="hover:opacity-70 transition-opacity">Work</a></li>
-              <li><a href="#" className="hover:opacity-70 transition-opacity">Clients</a></li>
-            </ul>
-          </div>
+          {/* Navigation Links - 3 columns */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {/* Home Column */}
+            <div>
+              <h3 className="text-lg md:text-xl font-bold uppercase mb-6 tracking-wider">HOME</h3>
+              <ul className="space-y-3 text-base md:text-lg font-light">
+                <li><a href="#" className="hover:opacity-70 transition-opacity">About</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Work</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Clients</a></li>
+              </ul>
+            </div>
 
-          {/* Services Column */}
-          <div>
-            <h3 className="text-lg md:text-xl font-bold uppercase mb-6 tracking-wider">SERVICES</h3>
-            <ul className="space-y-3 text-base md:text-lg font-light">
-              <li><a href="#" className="hover:opacity-70 transition-opacity">SV Growth</a></li>
-              <li><a href="#" className="hover:opacity-70 transition-opacity">SV Relations</a></li>
-              <li><a href="#" className="hover:opacity-70 transition-opacity">SV Insights</a></li>
-              <li><a href="#" className="hover:opacity-70 transition-opacity">SV Connect</a></li>
-              <li><a href="#" className="hover:opacity-70 transition-opacity">SV Pitch</a></li>
-            </ul>
-          </div>
+            {/* Services Column */}
+            <div>
+              <h3 className="text-lg md:text-xl font-bold uppercase mb-6 tracking-wider">SERVICES</h3>
+              <ul className="space-y-3 text-base md:text-lg font-light">
+                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Growth</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Relations</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Insights</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Connect</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">SV Pitch</a></li>
+              </ul>
+            </div>
 
-          {/* Contact Column */}
-          <div>
-            <h3 className="text-lg md:text-xl font-bold uppercase mb-6 tracking-wider">CONTACT</h3>
-            <ul className="space-y-3 text-base md:text-lg font-light">
-              <li><a href="#" className="hover:opacity-70 transition-opacity">Whatsapp</a></li>
-              <li><a href="#" className="hover:opacity-70 transition-opacity">Instagram</a></li>
-              <li><a href="#" className="hover:opacity-70 transition-opacity">LinkedIn</a></li>
-              <li><a href="#" className="hover:opacity-70 transition-opacity">Email</a></li>
-            </ul>
+            {/* Contact Column */}
+            <div>
+              <h3 className="text-lg md:text-xl font-bold uppercase mb-6 tracking-wider">CONTACT</h3>
+              <ul className="space-y-3 text-base md:text-lg font-light">
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Whatsapp</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Instagram</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">LinkedIn</a></li>
+                <li><a href="#" className="hover:opacity-70 transition-opacity">Email</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
