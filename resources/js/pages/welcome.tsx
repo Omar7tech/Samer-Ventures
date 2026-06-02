@@ -4,6 +4,7 @@ import AboutSection from '@/sections/AboutSection';
 import ExperienceSection from '@/sections/ExperienceSection';
 import HeroSection from '@/sections/HeroSection';
 import LogoMarquee from '@/sections/LogoMarquee';
+import PartnershipSection from '@/sections/PartnershipSection';
 import SmallSentence from '@/sections/smallSentence';
 import StrategicServicesSection from '@/sections/StrategicServicesSection';
 import TestimonialsSection from '@/sections/TestimonialsSection';
@@ -69,6 +70,7 @@ export default function Welcome() {
                 <ValueSection />
                 <StrategicServicesSection />
                 <TestimonialsSection testimonials={testimonials} />
+                <PartnershipSection />
             </div>
         </>
     );
