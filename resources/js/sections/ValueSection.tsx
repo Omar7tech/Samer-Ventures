@@ -33,7 +33,7 @@ const ValueSection = () => {
   ]
 
   return (
-    <section className='p-3 md:p-5 w-full bg-white relative overflow-hidden'>
+    <section className='p-3 md:p-5 w-full relative overflow-visible'>
       <div className='mx-auto max-w-[1700px] px-6 py-10 md:px-20 lg:px-50 md:py-20 relative'>
         {/* Title: Left-aligned on mobile, centered on desktop */}
         <h2 className='text-3xl sm:text-4xl md:text-5xl font-black text-left md:text-center mb-12 md:mb-20 text-gray-300 tracking-tighter'>
