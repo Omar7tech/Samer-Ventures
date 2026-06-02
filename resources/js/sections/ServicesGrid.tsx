@@ -110,26 +110,28 @@ const ServicesGrid = () => {
           </div>
 
           {/* Right Column: Display Card Asset Showcase */}
-          <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[1.45/1] rounded-[32px] overflow-hidden bg-[#EBF0F3] flex items-center justify-center p-8 transition-all duration-500">
+          <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] lg:aspect-[1.45/1] rounded-[32px] overflow-hidden bg-[#EBF0F3] transition-all duration-500">
 
-            {/* The Visual Image Asset */}
+            {/* The Visual Image Asset - Full Container */}
             <img
               src={currentService.image}
               alt={currentService.title}
-              className="h-[80%] w-auto object-contain object-center drop-shadow-sm transition-transform duration-500 ease-out hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out hover:scale-105"
             />
 
-            {/* Floating Top Right Content Badge */}
-            <div className="absolute top-8 right-10 flex items-start gap-3 text-right">
-              <span className="text-sm font-medium text-primary/70 pt-0.5">
-                {currentService.number}
-              </span>
-              <div className="flex flex-col leading-none">
-                <span className="text-sm font-bold tracking-wider text-primary uppercase">
-                  {currentService.title}
-                </span>
-                <span className="text-[10px] font-semibold text-primary/70 tracking-widest uppercase mt-1">
-                  {currentService.subtitle}
+            {/* Floating Top Right Content Badge - Overlaid */}
+            <div className="absolute top-6 right-6 md:top-8 md:right-8 z-10">
+              <div className="flex items-start gap-3 text-right">
+                <div className="flex flex-col leading-none">
+                  <span className="text-xs md:text-sm font-bold tracking-wider text-primary uppercase">
+                    {currentService.title}
+                  </span>
+                  <span className="text-[10px] font-semibold text-primary/70 tracking-widest uppercase mt-1">
+                    {currentService.subtitle}
+                  </span>
+                </div>
+                <span className="text-xs md:text-sm font-medium text-primary/70">
+                  {currentService.number}
                 </span>
               </div>
             </div>
