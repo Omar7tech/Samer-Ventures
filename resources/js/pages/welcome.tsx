@@ -59,7 +59,7 @@ const Welcome = () => {
 
     return (
         <>
-            <Head title="Welcome " />
+            <Head title="Welcome" />
             <HeroSection />
             <AboutSection />
             <LogoMarquee logos={logos} duration={30} pauseOnHover={true} />
