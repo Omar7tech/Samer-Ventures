@@ -5,7 +5,9 @@ namespace App\Providers\Filament;
 use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
 use Caresome\FilamentAuthDesigner\Data\AuthPageConfig;
 use Caresome\FilamentAuthDesigner\Enums\MediaPosition;
+use Filament\Auth\MultiFactor\App\AppAuthentication;
 use Filament\Enums\ThemeMode;
+use Filament\Enums\UserMenuPosition;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -34,9 +36,13 @@ class AdminPanelProvider extends PanelProvider
             ->spa()
             ->brandLogo(asset('logo/sv-logo.svg'))
             ->brandLogoHeight('40px')
+            ->userMenu(position: UserMenuPosition::Sidebar)
+            ->sidebarCollapsibleOnDesktop()
+
             ->defaultThemeMode(ThemeMode::Light)
             ->profile(isSimple: false)
             ->login()
+
             ->colors([
                 'primary' => [
                     50 => 'oklch(0.97 0.015 190.0)',
@@ -85,6 +91,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->multiFactorAuthentication([
+                AppAuthentication::make()->recoverable(),
             ]);
     }
 }
