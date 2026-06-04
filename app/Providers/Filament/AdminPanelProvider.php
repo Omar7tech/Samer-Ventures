@@ -32,6 +32,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->spa()
+            ->brandLogo(asset('logo/sv-logo.svg'))
+            ->brandLogoHeight('40px')
             ->defaultThemeMode(ThemeMode::Light)
             ->profile(isSimple: false)
             ->login()
