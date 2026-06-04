@@ -8,7 +8,7 @@ const Contact = () => {
 
             {/* Contact Form Section */}
             <section className="py-16 md:py-24 bg-white font-inter">
-                <div className="max-w-[1400px] mx-auto px-6 md:px-16 lg:px-32">
+                <div className="max-w-[1700px] mx-auto px-6 md:px-12 lg:px-16">
                     
                     {/* Top Tagline */}
                     <div className="mb-2">
@@ -17,20 +17,20 @@ const Contact = () => {
                         </p>
                     </div>
 
-                    {/* Main Heading */}
-                    <h1 className="text-5xl md:text-6xl lg:text-[76px] font-bold text-primary tracking-tight leading-[1.05] mb-12 md:mb-14">
+                    {/* Main Heading - Scaled up as requested */}
+                    <h1 className="ml-0 md:ml-8 text-5xl md:text-6xl lg:text-[84px] font-medium text-primary tracking-tight leading-none mb-14">
                         Contact Us
                     </h1>
 
-                    {/* Content Layout - Two Column Flex Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 lg:gap-20 items-stretch">
+                    {/* Grid Layout: Form card dominates the width; image is a sleek, narrower sidecar */}
+                    <div className="grid grid-cols-1 lg:grid-cols-[2.4fr_1fr] xl:grid-cols-[2.6fr_1fr] gap-8 items-stretch">
                         
-                        {/* Left Column - Contact Form */}
-                        <div className="w-full">
+                        {/* Left Column: Form Card Container (Responsive styles strip the card shape on mobile) */}
+                        <div className="bg-transparent sm:bg-[#FBFBFB] border-0 sm:border border-gray-100/70 rounded-none sm:rounded-[32px] p-0 sm:p-8 md:p-12 shadow-none sm:shadow-[0_4px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between">
                             <form className="space-y-6">
                                 
                                 {/* Row 1: Name & Position */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="flex flex-col">
                                         <label htmlFor="name" className="text-base font-bold text-[#8A9499] mb-2.5">
                                             Name
@@ -58,7 +58,7 @@ const Contact = () => {
                                 </div>
 
                                 {/* Row 2: Company Name & Email */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="flex flex-col">
                                         <label htmlFor="company" className="text-base font-bold text-[#8A9499] mb-2.5">
                                             Company Name
@@ -86,7 +86,7 @@ const Contact = () => {
                                 </div>
 
                                 {/* Row 3: Phone & Selection dropdown */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="flex flex-col">
                                         <label htmlFor="phone" className="text-base font-bold text-[#8A9499] mb-2.5">
                                             Phone Number
@@ -125,7 +125,7 @@ const Contact = () => {
                                 </div>
 
                                 {/* Row 4: Company Industry & Company Size */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="flex flex-col">
                                         <label htmlFor="industry" className="text-base font-bold text-[#8A9499] mb-2.5">
                                             Company Industry
@@ -175,7 +175,7 @@ const Contact = () => {
                                     </div>
                                 </div>
 
-                                {/* Row 5: Tell Us More Textarea */}
+                                {/* Row 5: Textarea */}
                                 <div className="flex flex-col">
                                     <label htmlFor="message" className="text-base font-bold text-[#8A9499] mb-2.5">
                                         Tell Us More About Your Business
@@ -189,11 +189,11 @@ const Contact = () => {
                                     />
                                 </div>
 
-                                {/* Submit Action Row */}
-                                <div className="flex justify-center pt-4">
+                                {/* Form Submit Button Wrapper */}
+                                <div className="flex justify-center pt-6">
                                     <button
                                         type="submit"
-                                        className="bg-primary text-white font-bold text-xs uppercase tracking-[0.15em] px-12 py-4 rounded-full hover:bg-primary/90 transition-all duration-300 shadow-sm hover:shadow"
+                                        className="bg-primary text-white font-bold text-xs uppercase tracking-[0.15em] px-12 py-4 rounded-full shadow-sm cursor-pointer transition-all duration-300 ease-in-out hover:bg-primary/95 hover:scale-[1.02] hover:shadow-md active:scale-[0.98]"
                                     >
                                         SUBMIT INQUIRY
                                     </button>
@@ -201,9 +201,9 @@ const Contact = () => {
                             </form>
                         </div>
 
-                        {/* Right Column - Media Showcase Card */}
-                        <div className="hidden lg:block w-full">
-                            <div className="w-full h-full min-h-[580px] rounded-[32px] overflow-hidden">
+                        {/* Right Column: Sleek sidecar image container matching the layout adjustments */}
+                        <div className="hidden lg:block w-full h-full min-h-[650px]">
+                            <div className="w-full h-full rounded-[32px] overflow-hidden">
                                 <img
                                     src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1200&fit=crop"
                                     alt="Professional communication concept"
