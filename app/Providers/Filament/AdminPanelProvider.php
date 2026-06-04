@@ -27,9 +27,23 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->spa()
+            ->profile(isSimple: false)
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => [
+                    50 => 'oklch(0.97 0.015 190.0)',
+                    100 => 'oklch(0.92 0.035 190.0)',
+                    200 => 'oklch(0.83 0.065 191.0)',
+                    300 => 'oklch(0.72 0.095 192.0)',
+                    400 => 'oklch(0.58 0.115 193.0)',
+                    500 => 'oklch(0.44 0.101 194.3)', // This perfectly maps to your #145f60 (Teal)
+                    600 => 'oklch(0.38 0.092 195.0)',
+                    700 => 'oklch(0.32 0.081 195.5)',
+                    800 => 'oklch(0.26 0.068 196.0)',
+                    900 => 'oklch(0.21 0.054 196.5)',
+                    950 => 'oklch(0.15 0.039 197.0)',
+                ],
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
