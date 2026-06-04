@@ -2,6 +2,10 @@
 
 namespace App\Providers\Filament;
 
+use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
+use Caresome\FilamentAuthDesigner\Data\AuthPageConfig;
+use Caresome\FilamentAuthDesigner\Enums\MediaPosition;
+use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -28,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->spa()
+            ->defaultThemeMode(ThemeMode::Light)
             ->profile(isSimple: false)
             ->login()
             ->colors([
@@ -55,6 +60,16 @@ class AdminPanelProvider extends PanelProvider
                 AccountWidget::class,
                 FilamentInfoWidget::class,
             ])
+            ->plugin(
+                AuthDesignerPlugin::make()
+                    ->login(
+                        fn(AuthPageConfig $config) => $config
+                            ->media(asset('covers/main.png'))
+                            ->mediaPosition(MediaPosition::Left)
+                            ->mediaSize('60%')
+                            ->themeToggle()
+                    )
+            )
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
