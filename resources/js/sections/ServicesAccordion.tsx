@@ -129,7 +129,7 @@ export default function ServicesAccordion() {
     return (
         <section className="py-24 px-5 md:px-10 lg:px-32">
             <div className="max-w-[1700px] mx-auto">
-                <Accordion type="multiple">
+                <Accordion type="multiple" defaultValue={['sv-growth']}>
                     {services.map((service) => (
                         <AccordionItem key={service.id} value={service.id}>
                             <AccordionTrigger
