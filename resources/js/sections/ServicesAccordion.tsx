@@ -132,13 +132,11 @@ export default function ServicesAccordion() {
                 <Accordion type="multiple" defaultValue={['sv-growth']}>
                     {services.map((service) => (
                         <AccordionItem key={service.id} value={service.id}>
-                            {/* Retained your perfect trigger styles, added pr-12 to avoid overlap on small views */}
                             <AccordionTrigger
                                 className="text-[clamp(1.5rem,4vw,3.5rem)] font-medium text-primary leading-tight tracking-tighter"
                             >
                                 <span className="relative inline-block pr-10">
                                     {service.title}
-                                    {/* Positioned absolute at the top right of the string, forced uppercase TM */}
                                     <span className="absolute top-0 right-0 text-[0.3em] font-bold uppercase tracking-normal select-none leading-none">
                                         TM
                                     </span>
@@ -189,12 +187,12 @@ export default function ServicesAccordion() {
                                             ))}
                                         </div>
 
-                                        {/* Tags Grid Layout */}
+                                        {/* Enhanced Tags Grid Layout with Custom 1.5px Borders & Hover Effects */}
                                         <div className="flex flex-wrap gap-3 pt-2">
                                             {service.tags.map((tag) => (
                                                 <span
                                                     key={tag}
-                                                    className="rounded-full border border-primary/40 bg-transparent px-5 py-2 text-md font-normal text-primary tracking-wide"
+                                                    className="rounded-full border-[1.5px] border-primary/40 bg-transparent px-5 py-2 text-md font-normal text-primary tracking-wide select-none cursor-default transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-primary hover:border-primary hover:text-white hover:shadow-sm"
                                                 >
                                                     {tag}
                                                 </span>
