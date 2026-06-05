@@ -20,7 +20,7 @@ const ServicesHero = () => {
 
         {/* Row 2: The remaining text aligned perfectly underneath the first row */}
         <div className="text-left lg:text-right mt-0 lg:mt-2">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-normal text-primary leading-[1.25] lg:leading-[1.15] tracking-wider lg:tracking-widest">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-normal text-primary leading-tight lg:leading-[1.15] tracking-wider lg:tracking-widest">
             SOLUTIONS FOR GROWING
             <br />
             BUSINESSES

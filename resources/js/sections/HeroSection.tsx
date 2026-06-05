@@ -72,7 +72,7 @@ const HeroSection = () => {
 
         {/* Hero Text: Removed whitespace-nowrap and adjusted line-height for safer desktop scaling */}
         <div className="relative z-10 lg:col-span-2 flex items-center px-6 sm:px-16 md:px-24 lg:px-20 xl:px-32 pt-20 pb-12 lg:py-0 min-w-0">
-          <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-7xl font-extrabold leading-[1.1] tracking-wider break-words">
+          <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-7xl font-extrabold leading-[1.1] tracking-wider wrap-break-word">
             WE ARE YOUR<br />
             SALES & BUSINESS<br />
             VENTURES

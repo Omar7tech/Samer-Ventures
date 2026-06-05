@@ -5,7 +5,7 @@ const LogoDecorative = () => {
         <img
           src="/logo/small-on-light.png"
           alt=""
-          className="w-64 md:w-96 lg:w-[32rem] opacity-10 grayscale"
+          className="w-64 md:w-96 lg:w-lg opacity-10 grayscale"
           aria-hidden="true"
         />
       </div>

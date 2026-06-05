@@ -240,7 +240,7 @@ const ServicesGrid = () => {
             ))}
 
             {/* Bottom gradient for caption legibility */}
-            <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-t from-black/75 via-black/30 to-transparent" />
 
             {/* Counter */}
             <div className="absolute top-5 right-5 z-10 flex items-baseline gap-1 text-white">
