@@ -56,9 +56,11 @@ const ServicesGrid = () => {
   // Handle tab change with loading state
   const handleTabChange = (id: string) => {
     const service = services.find((s) => s.id === id);
+
     if (service && !loadedImages.has(service.image)) {
       setIsImageLoading(true);
     }
+
     setActiveTab(id);
   };
 
@@ -100,6 +102,7 @@ const ServicesGrid = () => {
           <div className="flex flex-col w-full border-t border-gray-100">
             {services.map((service) => {
               const isActive = activeTab === service.id;
+
               return (
                 <div
                   key={service.id}

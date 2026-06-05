@@ -1,9 +1,9 @@
 import { Head } from '@inertiajs/react';
 import MainLayout from '@/layouts/MainLayout';
-import ServicesHero from '@/sections/ServicesHero';
-import ServicesGrid from '@/sections/ServicesGrid';
-import ServicesIntro from '@/sections/ServicesIntro';
 import ServicesAccordion from '@/sections/ServicesAccordion';
+import ServicesGrid from '@/sections/ServicesGrid';
+import ServicesHero from '@/sections/ServicesHero';
+import ServicesIntro from '@/sections/ServicesIntro';
 
 const Services = () => {
   return (

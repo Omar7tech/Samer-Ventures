@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react"
+import { Link } from "@inertiajs/react"
 import { gsap } from "gsap"
 import { useRef, useState } from "react"
-import { Link } from "@inertiajs/react"
 import Logo from "./logo"
 
 const Nav = () => {

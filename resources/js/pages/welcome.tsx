@@ -1,4 +1,5 @@
 import { Head } from '@inertiajs/react';
+import MainLayout from '@/layouts/MainLayout';
 import AboutSection from '@/sections/AboutSection';
 import ExperienceSection from '@/sections/ExperienceSection';
 import HeroSection from '@/sections/HeroSection';
@@ -8,7 +9,6 @@ import SmallSentence from '@/sections/smallSentence';
 import StrategicServicesSection from '@/sections/StrategicServicesSection';
 import TestimonialsSection from '@/sections/TestimonialsSection';
 import ValueSection from '@/sections/ValueSection';
-import MainLayout from '@/layouts/MainLayout';
 
 const Welcome = () => {
     const logos = [

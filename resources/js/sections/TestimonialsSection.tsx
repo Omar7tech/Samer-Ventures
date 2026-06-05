@@ -1,3 +1,4 @@
+import TestimonialCard from '@/components/TestimonialCard';
 import {
   Carousel,
   CarouselContent,
@@ -5,7 +6,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import TestimonialCard from '@/components/TestimonialCard';
 
 interface Testimonial {
   id: number;

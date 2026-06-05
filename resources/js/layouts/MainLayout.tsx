@@ -1,7 +1,7 @@
-import Nav from '@/components/Nav';
-import FooterCTA from '@/components/FooterCTA';
+import type { ReactNode } from 'react';
 import Footer from '@/components/Footer';
-import { ReactNode } from 'react';
+import FooterCTA from '@/components/FooterCTA';
+import Nav from '@/components/Nav';
 
 interface MainLayoutProps {
   children: ReactNode;
