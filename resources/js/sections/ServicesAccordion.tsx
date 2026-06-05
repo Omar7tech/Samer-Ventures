@@ -173,21 +173,29 @@ export default function ServicesAccordion() {
                                     </div>
 
                                     <div className='px-0 md:px-3 lg:px-6 space-y-8'>
-                                        {/* Horizontal Process Steps */}
+                                        {/* Smart Horizontal Process Steps Timeline with Minimal Dot Connectors */}
                                         <div className="flex flex-wrap items-center gap-y-4 pt-4">
                                             {service.processSteps.map((step, index) => (
-                                                <div key={step} className="flex items-center">
-                                                    <span className="text-primary font-bold text-lg tracking-wide">
+                                                <div key={step} className="flex items-center group/step">
+                                                    {/* Step Typography */}
+                                                    <span className="text-primary font-bold text-lg tracking-wide transition-opacity duration-300 group-hover/step:opacity-75">
                                                         {step}
                                                     </span>
+                                                    
+                                                    {/* Line + Dot End Connector */}
                                                     {index < service.processSteps.length - 1 && (
-                                                        <div className="mx-6 h-px w-20 bg-primary/40" />
+                                                        <div className="mx-6 hidden sm:flex items-center gap-0">
+                                                            {/* Horizontal Line Segment */}
+                                                            <div className="h-px w-16 bg-primary/30 transition-colors duration-300 group-hover/step:bg-primary/60" />
+                                                            {/* Clean Minimal Terminal Circle */}
+                                                            <div className="h-1.5 w-1.5 rounded-full bg-primary/40 transition-all duration-300 group-hover/step:scale-125 group-hover/step:bg-primary" />
+                                                        </div>
                                                     )}
                                                 </div>
                                             ))}
                                         </div>
 
-                                        {/* Enhanced Tags Grid Layout with Custom 1.5px Borders & Hover Effects */}
+                                        {/* Enhanced Tags Grid Layout */}
                                         <div className="flex flex-wrap gap-3 pt-2">
                                             {service.tags.map((tag) => (
                                                 <span
