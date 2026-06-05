@@ -139,7 +139,7 @@ export default function ServicesAccordion() {
                                 <span className="relative inline-block pr-10">
                                     {service.title}
                                     {/* Positioned absolute at the top right of the string, forced uppercase TM */}
-                                    <span className="absolute top-0 right-0 text-[0.3em] font-normal uppercase tracking-normal select-none leading-none">
+                                    <span className="absolute top-0 right-0 text-[0.3em] font-bold uppercase tracking-normal select-none leading-none">
                                         TM
                                     </span>
                                 </span>
@@ -149,24 +149,24 @@ export default function ServicesAccordion() {
                                 <div className="px-5 py-8 space-y-10">
                                     {/* Category Pill */}
                                     <div>
-                                        <span className="inline-block bg-[#f4f7f6] text-primary px-8 py-2.5 rounded-full text-lg md:text-4xl font-bold tracking-wide pr-36">
+                                        <span className="inline-block bg-[#f4f7f6] text-primary px-8 py-2.5 rounded-full text-lg md:text-4xl font-extrabold tracking-normal pr-36">
                                             {service.subtitle}
                                         </span>
                                     </div>
 
                                     {/* Description */}
-                                    <p className="text-xl md:text-2xl leading-relaxed text-primary font-normal tracking-wide">
+                                    <p className="text-xl md:text-2xl lg:text-[34px] text-primary font-medium tracking-tight leading-tight">
                                         {service.description}
                                     </p>
 
                                     {/* Section Header & Bullet Points */}
                                     <div className="space-y-6">
-                                        <span className="inline-block bg-[#f4f7f6] text-primary px-6 py-2 rounded-full text-md font-bold tracking-wide">
+                                        <span className="inline-block bg-[#f4f7f6] text-primary px-6 py-2 rounded-full text-lg md:text-3xl font-black tracking-normal pr-20">
                                             The Value Of This Collaboration
                                         </span>
                                         <ul className="space-y-3 pl-2">
                                             {service.bulletPoints.map((point, index) => (
-                                                <li key={index} className="flex items-start text-lg font-normal tracking-wide text-primary">
+                                                <li key={index} className="flex items-start text-xl font-medium tracking-normal leading-tight text-primary">
                                                     <span className="mr-3 select-none text-primary">•</span>
                                                     <span>{point}</span>
                                                 </li>
