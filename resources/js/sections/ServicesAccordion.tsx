@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import {
     Accordion,
@@ -125,6 +126,94 @@ const services: Service[] = [
     },
 ];
 
+// Reusable animated wrapper to control individual process tracks independently
+function ProcessTimeline({ steps }: { steps: string[] }) {
+    const [animated, setAnimated] = useState(false);
+    const elementRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setAnimated(true);
+                    observer.disconnect(); // Runs strictly once on first layout intersection
+                }
+            },
+            { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        if (elementRef.current) {
+            observer.observe(elementRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    // Exact premium stagger configuration maps (4 items supported perfectly)
+    const stepDelays = [
+        'duration-500 delay-[0ms]',
+        'duration-500 delay-[600ms]',
+        'duration-500 delay-[1200ms]',
+        'duration-500 delay-[1800ms]'
+    ];
+
+    const lineDelays = [
+        'duration-[400ms] delay-[200ms]',
+        'duration-[400ms] delay-[800ms]',
+        'duration-[400ms] delay-[1400ms]'
+    ];
+
+    const dotDelays = [
+        'duration-300 delay-[550ms]',
+        'duration-300 delay-[1150ms]',
+        'duration-300 delay-[1750ms]'
+    ];
+
+    return (
+        <div ref={elementRef} className="flex flex-wrap items-center gap-y-4 pt-4 select-none">
+            {steps.map((step, index) => (
+                <div key={step} className="flex items-center group/step">
+                    {/* Step Title Label */}
+                    <span
+                        className={`text-lg font-bold tracking-wide transition-colors ease-out ${
+                            animated 
+                                ? `text-primary ${stepDelays[index]}` 
+                                : 'text-neutral-300'
+                        }`}
+                    >
+                        {step}
+                    </span>
+
+                    {/* Connector Line and End Dot */}
+                    {index < steps.length - 1 && (
+                        <div className="mx-5 hidden sm:flex items-center">
+                            {/* Inner horizontal filler axis */}
+                            <div className="h-[1.5px] w-14 bg-neutral-200 relative overflow-hidden rounded-full">
+                                <div
+                                    className={`absolute inset-0 bg-primary origin-left transition-transform ease-out ${
+                                        animated 
+                                            ? `scale-x-100 ${lineDelays[index]}` 
+                                            : 'scale-x-0'
+                                    }`}
+                                />
+                            </div>
+
+                            {/* Minimal terminal circle dot */}
+                            <div
+                                className={`h-1.5 w-1.5 rounded-full ml-0.5 transition-all ease-out ${
+                                    animated
+                                        ? `bg-primary scale-100 opacity-100 ${dotDelays[index]}`
+                                        : 'bg-neutral-300 scale-50 opacity-40'
+                                }`}
+                            />
+                        </div>
+                    )}
+                </div>
+            ))}
+        </div>
+    );
+}
+
 export default function ServicesAccordion() {
     return (
         <section className="py-24 px-5 md:px-10 lg:px-32 max-w-[1700px] mx-auto">
@@ -173,27 +262,8 @@ export default function ServicesAccordion() {
                                     </div>
 
                                     <div className='px-0 md:px-3 lg:px-6 space-y-8'>
-                                        {/* Smart Horizontal Process Steps Timeline with Minimal Dot Connectors */}
-                                        <div className="flex flex-wrap items-center gap-y-4 pt-4">
-                                            {service.processSteps.map((step, index) => (
-                                                <div key={step} className="flex items-center group/step">
-                                                    {/* Step Typography */}
-                                                    <span className="text-primary font-bold text-lg tracking-wide transition-opacity duration-300 group-hover/step:opacity-75">
-                                                        {step}
-                                                    </span>
-                                                    
-                                                    {/* Line + Dot End Connector */}
-                                                    {index < service.processSteps.length - 1 && (
-                                                        <div className="mx-6 hidden sm:flex items-center gap-0">
-                                                            {/* Horizontal Line Segment */}
-                                                            <div className="h-px w-16 bg-primary/30 transition-colors duration-300 group-hover/step:bg-primary/60" />
-                                                            {/* Clean Minimal Terminal Circle */}
-                                                            <div className="h-1.5 w-1.5 rounded-full bg-primary/40 transition-all duration-300 group-hover/step:scale-125 group-hover/step:bg-primary" />
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            ))}
-                                        </div>
+                                        {/* Isolated Smart Processing Timeline */}
+                                        <ProcessTimeline steps={service.processSteps} />
 
                                         {/* Enhanced Tags Grid Layout */}
                                         <div className="flex flex-wrap gap-3 pt-2">
