@@ -21,7 +21,7 @@ interface Service {
 const services: Service[] = [
     {
         id: 'sv-growth',
-        title: 'SV Growth™',
+        title: 'SV Growth',
         subtitle: 'Sales',
         description: 'SV Growth™ Helps Businesses Generate Opportunities, Acquire New Clients, And Build A Structured Sales Engine Without The Need To Hire A Full In-House Sales Department. We Support Companies In Identifying Prospects, Managing Outreach Efforts, Improving Follow-Up Processes, And Creating A More Consistent Path To Revenue Growth.',
         bulletPoints: [
@@ -47,7 +47,7 @@ const services: Service[] = [
     },
     {
         id: 'sv-development',
-        title: 'SV Development™',
+        title: 'SV Development',
         subtitle: 'Technology',
         description: 'SV Development™ Provides Strategic Technology Solutions That Transform Business Operations And Digital Presence. We Build Custom Software, Web Applications, And Digital Platforms That Drive Efficiency, Enhance User Experience, And Support Long-Term Growth.',
         bulletPoints: [
@@ -73,7 +73,7 @@ const services: Service[] = [
     },
     {
         id: 'sv-insights',
-        title: 'SV Insights™',
+        title: 'SV Insights',
         subtitle: 'Analytics',
         description: 'SV Insights™ Empowers Businesses To Make Data-Driven Decisions Through Advanced Analytics, Business Intelligence, And Strategic Market Research. We Transform Raw Data Into Actionable Intelligence That Drives Competitive Advantage.',
         bulletPoints: [
@@ -99,7 +99,7 @@ const services: Service[] = [
     },
     {
         id: 'sv-relations',
-        title: 'SV Relations™',
+        title: 'SV Relations',
         subtitle: 'Partnerships',
         description: 'SV Relations™ Focuses On Building And Nurturing Strategic Partnerships That Drive Mutual Growth. We Connect Businesses With The Right Partners, Manage Relationship Development, And Create Collaborative Opportunities That Expand Market Reach.',
         bulletPoints: [
@@ -132,36 +132,42 @@ export default function ServicesAccordion() {
                 <Accordion type="multiple" defaultValue={['sv-growth']}>
                     {services.map((service) => (
                         <AccordionItem key={service.id} value={service.id}>
-                            {/* Restored exact original layout, sizes, weights, and uppercase style */}
+                            {/* Retained your perfect trigger styles, added pr-12 to avoid overlap on small views */}
                             <AccordionTrigger
-                                className="text-[clamp(1.5rem,4vw,3.5rem)] font-medium text-primary uppercase leading-tight tracking-tighter"
+                                className="text-[clamp(1.5rem,4vw,3.5rem)] font-medium text-primary leading-tight tracking-tighter"
                             >
-                                {service.title}
+                                <span className="relative inline-block pr-10">
+                                    {service.title}
+                                    {/* Positioned absolute at the top right of the string, forced uppercase TM */}
+                                    <span className="absolute top-0 right-0 text-[0.3em] font-normal uppercase tracking-normal select-none leading-none">
+                                        TM
+                                    </span>
+                                </span>
                             </AccordionTrigger>
 
                             <AccordionContent>
                                 <div className="px-5 py-8 space-y-10">
                                     {/* Category Pill */}
                                     <div>
-                                        <span className="inline-block bg-[#f4f7f6] text-[#0c4a4a] px-8 py-2.5 rounded-full text-lg font-bold tracking-wide">
+                                        <span className="inline-block bg-[#f4f7f6] text-primary px-8 py-2.5 rounded-full text-lg md:text-4xl font-bold tracking-wide pr-36">
                                             {service.subtitle}
                                         </span>
                                     </div>
 
                                     {/* Description */}
-                                    <p className="text-xl md:text-2xl leading-relaxed text-[#0c4a4a] font-normal tracking-wide">
+                                    <p className="text-xl md:text-2xl leading-relaxed text-primary font-normal tracking-wide">
                                         {service.description}
                                     </p>
 
                                     {/* Section Header & Bullet Points */}
                                     <div className="space-y-6">
-                                        <span className="inline-block bg-[#f4f7f6] text-[#0c4a4a] px-6 py-2 rounded-full text-md font-bold tracking-wide">
+                                        <span className="inline-block bg-[#f4f7f6] text-primary px-6 py-2 rounded-full text-md font-bold tracking-wide">
                                             The Value Of This Collaboration
                                         </span>
                                         <ul className="space-y-3 pl-2">
                                             {service.bulletPoints.map((point, index) => (
-                                                <li key={index} className="flex items-start text-lg font-normal tracking-wide text-[#0c4a4a]">
-                                                    <span className="mr-3 select-none text-[#0c4a4a]">•</span>
+                                                <li key={index} className="flex items-start text-lg font-normal tracking-wide text-primary">
+                                                    <span className="mr-3 select-none text-primary">•</span>
                                                     <span>{point}</span>
                                                 </li>
                                             ))}
@@ -169,16 +175,15 @@ export default function ServicesAccordion() {
                                     </div>
 
                                     <div className='px-0 md:px-3 lg:px-6 space-y-8'>
-
-
+                                        {/* Horizontal Process Steps */}
                                         <div className="flex flex-wrap items-center gap-y-4 pt-4">
                                             {service.processSteps.map((step, index) => (
                                                 <div key={step} className="flex items-center">
-                                                    <span className="text-[#0c4a4a] font-bold text-lg tracking-wide">
+                                                    <span className="text-primary font-bold text-lg tracking-wide">
                                                         {step}
                                                     </span>
                                                     {index < service.processSteps.length - 1 && (
-                                                        <div className="mx-6 h-px w-20 bg-[#0c4a4a]/40" />
+                                                        <div className="mx-6 h-px w-20 bg-primary/40" />
                                                     )}
                                                 </div>
                                             ))}
@@ -189,18 +194,19 @@ export default function ServicesAccordion() {
                                             {service.tags.map((tag) => (
                                                 <span
                                                     key={tag}
-                                                    className="rounded-full border border-[#0c4a4a]/40 bg-transparent px-5 py-2 text-md font-normal text-[#0c4a4a] tracking-wide"
+                                                    className="rounded-full border border-primary/40 bg-transparent px-5 py-2 text-md font-normal text-primary tracking-wide"
                                                 >
                                                     {tag}
                                                 </span>
                                             ))}
                                         </div>
                                     </div>
+
                                     {/* CTA Action Button */}
                                     <div className="pt-6">
                                         <a
                                             href={service.buttonUrl}
-                                            className="flex w-full items-center justify-center rounded-full bg-[#0c4a4a] py-4.5 font-medium text-white text-lg tracking-wide transition-all duration-300 hover:bg-[#083535]"
+                                            className="flex w-full items-center justify-center rounded-full bg-primary py-4.5 font-medium text-white text-lg tracking-wide transition-all duration-300 hover:bg-[#083535]"
                                         >
                                             {service.buttonText}
                                         </a>
