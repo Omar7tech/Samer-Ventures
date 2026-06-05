@@ -239,7 +239,7 @@ export default function ServicesAccordion() {
                                     {/* Category Pill */}
                                     <div>
                                         {/* UI FIX: Transformed rigid right padding to conditional desktop scaling (pr-0 md:pr-36) so text doesn't fold awkwardly */}
-                                        <span className="inline-block bg-[#f4f7f6] text-primary px-5 md:px-8 py-1.5 md:py-2.5 rounded-full text-sm md:text-4xl font-extrabold tracking-normal pr-0 md:pr-36">
+                                        <span className="inline-block bg-[#f4f7f6] text-primary px-5 md:px-8 py-1.5 md:py-2.5 rounded-full text-sm md:text-4xl font-extrabold tracking-normal md:pr-36">
                                             {service.subtitle}
                                         </span>
                                     </div>
@@ -254,7 +254,7 @@ export default function ServicesAccordion() {
                                     <div className="space-y-4 md:space-y-6">
                                         <div>
                                             {/* UI FIX: Changed hardcoded padding to conditional layout scaling (pr-0 md:pr-20) */}
-                                            <span className="inline-block bg-[#f4f7f6] text-primary px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs sm:text-lg md:text-3xl font-black tracking-normal pr-0 md:pr-20">
+                                            <span className="inline-block bg-[#f4f7f6] text-primary px-4 md:px-6 py-1.5 md:py-2 rounded-full text-xs sm:text-lg md:text-3xl font-black tracking-normal md:pr-20">
                                                 The Value Of This Collaboration
                                             </span>
                                         </div>
