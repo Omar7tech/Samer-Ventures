@@ -12,6 +12,7 @@ interface Service {
     subtitle: string;
     description: string;
     bulletPoints: string[];
+    processSteps: string[];
     tags: string[];
     buttonText: string;
     buttonUrl: string;
@@ -31,6 +32,7 @@ const services: Service[] = [
             'Build A More Consistent Sales Process',
             'Strengthen Client Acquisition Efforts',
         ],
+        processSteps: ['Discovery', 'Planning', 'Activation', 'Optimization'],
         tags: [
             'Sales Activity Planning',
             'Prospect Identification',
@@ -56,6 +58,7 @@ const services: Service[] = [
             'Performance Optimization And Security Best Practices',
             'Ongoing Technical Support And Maintenance',
         ],
+        processSteps: ['Discovery', 'Design', 'Development', 'Deployment'],
         tags: [
             'Web Development',
             'Custom Software',
@@ -81,6 +84,7 @@ const services: Service[] = [
             'Performance Metrics And KPI Tracking',
             'Strategic Recommendations Based On Data',
         ],
+        processSteps: ['Collection', 'Analysis', 'Visualization', 'Action'],
         tags: [
             'Market Research',
             'Business Intelligence',
@@ -106,6 +110,7 @@ const services: Service[] = [
             'Co-Marketing And Joint Venture Opportunities',
             'Long-Term Partnership Growth Strategies',
         ],
+        processSteps: ['Identification', 'Engagement', 'Collaboration', 'Growth'],
         tags: [
             'Partner Sourcing',
             'Relationship Building',
@@ -133,49 +138,56 @@ export default function ServicesAccordion() {
                                 {service.title}
                             </AccordionTrigger>
                             <AccordionContent>
-                                <div className="px-5 py-8">
-                                    <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
-                                        <div className="max-w-xl space-y-6 md:col-span-1">
-                                            <div className="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
-                                                {service.subtitle}
-                                            </div>
-
-                                            <p className="text-[clamp(1.125rem,2vw,1.5rem)] leading-relaxed text-primary/90 font-light">
-                                                {service.description}
-                                            </p>
-
-                                            <a
-                                                href={service.buttonUrl}
-                                                className="flex w-fit items-center justify-between gap-3 rounded-full border-2 border-primary bg-primary px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-transparent hover:text-primary"
-                                            >
-                                                {service.buttonText}
-                                                <ArrowRight className="h-5 w-5" />
-                                            </a>
-                                        </div>
-
-                                        <div className="text-[clamp(0.9rem,1.2vw,1.125rem)] md:col-span-1">
-                                            <h3 className="text-primary font-semibold mb-4 text-lg">
-                                                The Value Of This Collaboration
-                                            </h3>
-                                            <ul className="list-inside list-disc space-y-3 marker:text-primary text-primary/80">
-                                                {service.bulletPoints.map((point) => (
-                                                    <li key={point}>{point}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
+                                <div className="px-5 py-8 space-y-8">
+                                    <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+                                        {service.subtitle}
                                     </div>
 
-                                    <div className="mt-8 flex flex-wrap gap-3">
-                                        {service.tags.map((tag) => (
-                                            <button
-                                                key={tag}
-                                                type="button"
-                                                className="rounded-full border border-primary/30 bg-white px-4 py-2 text-sm font-light text-primary transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary"
-                                            >
-                                                {tag}
-                                            </button>
+                                    <p className="text-[clamp(1rem,1.5vw,1.25rem)] leading-relaxed text-primary/90 font-light max-w-full">
+                                        {service.description}
+                                    </p>
+
+                                    <div>
+                                        <h3 className="text-primary font-semibold mb-4 text-lg">
+                                            The Value Of This Collaboration
+                                        </h3>
+                                        <ul className="list-inside list-disc space-y-2 marker:text-primary text-primary/80 text-[clamp(0.9rem,1.2vw,1rem)]">
+                                            {service.bulletPoints.map((point) => (
+                                                <li key={point}>{point}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="flex items-center gap-8">
+                                        {service.processSteps.map((step, index) => (
+                                            <div key={step} className="flex items-center">
+                                                <span className="text-primary font-medium text-sm whitespace-nowrap">
+                                                    {step}
+                                                </span>
+                                                {index < service.processSteps.length - 1 && (
+                                                    <div className="mx-4 h-px w-12 bg-primary/30" />
+                                                )}
+                                            </div>
                                         ))}
                                     </div>
+
+                                    <div className="flex flex-wrap gap-3">
+                                        {service.tags.map((tag) => (
+                                            <span
+                                                key={tag}
+                                                className="rounded-full border border-primary/30 bg-white px-4 py-2 text-sm font-light text-primary"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <a
+                                        href={service.buttonUrl}
+                                        className="flex w-full items-center justify-center gap-3 rounded-full bg-primary px-6 py-4 font-medium text-white transition-all duration-300 hover:bg-primary/90"
+                                    >
+                                        {service.buttonText}
+                                    </a>
                                 </div>
                             </AccordionContent>
                         </AccordionItem>
