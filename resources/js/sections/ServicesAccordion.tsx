@@ -122,17 +122,13 @@ const services: Service[] = [
 
 export default function ServicesAccordion() {
     return (
-        <section className="py-24 px-5 md:px-10 lg:px-20 bg-[#FBF7F4]">
-            <div className="max-w-7xl mx-auto">
-                <h2 className="text-[clamp(2rem,5vw,4rem)] font-bold text-[#15534C] mb-12">
-                    Our Services
-                </h2>
-
+        <section className="py-24 px-5 md:px-10 lg:px-32">
+            <div className="max-w-[1700px] mx-auto">
                 <Accordion type="multiple">
                     {services.map((service) => (
                         <AccordionItem key={service.id} value={service.id}>
                             <AccordionTrigger
-                                className="text-[clamp(1.5rem,4vw,3.5rem)] font-bold text-[#15534C] uppercase leading-tight"
+                                className="text-[clamp(1.5rem,4vw,3.5rem)] font-bold text-primary uppercase leading-tight"
                             >
                                 {service.title}
                             </AccordionTrigger>
@@ -140,17 +136,17 @@ export default function ServicesAccordion() {
                                 <div className="px-5 py-8">
                                     <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
                                         <div className="max-w-xl space-y-6 md:col-span-1">
-                                            <div className="inline-block bg-[#15534C] text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+                                            <div className="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
                                                 {service.subtitle}
                                             </div>
 
-                                            <p className="text-[clamp(1.125rem,2vw,1.5rem)] leading-relaxed text-[#15534C]/90 font-light">
+                                            <p className="text-[clamp(1.125rem,2vw,1.5rem)] leading-relaxed text-primary/90 font-light">
                                                 {service.description}
                                             </p>
 
                                             <a
                                                 href={service.buttonUrl}
-                                                className="flex w-fit items-center justify-between gap-3 rounded-full border-2 border-[#15534C] bg-[#15534C] px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-transparent hover:text-[#15534C]"
+                                                className="flex w-fit items-center justify-between gap-3 rounded-full border-2 border-primary bg-primary px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-transparent hover:text-primary"
                                             >
                                                 {service.buttonText}
                                                 <ArrowRight className="h-5 w-5" />
@@ -158,10 +154,10 @@ export default function ServicesAccordion() {
                                         </div>
 
                                         <div className="text-[clamp(0.9rem,1.2vw,1.125rem)] md:col-span-1">
-                                            <h3 className="text-[#15534C] font-semibold mb-4 text-lg">
+                                            <h3 className="text-primary font-semibold mb-4 text-lg">
                                                 The Value Of This Collaboration
                                             </h3>
-                                            <ul className="list-inside list-disc space-y-3 marker:text-[#15534C] text-[#15534C]/80">
+                                            <ul className="list-inside list-disc space-y-3 marker:text-primary text-primary/80">
                                                 {service.bulletPoints.map((point) => (
                                                     <li key={point}>{point}</li>
                                                 ))}
@@ -174,7 +170,7 @@ export default function ServicesAccordion() {
                                             <button
                                                 key={tag}
                                                 type="button"
-                                                className="rounded-full border border-[#15534C]/30 bg-white px-4 py-2 text-sm font-light text-[#15534C] transition-all duration-300 hover:bg-[#15534C] hover:text-white hover:border-[#15534C]"
+                                                className="rounded-full border border-primary/30 bg-white px-4 py-2 text-sm font-light text-primary transition-all duration-300 hover:bg-primary hover:text-white hover:border-primary"
                                             >
                                                 {tag}
                                             </button>
