@@ -69,7 +69,7 @@ const Welcome = () => {
             <div className="relative h-0 overflow-visible">
                 <div className="absolute -left-64 md:-left-96 lg:-left-128 top-0 -translate-y-1/2 pointer-events-none">
                     <img
-                        src="/logo/small-on-light.png"
+                        src="/logo/sv-icon.svg"
                         alt=""
                         className="w-lg md:w-3xl lg:w-5xl opacity-5 grayscale select-none"
                         aria-hidden="true"
