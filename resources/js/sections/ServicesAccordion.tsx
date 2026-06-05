@@ -1,0 +1,191 @@
+import { ArrowRight } from 'lucide-react';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from '@/components/ui/accordion';
+
+interface Service {
+    id: string;
+    title: string;
+    subtitle: string;
+    description: string;
+    bulletPoints: string[];
+    tags: string[];
+    buttonText: string;
+    buttonUrl: string;
+}
+
+const services: Service[] = [
+    {
+        id: 'sv-growth',
+        title: 'SV Growth™',
+        subtitle: 'Sales',
+        description: 'SV Growth™ Helps Businesses Generate Opportunities, Acquire New Clients, And Build A Structured Sales Engine Without The Need To Hire A Full In-House Sales Department. We Support Companies In Identifying Prospects, Managing Outreach Efforts, Improving Follow-Up Processes, And Creating A More Consistent Path To Revenue Growth.',
+        bulletPoints: [
+            'Access Professional Sales Support Without Full-Time Hiring Costs',
+            'Focus Internal Resources On Operations While Growth Activities Are Supported Externally',
+            'Improve Lead Generation And Opportunity Management',
+            'Create Better Follow-Up And Communication Systems',
+            'Build A More Consistent Sales Process',
+            'Strengthen Client Acquisition Efforts',
+        ],
+        tags: [
+            'Sales Activity Planning',
+            'Prospect Identification',
+            'Sales Outreach Support',
+            'Growth Recommendations',
+            'Meeting Coordination',
+            'Opportunity Tracking',
+            'Follow-Up Support',
+        ],
+        buttonText: "Let's Build Your Sales Engine",
+        buttonUrl: '/contact',
+    },
+    {
+        id: 'sv-development',
+        title: 'SV Development™',
+        subtitle: 'Technology',
+        description: 'SV Development™ Provides Strategic Technology Solutions That Transform Business Operations And Digital Presence. We Build Custom Software, Web Applications, And Digital Platforms That Drive Efficiency, Enhance User Experience, And Support Long-Term Growth.',
+        bulletPoints: [
+            'Custom Software Development Tailored To Your Business Needs',
+            'Modern Web Applications With Seamless User Experience',
+            'Scalable Architecture For Future Growth',
+            'Integration With Existing Business Systems',
+            'Performance Optimization And Security Best Practices',
+            'Ongoing Technical Support And Maintenance',
+        ],
+        tags: [
+            'Web Development',
+            'Custom Software',
+            'API Integration',
+            'Database Design',
+            'Cloud Solutions',
+            'Mobile Applications',
+            'Technical Consulting',
+        ],
+        buttonText: "Let's Build Your Solution",
+        buttonUrl: '/contact',
+    },
+    {
+        id: 'sv-insights',
+        title: 'SV Insights™',
+        subtitle: 'Analytics',
+        description: 'SV Insights™ Empowers Businesses To Make Data-Driven Decisions Through Advanced Analytics, Business Intelligence, And Strategic Market Research. We Transform Raw Data Into Actionable Intelligence That Drives Competitive Advantage.',
+        bulletPoints: [
+            'Comprehensive Market Analysis And Competitive Intelligence',
+            'Data Visualization And Interactive Dashboards',
+            'Predictive Analytics For Strategic Planning',
+            'Customer Behavior Analysis And Segmentation',
+            'Performance Metrics And KPI Tracking',
+            'Strategic Recommendations Based On Data',
+        ],
+        tags: [
+            'Market Research',
+            'Business Intelligence',
+            'Data Analytics',
+            'Competitive Analysis',
+            'Customer Insights',
+            'Performance Tracking',
+            'Strategic Planning',
+        ],
+        buttonText: "Let's Unlock Your Insights",
+        buttonUrl: '/contact',
+    },
+    {
+        id: 'sv-relations',
+        title: 'SV Relations™',
+        subtitle: 'Partnerships',
+        description: 'SV Relations™ Focuses On Building And Nurturing Strategic Partnerships That Drive Mutual Growth. We Connect Businesses With The Right Partners, Manage Relationship Development, And Create Collaborative Opportunities That Expand Market Reach.',
+        bulletPoints: [
+            'Strategic Partner Identification And Vetting',
+            'Partnership Development And Negotiation',
+            'Collaborative Program Design',
+            'Relationship Management And Communication',
+            'Co-Marketing And Joint Venture Opportunities',
+            'Long-Term Partnership Growth Strategies',
+        ],
+        tags: [
+            'Partner Sourcing',
+            'Relationship Building',
+            'Negotiation Support',
+            'Alliance Management',
+            'Co-Marketing',
+            'Joint Ventures',
+            'Network Expansion',
+        ],
+        buttonText: "Let's Build Your Network",
+        buttonUrl: '/contact',
+    },
+];
+
+export default function ServicesAccordion() {
+    return (
+        <section className="py-24 px-5 md:px-10 lg:px-20 bg-[#FBF7F4]">
+            <div className="max-w-7xl mx-auto">
+                <h2 className="text-[clamp(2rem,5vw,4rem)] font-bold text-[#15534C] mb-12">
+                    Our Services
+                </h2>
+
+                <Accordion type="multiple">
+                    {services.map((service) => (
+                        <AccordionItem key={service.id} value={service.id}>
+                            <AccordionTrigger
+                                className="text-[clamp(1.5rem,4vw,3.5rem)] font-bold text-[#15534C] uppercase leading-tight"
+                            >
+                                {service.title}
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <div className="px-5 py-8">
+                                    <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
+                                        <div className="max-w-xl space-y-6 md:col-span-1">
+                                            <div className="inline-block bg-[#15534C] text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+                                                {service.subtitle}
+                                            </div>
+
+                                            <p className="text-[clamp(1.125rem,2vw,1.5rem)] leading-relaxed text-[#15534C]/90 font-light">
+                                                {service.description}
+                                            </p>
+
+                                            <a
+                                                href={service.buttonUrl}
+                                                className="flex w-fit items-center justify-between gap-3 rounded-full border-2 border-[#15534C] bg-[#15534C] px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-transparent hover:text-[#15534C]"
+                                            >
+                                                {service.buttonText}
+                                                <ArrowRight className="h-5 w-5" />
+                                            </a>
+                                        </div>
+
+                                        <div className="text-[clamp(0.9rem,1.2vw,1.125rem)] md:col-span-1">
+                                            <h3 className="text-[#15534C] font-semibold mb-4 text-lg">
+                                                The Value Of This Collaboration
+                                            </h3>
+                                            <ul className="list-inside list-disc space-y-3 marker:text-[#15534C] text-[#15534C]/80">
+                                                {service.bulletPoints.map((point) => (
+                                                    <li key={point}>{point}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-8 flex flex-wrap gap-3">
+                                        {service.tags.map((tag) => (
+                                            <button
+                                                key={tag}
+                                                type="button"
+                                                className="rounded-full border border-[#15534C]/30 bg-white px-4 py-2 text-sm font-light text-[#15534C] transition-all duration-300 hover:bg-[#15534C] hover:text-white hover:border-[#15534C]"
+                                            >
+                                                {tag}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            </div>
+        </section>
+    );
+}
