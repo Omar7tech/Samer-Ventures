@@ -127,67 +127,84 @@ const services: Service[] = [
 
 export default function ServicesAccordion() {
     return (
-        <section className="py-24 px-5 md:px-10 lg:px-32">
-            <div className="max-w-[1700px] mx-auto">
+        <section className="py-24 px-5 md:px-10 lg:px-32 max-w-[1700px] mx-auto">
+            <div>
                 <Accordion type="multiple" defaultValue={['sv-growth']}>
                     {services.map((service) => (
                         <AccordionItem key={service.id} value={service.id}>
+                            {/* Restored exact original layout, sizes, weights, and uppercase style */}
                             <AccordionTrigger
-                                className="text-[clamp(1.5rem,4vw,3.5rem)] font-bold text-primary uppercase leading-tight"
+                                className="text-[clamp(1.5rem,4vw,3.5rem)] font-medium text-primary uppercase leading-tight tracking-tighter"
                             >
                                 {service.title}
                             </AccordionTrigger>
+
                             <AccordionContent>
-                                <div className="px-5 py-8 space-y-8">
-                                    <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-                                        {service.subtitle}
+                                <div className="px-5 py-8 space-y-10">
+                                    {/* Category Pill */}
+                                    <div>
+                                        <span className="inline-block bg-[#f4f7f6] text-[#0c4a4a] px-8 py-2.5 rounded-full text-lg font-bold tracking-wide">
+                                            {service.subtitle}
+                                        </span>
                                     </div>
 
-                                    <p className="text-[clamp(1rem,1.5vw,1.25rem)] leading-relaxed text-primary/90 font-light max-w-full">
+                                    {/* Description */}
+                                    <p className="text-xl md:text-2xl leading-relaxed text-[#0c4a4a] font-normal tracking-wide">
                                         {service.description}
                                     </p>
 
-                                    <div>
-                                        <h3 className="text-primary font-semibold mb-4 text-lg">
+                                    {/* Section Header & Bullet Points */}
+                                    <div className="space-y-6">
+                                        <span className="inline-block bg-[#f4f7f6] text-[#0c4a4a] px-6 py-2 rounded-full text-md font-bold tracking-wide">
                                             The Value Of This Collaboration
-                                        </h3>
-                                        <ul className="list-inside list-disc space-y-2 marker:text-primary text-primary/80 text-[clamp(0.9rem,1.2vw,1rem)]">
-                                            {service.bulletPoints.map((point) => (
-                                                <li key={point}>{point}</li>
+                                        </span>
+                                        <ul className="space-y-3 pl-2">
+                                            {service.bulletPoints.map((point, index) => (
+                                                <li key={index} className="flex items-start text-lg font-normal tracking-wide text-[#0c4a4a]">
+                                                    <span className="mr-3 select-none text-[#0c4a4a]">•</span>
+                                                    <span>{point}</span>
+                                                </li>
                                             ))}
                                         </ul>
                                     </div>
 
-                                    <div className="flex items-center gap-8">
-                                        {service.processSteps.map((step, index) => (
-                                            <div key={step} className="flex items-center">
-                                                <span className="text-primary font-medium text-sm whitespace-nowrap">
-                                                    {step}
+                                    <div className='px-0 md:px-3 lg:px-6 space-y-8'>
+
+
+                                        <div className="flex flex-wrap items-center gap-y-4 pt-4">
+                                            {service.processSteps.map((step, index) => (
+                                                <div key={step} className="flex items-center">
+                                                    <span className="text-[#0c4a4a] font-bold text-lg tracking-wide">
+                                                        {step}
+                                                    </span>
+                                                    {index < service.processSteps.length - 1 && (
+                                                        <div className="mx-6 h-px w-20 bg-[#0c4a4a]/40" />
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Tags Grid Layout */}
+                                        <div className="flex flex-wrap gap-3 pt-2">
+                                            {service.tags.map((tag) => (
+                                                <span
+                                                    key={tag}
+                                                    className="rounded-full border border-[#0c4a4a]/40 bg-transparent px-5 py-2 text-md font-normal text-[#0c4a4a] tracking-wide"
+                                                >
+                                                    {tag}
                                                 </span>
-                                                {index < service.processSteps.length - 1 && (
-                                                    <div className="mx-4 h-px w-12 bg-primary/30" />
-                                                )}
-                                            </div>
-                                        ))}
+                                            ))}
+                                        </div>
                                     </div>
-
-                                    <div className="flex flex-wrap gap-3">
-                                        {service.tags.map((tag) => (
-                                            <span
-                                                key={tag}
-                                                className="rounded-full border border-primary/30 bg-white px-4 py-2 text-sm font-light text-primary"
-                                            >
-                                                {tag}
-                                            </span>
-                                        ))}
+                                    {/* CTA Action Button */}
+                                    <div className="pt-6">
+                                        <a
+                                            href={service.buttonUrl}
+                                            className="flex w-full items-center justify-center rounded-full bg-[#0c4a4a] py-4.5 font-medium text-white text-lg tracking-wide transition-all duration-300 hover:bg-[#083535]"
+                                        >
+                                            {service.buttonText}
+                                        </a>
                                     </div>
-
-                                    <a
-                                        href={service.buttonUrl}
-                                        className="flex w-full items-center justify-center gap-3 rounded-full bg-primary px-6 py-4 font-medium text-white transition-all duration-300 hover:bg-primary/90"
-                                    >
-                                        {service.buttonText}
-                                    </a>
                                 </div>
                             </AccordionContent>
                         </AccordionItem>
