@@ -2,7 +2,6 @@ import { useGSAP } from "@gsap/react"
 import { Link } from "@inertiajs/react"
 import { gsap } from "gsap"
 import { useRef, useState } from "react"
-import Logo from "./logo"
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -104,7 +103,7 @@ const Nav = () => {
     <div ref={containerRef}>
       {/* Desktop Navigation */}
       <div className="mx-auto hidden max-w-[1700px] items-start justify-between gap-2 px-20 py-15 text-primary lg:flex">
-        <Logo />
+        <img src="/logo/sv-logo.svg" alt="Samer Ventures" className="h-15" />
         <div className="text-2xl leading-none">
           Business. Growth
           <br />
@@ -126,7 +125,7 @@ const Nav = () => {
       <div className="fixed inset-x-0 top-0 z-50 mx-4 mt-4 lg:hidden">
         <div className="overflow-hidden rounded-2xl bg-white/90 shadow-lg shadow-primary/5 backdrop-blur-xl">
           <div className="flex items-center justify-between px-5 py-4">
-            <Logo size="sm" />
+            <img src="/logo/sv-logo.svg" alt="Samer Ventures" className="h-10" />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="group relative flex h-11 w-11 items-center justify-center transition-all active:scale-95"
