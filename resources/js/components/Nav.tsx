@@ -102,7 +102,7 @@ const Nav = () => {
   return (
     <div ref={containerRef}>
       {/* Desktop Navigation */}
-      <div className="mx-auto hidden max-w-[1700px] items-start justify-between gap-2 px-20 py-15 text-primary lg:flex">
+      <div className="mx-auto hidden max-w-[1700px] items-start justify-between gap-2 px-6 py-15 text-primary md:px-10 lg:flex lg:px-20">
         <img src="/logo/sv-logo.svg" alt="Samer Ventures" className="h-15" />
         <div className="text-2xl leading-none">
           Business. Growth
@@ -122,7 +122,7 @@ const Nav = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div className="fixed inset-x-0 top-0 z-50 mx-4 mt-4 lg:hidden">
+      <div className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 lg:hidden">
         <div className="overflow-hidden rounded-2xl bg-white/90 shadow-lg shadow-primary/5 backdrop-blur-xl">
           <div className="flex items-center justify-between px-5 py-4">
             <img src="/logo/sv-logo.svg" alt="Samer Ventures" className="h-10" />
