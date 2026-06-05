@@ -8,37 +8,38 @@ interface ServiceTab {
   image: string;
 }
 
+const services: ServiceTab[] = [
+  {
+    id: "growth",
+    number: "101",
+    title: "SV GROWTH",
+    subtitle: "SALES",
+    image: "https://picsum.photos/1100/800?random=1",
+  },
+  {
+    id: "development",
+    number: "202",
+    title: "SV DEVELOPMENT",
+    subtitle: "BUSINESS DEVELOPMENT",
+    image: "https://picsum.photos/1100/800?random=2",
+  },
+  {
+    id: "relations",
+    number: "303",
+    title: "SV RELATIONS",
+    subtitle: "PUBLIC RELATIONS",
+    image: "https://picsum.photos/1100/800?random=3",
+  },
+  {
+    id: "insights",
+    number: "404",
+    title: "SV INSIGHTS",
+    subtitle: "MARKET RESEARCH",
+    image: "https://picsum.photos/1100/800?random=4",
+  },
+];
+
 const ServicesGrid = () => {
-  const services: ServiceTab[] = [
-    {
-      id: "growth",
-      number: "101",
-      title: "SV GROWTH",
-      subtitle: "SALES",
-      image: "https://picsum.photos/1100/800?random=1",
-    },
-    {
-      id: "development",
-      number: "202",
-      title: "SV DEVELOPMENT",
-      subtitle: "BUSINESS DEVELOPMENT",
-      image: "https://picsum.photos/1100/800?random=2",
-    },
-    {
-      id: "relations",
-      number: "303",
-      title: "SV RELATIONS",
-      subtitle: "PUBLIC RELATIONS",
-      image: "https://picsum.photos/1100/800?random=3",
-    },
-    {
-      id: "insights",
-      number: "404",
-      title: "SV INSIGHTS",
-      subtitle: "MARKET RESEARCH",
-      image: "https://picsum.photos/1100/800?random=4",
-    },
-  ];
 
   const [activeTab, setActiveTab] = useState<string>("growth");
   const [isImageLoading, setIsImageLoading] = useState(true);
