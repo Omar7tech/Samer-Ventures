@@ -19,7 +19,6 @@ class ValueItemsTable
             ->reorderable('sort_order')
             ->columns([
                 TextColumn::make('title')
-                    ->searchable()
                     ->limit(40)
                     ->wrap(),
                 TextColumn::make('description')

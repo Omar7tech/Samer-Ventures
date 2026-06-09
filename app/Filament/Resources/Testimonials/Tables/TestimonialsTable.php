@@ -25,10 +25,8 @@ class TestimonialsTable
                     ->conversion('thumb')
                     ->circular(),
                 TextColumn::make('name')
-                    ->searchable()
                     ->sortable(),
                 TextColumn::make('organization')
-                    ->searchable()
                     ->toggleable(),
                 StarColumn::make('rating')
                     ->stars(5),
