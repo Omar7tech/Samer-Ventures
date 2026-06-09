@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use l3aro\FilamentRatingStar\Components\StarColumn;
 
@@ -22,8 +23,7 @@ class TestimonialsTable
                 SpatieMediaLibraryImageColumn::make('avatar')
                     ->collection('avatar')
                     ->conversion('thumb')
-                    ->circular()
-                    ->defaultImageUrl(asset('logo/sv-icon.svg')),
+                    ->circular(),
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
@@ -36,9 +36,8 @@ class TestimonialsTable
                     ->limit(50)
                     ->wrap()
                     ->toggleable(),
-                IconColumn::make('is_active')
+                ToggleColumn::make('is_active')
                     ->label('Active')
-                    ->boolean()
                     ->sortable(),
             ])
             ->filters([
