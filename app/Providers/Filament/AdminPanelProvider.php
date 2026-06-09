@@ -32,7 +32,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path(config('app.admin_url', 'admin'))
             ->spa()
             ->brandLogo(asset('logo/sv-logo.svg'))
             ->brandLogoHeight('40px')
