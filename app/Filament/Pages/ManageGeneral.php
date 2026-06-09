@@ -30,6 +30,8 @@ class ManageGeneral extends SettingsPage
         return $schema
             ->components([
                 Tabs::make('Settings')
+                    ->vertical()
+                    
                     ->tabs([
                         Tab::make('Social Media')
                             ->icon(Heroicon::OutlinedShare)
@@ -66,8 +68,7 @@ class ManageGeneral extends SettingsPage
                                     ->columnSpanFull(),
                             ]),
                     ])
-                    ->columnSpanFull()
-                    ->persistTabInQueryString(),
+                    ->columnSpanFull(),
             ]);
     }
 }
