@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "135bb6179856e62375bd8ca8c2f71dcb",
+    "content-hash": "f779f06153ffc3734fe5191b03484b71",
     "packages": [
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -2377,6 +2377,85 @@
                 "source": "https://github.com/kirschbaum-development/eloquent-power-joins/tree/4.3.2"
             },
             "time": "2026-05-28T20:35:55+00:00"
+        },
+        {
+            "name": "l3aro/rating-star-for-filament",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/l3aro/rating-star-for-filament.git",
+                "reference": "f4eb3acd0b364e70d73d5dc1e626319731b80dbd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/l3aro/rating-star-for-filament/zipball/f4eb3acd0b364e70d73d5dc1e626319731b80dbd",
+                "reference": "f4eb3acd0b364e70d73d5dc1e626319731b80dbd",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0|^5.0",
+                "php": "^8.2",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^3.0",
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^8.0",
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^3.7|^4.0",
+                "pestphp/pest-plugin-arch": "^3.0|^4.0",
+                "pestphp/pest-plugin-laravel": "^3.0|^4.0",
+                "pestphp/pest-plugin-livewire": "^3.0|^4.0",
+                "rector/rector": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "FilamentRatingStar": "l3aro\\FilamentRatingStar\\Facades\\FilamentRatingStar"
+                    },
+                    "providers": [
+                        "l3aro\\FilamentRatingStar\\FilamentRatingStarServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "l3aro\\FilamentRatingStar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "l3aro",
+                    "email": "dgbao1340@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Rating star for filament table column and schemas.",
+            "homepage": "https://github.com/l3aro/rating-star-for-filament",
+            "keywords": [
+                "filament",
+                "filament-plugin",
+                "filament-rating-star",
+                "filamentphp",
+                "l3aro",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/l3aro/rating-star-for-filament/issues",
+                "source": "https://github.com/l3aro/rating-star-for-filament"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/l3aro",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-04-26T07:22:27+00:00"
         },
         {
             "name": "laravel/framework",
