@@ -16,6 +16,7 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Width;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -33,16 +34,17 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path(config('app.admin_url', 'admin'))
-            ->spa()
+            ->spa(hasPrefetching: true)
             ->brandLogo(asset('logo/sv-logo.svg'))
             ->brandLogoHeight('40px')
             ->userMenu(position: UserMenuPosition::Sidebar)
             ->sidebarCollapsibleOnDesktop()
-
+            ->maxContentWidth(Width::Full)
             ->defaultThemeMode(ThemeMode::Light)
             ->profile(isSimple: false)
             ->login()
-
+            ->unsavedChangesAlerts()
+            ->broadcasting(false)
             ->colors([
                 'primary' => [
                     50 => 'oklch(0.97 0.015 190.0)',
