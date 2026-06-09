@@ -1,18 +1,16 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef, useState } from 'react';
+import type { WhatWeDo } from '@/types';
 
 gsap.registerPlugin(useGSAP);
 
-const services = [
-  'Sales Outsourcing',
-  'Business Development',
-  'Corporate Relations',
-  'PR & Sponsorships',
-  'Market Research'
-];
+interface HeroSectionProps {
+  whatWeDo?: WhatWeDo[];
+}
 
-const HeroSection = () => {
+const HeroSection = ({ whatWeDo }: HeroSectionProps) => {
+  const services = whatWeDo ?? [];
   const [isOpen, setIsOpen] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -100,10 +98,10 @@ const HeroSection = () => {
             >
               <div className="px-5 pb-5 lg:px-8 lg:pb-6 space-y-2">
                 {services.map((service, index) => (
-                  <div key={service} className="service-item border-t border-white/30 pt-2">
+                  <div key={service.title} className="service-item border-t border-white/30 pt-2">
                     <p className="text-base lg:text-lg text-white">
                       <span className="font-semibold mr-4">{String(index + 1).padStart(2, '0')}</span>
-                      {service}
+                      {service.title}
                     </p>
                   </div>
                 ))}

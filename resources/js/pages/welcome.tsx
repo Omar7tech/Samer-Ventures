@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import MainLayout from '@/layouts/MainLayout';
-import type { Testimonial, ValueItem } from '@/types';
+import type { Testimonial, ValueItem, WhatWeDo } from '@/types';
 import AboutSection from '@/sections/AboutSection';
 import ExperienceSection from '@/sections/ExperienceSection';
 import HeroSection from '@/sections/HeroSection';
@@ -12,11 +12,12 @@ import TestimonialsSection from '@/sections/TestimonialsSection';
 import ValueSection from '@/sections/ValueSection';
 
 interface WelcomeProps {
+    whatWeDo?: WhatWeDo[];
     values?: ValueItem[];
     testimonials?: Testimonial[];
 }
 
-const Welcome = ({ values, testimonials = [] }: WelcomeProps) => {
+const Welcome = ({ whatWeDo, values, testimonials = [] }: WelcomeProps) => {
     const logos = [
         { src: 'https://placehold.co/600x400' },
         { src: 'https://placehold.co/600x400' },
@@ -28,7 +29,7 @@ const Welcome = ({ values, testimonials = [] }: WelcomeProps) => {
     return (
         <>
             <Head title="Welcome" />
-            <HeroSection />
+            <HeroSection whatWeDo={whatWeDo} />
             <AboutSection />
             <LogoMarquee logos={logos} duration={30} pauseOnHover={true} />
             <SmallSentence />
