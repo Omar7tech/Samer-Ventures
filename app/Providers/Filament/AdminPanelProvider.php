@@ -15,7 +15,6 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
@@ -25,6 +24,7 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use l3aro\FilamentRatingStar\FilamentRatingStarPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -33,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->path(config('app.admin_url', 'admin'))
             ->spa(hasPrefetching: true)
             ->brandLogo(asset('logo/sv-logo.svg'))
@@ -73,13 +74,14 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 AuthDesignerPlugin::make()
                     ->login(
-                        fn(AuthPageConfig $config) => $config
+                        fn (AuthPageConfig $config) => $config
                             ->media(asset('covers/main.png'))
                             ->mediaPosition(MediaPosition::Left)
                             ->mediaSize('60%')
                             ->themeToggle()
                     )
             )
+            ->plugin(FilamentRatingStarPlugin::make())
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

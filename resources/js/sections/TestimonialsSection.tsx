@@ -6,15 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-
-interface Testimonial {
-  id: number;
-  rating?: number;
-  quote: string;
-  name: string;
-  organization: string;
-  avatar?: string;
-}
+import type { Testimonial } from '@/types';
 
 interface TestimonialsSectionProps {
   testimonials?: Testimonial[];

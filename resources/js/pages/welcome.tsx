@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import MainLayout from '@/layouts/MainLayout';
-import type { ValueItem } from '@/types';
+import type { Testimonial, ValueItem } from '@/types';
 import AboutSection from '@/sections/AboutSection';
 import ExperienceSection from '@/sections/ExperienceSection';
 import HeroSection from '@/sections/HeroSection';
@@ -13,53 +13,16 @@ import ValueSection from '@/sections/ValueSection';
 
 interface WelcomeProps {
     values?: ValueItem[];
+    testimonials?: Testimonial[];
 }
 
-const Welcome = ({ values }: WelcomeProps) => {
+const Welcome = ({ values, testimonials = [] }: WelcomeProps) => {
     const logos = [
         { src: 'https://placehold.co/600x400' },
         { src: 'https://placehold.co/600x400' },
         { src: 'https://placehold.co/600x400' },
         { src: 'https://placehold.co/600x400' },
         { src: 'https://placehold.co/600x400' },
-    ];
-
-    const testimonials = [
-        {
-            id: 1,
-            rating: 5,
-            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.',
-            name: 'NAME',
-            organization: 'Organization',
-        },
-        {
-            id: 2,
-            rating: 5,
-            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.',
-            name: 'NAME',
-            organization: 'Organization',
-        },
-        {
-            id: 3,
-            rating: 5,
-            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.',
-            name: 'NAME',
-            organization: 'Organization',
-        },
-        {
-            id: 4,
-            rating: 5,
-            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.',
-            name: 'NAME',
-            organization: 'Organization',
-        },
-        {
-            id: 5,
-            rating: 5,
-            quote: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.',
-            name: 'NAME',
-            organization: 'Organization',
-        },
     ];
 
     return (

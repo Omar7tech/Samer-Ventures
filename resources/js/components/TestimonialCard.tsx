@@ -5,7 +5,7 @@ interface TestimonialCardProps {
   quote: string;
   name: string;
   organization: string;
-  avatar?: string;
+  avatar?: string | null;
 }
 
 const TestimonialCard = ({
