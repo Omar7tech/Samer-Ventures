@@ -47,6 +47,23 @@ class ManageGeneral extends SettingsPage
                                     ->reorderable(false)
                                     ->columnSpanFull(),
                             ]),
+                        Tabs\Tab::make('Emails')
+                            ->icon(Heroicon::OutlinedEnvelope)
+                            ->schema([
+                                Repeater::make('emails')
+                                    ->schema([
+                                        TextInput::make('name')
+                                            ->required()
+                                            ->placeholder('e.g., General, Support, Sales'),
+                                        TextInput::make('email')
+                                            ->required()
+                                            ->email()
+                                            ->placeholder('info@example.com'),
+                                    ])
+                                    ->addActionLabel('Add Email')
+                                    ->reorderable(false)
+                                    ->columnSpanFull(),
+                            ]),
                     ])
                     ->columnSpanFull()
                     ->persistTabInQueryString(),
