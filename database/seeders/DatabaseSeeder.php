@@ -13,12 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         User::updateOrCreate([
             'email' => 'admin@samerventures.com',
         ], [
             'name' => 'Samer Ventures',
             'password' => bcrypt('password'),
         ]);
+
+        $this->call(ValueItemSeeder::class);
     }
 }

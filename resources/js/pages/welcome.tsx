@@ -1,5 +1,6 @@
 import { Head } from '@inertiajs/react';
 import MainLayout from '@/layouts/MainLayout';
+import type { ValueItem } from '@/types';
 import AboutSection from '@/sections/AboutSection';
 import ExperienceSection from '@/sections/ExperienceSection';
 import HeroSection from '@/sections/HeroSection';
@@ -10,7 +11,11 @@ import StrategicServicesSection from '@/sections/StrategicServicesSection';
 import TestimonialsSection from '@/sections/TestimonialsSection';
 import ValueSection from '@/sections/ValueSection';
 
-const Welcome = () => {
+interface WelcomeProps {
+    values?: ValueItem[];
+}
+
+const Welcome = ({ values }: WelcomeProps) => {
     const logos = [
         { src: 'https://placehold.co/600x400' },
         { src: 'https://placehold.co/600x400' },
@@ -65,7 +70,7 @@ const Welcome = () => {
             <LogoMarquee logos={logos} duration={30} pauseOnHover={true} />
             <SmallSentence />
             <ExperienceSection />
-            <ValueSection />
+            <ValueSection values={values} />
             <div className="relative h-0 overflow-visible">
                 <div className="absolute -left-64 md:-left-96 lg:-left-128 top-0 -translate-y-1/2 pointer-events-none">
                     <img
