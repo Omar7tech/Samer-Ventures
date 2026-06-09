@@ -8,6 +8,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
 use Filament\Schemas\Components\Tabs;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use UnitEnum;
@@ -30,7 +31,7 @@ class ManageGeneral extends SettingsPage
             ->components([
                 Tabs::make('Settings')
                     ->tabs([
-                        Tabs\Tab::make('Social Media')
+                        Tab::make('Social Media')
                             ->icon(Heroicon::OutlinedShare)
                             ->schema([
                                 Repeater::make('social_media')
@@ -47,7 +48,7 @@ class ManageGeneral extends SettingsPage
                                     ->reorderable(false)
                                     ->columnSpanFull(),
                             ]),
-                        Tabs\Tab::make('Emails')
+                        Tab::make('Emails')
                             ->icon(Heroicon::OutlinedEnvelope)
                             ->schema([
                                 Repeater::make('emails')
