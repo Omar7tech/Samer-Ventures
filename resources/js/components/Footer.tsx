@@ -1,8 +1,10 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import Logo from './logo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { settings } = usePage().props;
+  const socialMedia = settings?.social_media ?? [];
 
   return (
     <footer className="w-full bg-primary text-white font-inter">
@@ -45,10 +47,13 @@ const Footer = () => {
               <h3 className="text-lg md:text-2xl lg:text-3xl font-bold uppercase mb-3 md:mb-6 tracking-wider">CONTACT</h3>
               <ul className="space-y-2 md:space-y-3 text-base md:text-lg font-light">
                 <li><Link href="/contact" className="hover:opacity-70 transition-opacity">Contact Us</Link></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">Whatsapp</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">Instagram</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">LinkedIn</a></li>
-                <li><a href="#" className="hover:opacity-70 transition-opacity">Email</a></li>
+                {socialMedia.map((social) => (
+                  <li key={social.link}>
+                    <a href={social.link} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+                      {social.name}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

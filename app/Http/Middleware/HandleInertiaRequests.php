@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Settings\GeneralSettings;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -40,6 +41,10 @@ class HandleInertiaRequests extends Middleware
             'name' => config('app.name'),
             'auth' => [
                 'user' => $request->user(),
+            ],
+            'settings' => [
+                'social_media' => app(GeneralSettings::class)->social_media ?? [],
+                'emails' => app(GeneralSettings::class)->emails ?? [],
             ],
         ];
     }
