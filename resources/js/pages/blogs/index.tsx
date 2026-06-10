@@ -23,11 +23,18 @@ function Blogs({ blogs }: { blogs: PaginationProps<Blog> }) {
                 {/* Header Section */}
                 <div className="mb-12 flex flex-col md:flex-row justify-between md:items-end gap-6">
                     <div className="flex-1">
-                        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-normal tracking-wider lg:tracking-widest leading-[0.95] text-primary uppercase mb-4">
-                            {showFavorites
-                                ? 'Favorites'
-                                : (blogs.meta.current_page > 1 ? `Blogs — Page ${blogs.meta.current_page}` : 'Blogs')}
+                        {/* Improved Heading Wrap */}
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-normal tracking-wider lg:tracking-widest leading-[0.95] text-primary uppercase mb-4 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
+                            <span>{showFavorites ? 'Favorites' : 'Blogs'}</span>
+                            
+                            {/* Page Indicator transformed into a small, elegant accent */}
+                            {!showFavorites && blogs.meta.current_page > 1 && (
+                                <span className="text-base sm:text-lg md:text-xl font-light tracking-normal text-[#3a3b3a]/40 lowercase normal-case shrink-0">
+                                    / page {blogs.meta.current_page}
+                                </span>
+                            )}
                         </h1>
+                        
                         {(showFavorites || blogs.meta.current_page === 1) && (
                             <p className="text-lg md:text-xl text-[#3a3b3a]/60 font-light tracking-tight leading-relaxed max-w-xl">
                                 {showFavorites
