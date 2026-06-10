@@ -39,14 +39,14 @@ function Blogs({ blogs }: { blogs: PaginationProps<Blog> }) {
 
                     <button
                         onClick={() => setShowFavorites(!showFavorites)}
-                        className={`flex items-center gap-2.5 px-6 py-2.5 text-sm font-medium transition-all duration-300 border-b-2 w-fit ${
+                        className={`group inline-flex w-fit items-center gap-2.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 cursor-pointer ${
                             showFavorites
-                                ? 'text-primary border-primary'
-                                : 'text-[#3a3b3a] border-[#3a3b3a]/20 hover:border-primary hover:text-primary'
+                                ? 'bg-primary text-white shadow-sm shadow-primary/25'
+                                : 'bg-white text-[#3a3b3a] ring-1 ring-inset ring-[#3a3b3a]/15 hover:ring-primary hover:text-primary'
                         }`}
                     >
                         <svg
-                            className={`w-4 h-4 transition-all ${showFavorites ? 'fill-current' : 'fill-transparent stroke-current'}`}
+                            className={`h-4 w-4 transition-transform duration-300 group-hover:scale-110 ${showFavorites ? 'fill-current' : 'fill-transparent stroke-current'}`}
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                             strokeWidth={2}
@@ -57,7 +57,16 @@ function Blogs({ blogs }: { blogs: PaginationProps<Blog> }) {
                                 d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                             />
                         </svg>
-                        {showFavorites ? 'All Blogs' : 'My Favorites'}
+                        <span>{showFavorites ? 'All Blogs' : 'Favorites'}</span>
+                        {favorites.length > 0 && (
+                            <span
+                                className={`flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs font-bold ${
+                                    showFavorites ? 'bg-white/20 text-white' : 'bg-primary/10 text-primary'
+                                }`}
+                            >
+                                {favorites.length}
+                            </span>
+                        )}
                     </button>
                 </div>
 
