@@ -33,35 +33,30 @@ function ProcessTimeline({ steps }: { steps: string[] }) {
         return () => observer.disconnect();
     }, []);
 
-    const stepDelays = [
-        'duration-500 delay-[0ms]',
-        'duration-500 delay-[600ms]',
-        'duration-500 delay-[1200ms]',
-        'duration-500 delay-[1800ms]'
-    ];
-
-    const lineDelays = [
-        'duration-[400ms] delay-[200ms]',
-        'duration-[400ms] delay-[800ms]',
-        'duration-[400ms] delay-[1400ms]'
-    ];
-
-    const dotDelays = [
-        'duration-300 delay-[550ms]',
-        'duration-300 delay-[1150ms]',
-        'duration-300 delay-[1750ms]'
-    ];
+    // Per-index delays so the cascade scales with any number of steps
+    const STEP_INTERVAL_MS = 600;
+    const stepDelayStyle = (index: number): React.CSSProperties => ({
+        transitionDuration: '500ms',
+        transitionDelay: animated ? `${index * STEP_INTERVAL_MS}ms` : '0ms',
+    });
+    const lineDelayStyle = (index: number): React.CSSProperties => ({
+        transitionDuration: '400ms',
+        transitionDelay: animated ? `${200 + index * STEP_INTERVAL_MS}ms` : '0ms',
+    });
+    const dotDelayStyle = (index: number): React.CSSProperties => ({
+        transitionDuration: '300ms',
+        transitionDelay: animated ? `${550 + index * STEP_INTERVAL_MS}ms` : '0ms',
+    });
 
     return (
-        /* UI FIX: Added flex-row flex-wrap sm:flex-nowrap so items don't split up into ugly separate lines on narrow widths */
-        <div ref={elementRef} className="flex flex-row flex-wrap sm:flex-nowrap items-center gap-x-3 gap-y-2 sm:gap-x-0 sm:gap-y-0 pt-4 select-none">
+        /* Wraps on every breakpoint so long step lists flow to the next line instead of clipping */
+        <div ref={elementRef} className="flex flex-row flex-wrap items-center gap-x-3 gap-y-2 sm:gap-x-0 sm:gap-y-3 pt-4 select-none">
             {steps.map((step, index) => (
                 <div key={`${step}-${index}`} className="flex items-center group/step">
                     <span
+                        style={stepDelayStyle(index)}
                         className={`text-sm md:text-lg font-bold tracking-wide transition-colors ease-out ${
-                            animated
-                                ? `text-primary ${stepDelays[index] ?? stepDelays[stepDelays.length - 1]}`
-                                : 'text-neutral-300'
+                            animated ? 'text-primary' : 'text-neutral-300'
                         }`}
                     >
                         {step}
@@ -72,18 +67,18 @@ function ProcessTimeline({ steps }: { steps: string[] }) {
                         <div className="mx-2 md:mx-5 hidden sm:flex items-center">
                             <div className="h-[1.5px] w-8 md:w-14 bg-neutral-200 relative overflow-hidden rounded-full">
                                 <div
+                                    style={lineDelayStyle(index)}
                                     className={`absolute inset-0 bg-primary origin-left transition-transform ease-out ${
-                                        animated
-                                            ? `scale-x-100 ${lineDelays[index] ?? lineDelays[lineDelays.length - 1]}`
-                                            : 'scale-x-0'
+                                        animated ? 'scale-x-100' : 'scale-x-0'
                                     }`}
                                 />
                             </div>
 
                             <div
+                                style={dotDelayStyle(index)}
                                 className={`h-1.5 w-1.5 rounded-full ml-0.5 transition-all ease-out ${
                                     animated
-                                        ? `bg-primary scale-100 opacity-100 ${dotDelays[index] ?? dotDelays[dotDelays.length - 1]}`
+                                        ? 'bg-primary scale-100 opacity-100'
                                         : 'bg-neutral-300 scale-50 opacity-40'
                                 }`}
                             />
