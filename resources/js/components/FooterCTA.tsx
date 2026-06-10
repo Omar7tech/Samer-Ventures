@@ -3,7 +3,7 @@ import { InteractiveGrid } from '@/components/ui/interactive-grid';
 
 const FooterCTA = () => {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-white font-sans">
+    <section className="relative w-full min-h-screen overflow-hidden border-t border-black/10 bg-white font-sans">
       <InteractiveGrid />
       <div className="pointer-events-none relative z-10 flex min-h-screen items-center justify-center px-5">
         <motion.a
