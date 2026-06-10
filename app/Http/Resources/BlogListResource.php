@@ -20,6 +20,7 @@ class BlogListResource extends JsonResource
             'slug' => $this->slug,
             'image' => $this->getFirstMediaUrl('images', 'webp') ?: null,
             'description' => $this->description,
+            'created_at' => $this->created_at?->toISOString(),
         ];
     }
 }
