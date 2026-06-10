@@ -23,7 +23,7 @@ function Blogs({ blogs }: { blogs: PaginationProps<Blog> }) {
                 {/* Header Section */}
                 <div className="mb-12 flex flex-col md:flex-row justify-between md:items-end gap-6">
                     <div className="flex-1">
-                        <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] text-primary uppercase mb-4">
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-normal tracking-wider lg:tracking-widest leading-[0.95] text-primary uppercase mb-4">
                             {showFavorites
                                 ? 'Favorites'
                                 : (blogs.meta.current_page > 1 ? `Blogs — Page ${blogs.meta.current_page}` : 'Blogs')}
