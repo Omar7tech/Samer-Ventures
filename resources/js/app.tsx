@@ -8,7 +8,7 @@ createInertiaApp({
         color: '#145f60',
     },
     defaults: {
-        visitOptions: (href, options) => {
+        visitOptions: () => {
             return { viewTransition: true };
         },
     },
