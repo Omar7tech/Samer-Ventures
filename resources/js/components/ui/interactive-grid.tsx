@@ -27,6 +27,8 @@ export function InteractiveGrid({
     }
 
     const minProxSquared = minProximity * minProximity;
+    const revealRadius = minProximity * 2.5;
+    const revealSquared = revealRadius * revealRadius;
 
     const resize = () => {
       canvas.width = container.clientWidth;
@@ -70,6 +72,12 @@ export function InteractiveGrid({
             ctx.moveTo(x, y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
+          } else if (distSquared <= revealSquared) {
+            const greyAlpha = (1 - distSquared / revealSquared) * 0.25;
+            ctx.fillStyle = `rgba(34, 34, 34, ${greyAlpha})`;
+            ctx.beginPath();
+            ctx.arc(x, y, dotRadius, 0, Math.PI * 2);
+            ctx.fill();
           }
         }
       }
