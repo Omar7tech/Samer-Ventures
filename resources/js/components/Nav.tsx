@@ -3,101 +3,70 @@ import { Link } from "@inertiajs/react"
 import { gsap } from "gsap"
 import { useRef, useState } from "react"
 
+const mobileLinks = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/blogs", label: "Blogs" },
+]
+
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const hasOpened = useRef(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
-      // Scoped class selectors for clean state transitions
-      const overlay = ".menu-overlay"
-      const menuContent = ".menu-content"
-      const items = ".menu-item"
-      const burgerLines = ".burger-line"
+      // Park the panel offscreen and unfocusable before first paint
+      gsap.set(".menu-panel", { yPercent: -100, autoAlpha: 0 })
+
+      return () => {
+        document.body.style.overflow = ""
+      }
+    },
+    { scope: containerRef }
+  )
+
+  useGSAP(
+    () => {
+      const panel = ".menu-panel"
+      const rows = ".menu-row"
+      const dividers = ".menu-divider"
+      const footerItems = ".menu-foot"
 
       if (isMenuOpen) {
+        hasOpened.current = true
         document.body.style.overflow = "hidden"
 
-        // Setup clear initial frames
-        gsap.set(overlay, { display: "block" })
-        gsap.set(items, { opacity: 0, y: 12 })
+        // Stage content below its overflow-hidden masks
+        gsap.set(rows, { yPercent: 110 })
+        gsap.set(dividers, { scaleX: 0, transformOrigin: "left center" })
+        gsap.set(footerItems, { opacity: 0, y: 16 })
 
-        const tl = gsap.timeline({
-          defaults: { ease: "power3.out" }, // Smooth, professional easing curve
-        })
-
-        tl.to(overlay, {
-          opacity: 1,
-          duration: 0.35,
-        })
-        .to(
-          menuContent,
-          {
-            height: "auto",
-            duration: 0.55,
-          },
-          "-=0.25" // Starts the height slightly earlier
-        )
-        .to(
-          items,
-          {
-            y: 0,
-            opacity: 1,
-            stagger: 0.02, // <-- FASTER STAGGER
-            duration: 0.25, // <-- FASTER DURATION
-          },
-          "<0.1" // Starts exactly 0.1s after the menuContent starts opening
-        )
-
-        // Burger transformations
-        gsap.to(burgerLines, {
-          rotation: (index) => (index === 0 ? 45 : -45),
-          y: (index) => (index === 0 ? 4 : -4), // Centered cleanly on its core axis
-          duration: 0.35,
-          ease: "power2.inOut",
-        })
-      } else {
-        const tl = gsap.timeline({
-          defaults: { ease: "power2.inOut" },
-          onComplete: () => {
-            document.body.style.overflow = ""
-            gsap.set(overlay, { display: "none" })
-          },
-        })
-
-        tl.to(items, {
-          y: 10,
-          opacity: 0,
-          stagger: { each: 0.03, from: "end" }, // Reverse cascade on close
-          duration: 0.25,
-        })
-        .to(
-          menuContent,
-          { 
-            height: 0, 
-            duration: 0.35 
-          },
-          "<0.1" // Starts closing the height immediately after the items start fading
-        )
-        .to(
-          overlay, 
-          { 
-            opacity: 0, 
-            duration: 0.25 
-          },
-          "-=0.2"
-        )
-
-        gsap.to(burgerLines, {
-          rotation: 0,
-          y: 0,
-          duration: 0.3,
-          ease: "power2.inOut",
-        })
+        gsap
+          .timeline({ defaults: { ease: "power4.out" } })
+          .set(panel, { autoAlpha: 1 })
+          .to(panel, { yPercent: 0, duration: 0.65, ease: "expo.inOut" })
+          .to(rows, { yPercent: 0, duration: 0.6, stagger: 0.08 }, "-=0.25")
+          .to(dividers, { scaleX: 1, duration: 0.7, stagger: 0.08 }, "<")
+          .to(footerItems, { opacity: 1, y: 0, duration: 0.45, stagger: 0.06 }, "-=0.5")
+      } else if (hasOpened.current) {
+        gsap
+          .timeline({
+            defaults: { ease: "power2.in" },
+            onComplete: () => {
+              document.body.style.overflow = ""
+            },
+          })
+          .to(footerItems, { opacity: 0, y: 10, duration: 0.2 })
+          .to(rows, { yPercent: -110, duration: 0.3, stagger: { each: 0.04, from: "end" } }, "<")
+          .to(panel, { yPercent: -100, duration: 0.55, ease: "expo.inOut" }, "-=0.15")
+          .set(panel, { autoAlpha: 0 })
       }
     },
     { scope: containerRef, dependencies: [isMenuOpen] }
   )
+
+  const closeMenu = () => setIsMenuOpen(false)
 
   return (
     <div ref={containerRef}>
@@ -121,58 +90,82 @@ const Nav = () => {
         </Link>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Top Bar */}
       <div className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 lg:hidden">
-        <div className="overflow-hidden rounded-2xl bg-white/90 shadow-lg shadow-primary/5 backdrop-blur-xl">
-          <div className="flex items-center justify-between px-5 py-4">
+        <div className="flex items-center justify-between rounded-2xl bg-white/90 px-5 py-4 shadow-lg shadow-primary/5 backdrop-blur-xl">
+          <Link href="/" aria-label="Samer Ventures home">
             <img src="/logo/sv-logo.svg" alt="Samer Ventures" className="h-10" />
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="group relative flex h-11 w-11 items-center justify-center transition-all active:scale-95"
-              aria-label="Toggle menu"
-            >
-              <div className="flex flex-col gap-[6px]">
-                <div className="burger-line h-[1.5px] w-6 rounded-full bg-primary" />
-                <div className="burger-line h-[1.5px] w-6 rounded-full bg-primary" />
-              </div>
-            </button>
-          </div>
-
-          {/* ANIMATED BOX: Height moves seamlessly from 0 to 'auto'. 
-            Padding is strictly managed by structural margins/padding inside the elements, 
-            eliminating layout snap bottlenecks.
-          */}
-          <div className="menu-content h-0 overflow-hidden px-5">
-            <div className="border-t border-primary/10" />
-
-            <div className="menu-item pt-5 text-lg leading-tight text-primary/70">
-              Business. Growth & Sales
-            </div>
-
-            <div className="mt-5 flex flex-col gap-1">
-              <Link href="/" className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
-                Home
-              </Link>
-              <Link href="/services" className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
-                Services
-              </Link>
-              <Link href="/blogs" className="menu-item cursor-pointer rounded-xl px-4 py-3 text-xl font-medium uppercase text-primary transition-all hover:bg-primary/5">
-                Blogs
-              </Link>
-            </div>
-
-            <Link href="/contact" className="menu-item mb-5 mt-4 block w-full rounded-2xl bg-primary px-8 py-4 text-center text-lg font-semibold uppercase tracking-wider text-white shadow-lg shadow-primary/20">
-              Book Your Call
-            </Link>
-          </div>
+          </Link>
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            className="flex h-11 w-11 items-center justify-center transition-transform active:scale-95"
+            aria-label="Open menu"
+            aria-expanded={isMenuOpen}
+          >
+            <span className="flex flex-col gap-[6px]">
+              <span className="h-[1.5px] w-6 rounded-full bg-primary" />
+              <span className="h-[1.5px] w-6 rounded-full bg-primary" />
+            </span>
+          </button>
         </div>
       </div>
 
-      {/* Overlay Background */}
-      <div
-        className="menu-overlay fixed inset-0 z-40 hidden bg-black/20 backdrop-blur-sm lg:hidden"
-        onClick={() => setIsMenuOpen(false)}
-      />
+      {/* Mobile Fullscreen Menu */}
+      <div className="menu-panel invisible fixed inset-0 z-[60] flex flex-col bg-primary lg:hidden">
+        {/* Watermark */}
+        <img
+          src="/logo/sv-icon.svg"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-12 -right-12 w-72 opacity-10 brightness-0 invert"
+        />
+
+        <div className="relative z-10 flex items-center justify-between px-6 pb-4 pt-7">
+          <img src="/logo/small-on-dark.png" alt="Samer Ventures" className="h-10" />
+          <button
+            onClick={closeMenu}
+            className="relative flex h-11 w-11 items-center justify-center transition-transform active:scale-95"
+            aria-label="Close menu"
+          >
+            <span className="absolute h-[1.5px] w-6 rotate-45 rounded-full bg-white" />
+            <span className="absolute h-[1.5px] w-6 -rotate-45 rounded-full bg-white" />
+          </button>
+        </div>
+
+        <nav className="relative z-10 flex flex-1 flex-col justify-center px-6">
+          {mobileLinks.map((link, index) => (
+            <div key={link.href}>
+              <div className="menu-divider h-px bg-white/15" />
+              <div className="overflow-hidden">
+                <Link
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="menu-row flex items-baseline gap-4 py-5"
+                >
+                  <span className="font-mono text-sm text-white/40">0{index + 1}</span>
+                  <span className="text-5xl font-bold uppercase tracking-tight text-white">
+                    {link.label}
+                  </span>
+                </Link>
+              </div>
+            </div>
+          ))}
+          <div className="menu-divider h-px bg-white/15" />
+        </nav>
+
+        <div className="relative z-10 px-6 pb-10">
+          <div className="menu-foot text-sm uppercase tracking-widest text-white/50">
+            Business. Growth & Sales
+          </div>
+          <Link
+            href="/contact"
+            onClick={closeMenu}
+            className="menu-foot mt-4 block w-full rounded-full bg-white px-8 py-4 text-center text-lg font-semibold uppercase tracking-wider text-primary"
+          >
+            Book Your Call
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }
