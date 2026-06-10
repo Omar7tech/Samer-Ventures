@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ValueItemSeeder::class);
         $this->call(TestimonialSeeder::class);
         $this->call(BlogSeeder::class);
+        $this->call(ServiceSeeder::class);
     }
 }
