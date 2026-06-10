@@ -63,7 +63,7 @@ function Blogs({ blogs }: { blogs: PaginationProps<Blog> }) {
 
                 {displayedBlogs.length > 0 ? (
                     <>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-14 mb-12">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-12 mb-12">
                             {displayedBlogs.map((blog: Blog) => (
                                 <Card key={blog.id} blog={blog} />
                             ))}
