@@ -8,7 +8,7 @@ interface InteractiveGridProps {
 
 export function InteractiveGrid({
   dotDistance = 45,
-  dotRadius = 4,
+  dotRadius = 5,
   minProximity = 150,
 }: InteractiveGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
