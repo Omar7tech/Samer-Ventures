@@ -22,6 +22,7 @@ const Nav = () => {
       gsap.from(".nav-bar", { y: -24, opacity: 0, duration: 0.6, ease: "power3.out", delay: 0.15 })
 
       return () => {
+        document.documentElement.style.overflow = ""
         document.body.style.overflow = ""
       }
     },
@@ -39,6 +40,7 @@ const Nav = () => {
 
       if (isMenuOpen) {
         hasOpened.current = true
+        document.documentElement.style.overflow = "hidden"
         document.body.style.overflow = "hidden"
 
         // Stage content below its overflow-hidden masks
@@ -67,6 +69,7 @@ const Nav = () => {
           .timeline({
             defaults: { ease: "power2.in" },
             onComplete: () => {
+              document.documentElement.style.overflow = ""
               document.body.style.overflow = ""
             },
           })
@@ -134,7 +137,7 @@ const Nav = () => {
       </div>
 
       {/* Mobile Fullscreen Menu */}
-      <div className="menu-panel invisible fixed inset-0 z-[60] flex flex-col overflow-hidden bg-primary pt-24 lg:hidden">
+      <div className="menu-panel invisible fixed inset-0 z-[60] flex touch-none flex-col overflow-hidden overscroll-contain bg-primary pt-24 lg:hidden">
         {/* Watermark */}
         <img
           src="/logo/sv-icon.svg"
