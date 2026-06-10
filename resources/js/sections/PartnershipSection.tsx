@@ -8,7 +8,7 @@ const HighlightedText = ({ children }: { children: React.ReactNode }) => (
 
 const PartnershipSection = () => {
   return (
-    <section className="p-3 md:p-5 w-full font-inter">
+    <section className="p-3 md:p-5 w-full font-inter my-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

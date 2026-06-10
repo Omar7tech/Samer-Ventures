@@ -19,7 +19,7 @@ function Blogs({ blogs }: { blogs: PaginationProps<Blog> }) {
                 <meta head-key="og:type" property="og:type" content="website" />
             </Head>
 
-            <div className="max-w-[1700px] mx-auto px-6 md:px-12 lg:px-16 py-8 text-[#3a3b3a]">
+            <div className="max-w-[1700px] mx-auto px-6 md:px-12 lg:px-16 py-8 mb-10 text-[#3a3b3a]">
                 {/* Header Section */}
                 <div className="mb-12 flex flex-col md:flex-row justify-between md:items-end gap-6">
                     <div className="flex-1">
@@ -79,7 +79,7 @@ function Blogs({ blogs }: { blogs: PaginationProps<Blog> }) {
 
                 {displayedBlogs.length > 0 ? (
                     <>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-12 mb-12">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-12 mb-15">
                             {displayedBlogs.map((blog: Blog) => (
                                 <Card key={blog.id} blog={blog} />
                             ))}
