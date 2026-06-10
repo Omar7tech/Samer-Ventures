@@ -38,13 +38,17 @@ export function InteractiveGrid({
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      mouseRef.current = { x, y };
-    };
-
-    const handleMouseLeave = () => {
-      mouseRef.current = { x: -9999, y: -9999 };
+      // Ignore the pointer entirely when it's outside the section's bounds.
+      if (
+        e.clientX < rect.left ||
+        e.clientX > rect.right ||
+        e.clientY < rect.top ||
+        e.clientY > rect.bottom
+      ) {
+        mouseRef.current = { x: -9999, y: -9999 };
+        return;
+      }
+      mouseRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
 
     let frameId = 0;
@@ -84,17 +88,45 @@ export function InteractiveGrid({
 
       frameId = requestAnimationFrame(animate);
     };
-    animate();
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', resize);
-    container.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
+    let running = false;
+    const start = () => {
+      if (running) {
+        return;
+      }
+      running = true;
+      window.addEventListener('mousemove', handleMouseMove);
+      animate();
+    };
+    const stop = () => {
+      if (!running) {
+        return;
+      }
+      running = false;
       cancelAnimationFrame(frameId);
       window.removeEventListener('mousemove', handleMouseMove);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    };
+
+    // Only animate and track the pointer while the section is in the viewport.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          start();
+        } else {
+          stop();
+        }
+      },
+      { threshold: 0 },
+    );
+    observer.observe(container);
+
+    window.addEventListener('resize', resize);
+
+    return () => {
+      observer.disconnect();
+      stop();
       window.removeEventListener('resize', resize);
-      container.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [dotDistance, dotRadius, minProximity]);
 
