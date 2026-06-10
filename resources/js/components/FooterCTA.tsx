@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 
 const FooterCTA = () => {
   return (
-    <section className="w-full py-16 md:py-24 bg-white font-sans">
-      <div className="flex items-center justify-center px-5">
+    <section className="w-full min-h-screen bg-white font-sans">
+      <div className="flex min-h-screen items-center justify-center px-5">
         <motion.a
           href="/contact"
           initial={{ opacity: 0, y: 20 }}
