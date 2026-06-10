@@ -113,14 +113,14 @@ const Nav = () => {
 
       {/* Mobile Top Bar — stays on top, panel emerges from underneath it */}
       <div className="fixed left-0 right-0 top-0 z-[70] px-4 pt-4 lg:hidden">
-        <div className="nav-bar flex items-center justify-between rounded-full border border-primary/10 bg-white/85 py-2.5 pl-5 pr-2.5 shadow-lg shadow-primary/10 backdrop-blur-xl">
+        <div className="nav-bar flex items-center justify-between rounded-full border border-primary/10 bg-white/85 py-2.5 pl-5 pr-2.5 backdrop-blur-xl">
           <Link href="/" aria-label="Samer Ventures home" onClick={closeMenu}>
             <img src="/logo/sv-logo.svg" alt="Samer Ventures" className="h-9" />
           </Link>
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`flex h-11 w-11 items-center justify-center rounded-full shadow-md transition-all duration-300 active:scale-90 ${
-              isMenuOpen ? "bg-white shadow-black/10 ring-1 ring-primary/15" : "bg-primary shadow-primary/25"
+            className={`flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 active:scale-90 ${
+              isMenuOpen ? "bg-white ring-1 ring-primary/15" : "bg-primary"
             }`}
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMenuOpen}
