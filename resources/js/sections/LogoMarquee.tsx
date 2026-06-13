@@ -1,13 +1,8 @@
 import { Marquee } from "@/components/shadcn-space/animations/marquee";
-
-interface Logo {
-  src: string;
-  link?: string;
-  alt?: string;
-}
+import type { ClientLogo } from "@/types";
 
 interface LogoMarqueeProps {
-  logos?: Logo[];
+  logos?: ClientLogo[];
   duration?: number;
   pauseOnHover?: boolean;
 }
@@ -29,28 +24,13 @@ const LogoMarquee = ({
           pauseOnHover={pauseOnHover}
           style={{ '--duration': `${duration}s` } as React.CSSProperties}
         >
-          {logos.map((logo, index) => (
-            <div key={index} className="flex-none">
-              {logo.link ? (
-                <a
-                  href={logo.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <img
-                    src={logo.src}
-                    alt={logo.alt || "Partner logo"}
-                    className="h-12 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 mx-4 md:mx-10"
-                  />
-                </a>
-              ) : (
-                <img
-                  src={logo.src}
-                  alt={logo.alt || "Partner logo"}
-                  className="h-12 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 mx-4 md:mx-10"
-                />
-              )}
+          {logos.map((logo) => (
+            <div key={logo.id} className="flex-none">
+              <img
+                src={logo.src}
+                alt="Partner logo"
+                className="h-12 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 mx-4 md:mx-10"
+              />
             </div>
           ))}
         </Marquee>

@@ -9,29 +9,22 @@ import SmallSentence from '@/sections/smallSentence';
 import StrategicServicesSection from '@/sections/StrategicServicesSection';
 import TestimonialsSection from '@/sections/TestimonialsSection';
 import ValueSection from '@/sections/ValueSection';
-import type { Testimonial, ValueItem, WhatWeDo } from '@/types';
+import type { ClientLogo, Testimonial, ValueItem, WhatWeDo } from '@/types';
 
 interface WelcomeProps {
     whatWeDo?: WhatWeDo[];
     values?: ValueItem[];
     testimonials?: Testimonial[];
+    clientLogos?: ClientLogo[];
 }
 
-const Welcome = ({ whatWeDo, values, testimonials = [] }: WelcomeProps) => {
-    const logos = [
-        { src: 'https://placehold.co/600x400' },
-        { src: 'https://placehold.co/600x400' },
-        { src: 'https://placehold.co/600x400' },
-        { src: 'https://placehold.co/600x400' },
-        { src: 'https://placehold.co/600x400' },
-    ];
-
+const Welcome = ({ whatWeDo, values, testimonials = [], clientLogos = [] }: WelcomeProps) => {
     return (
         <>
             <Head title="Welcome" />
             <HeroSection whatWeDo={whatWeDo} />
             <AboutSection />
-            <LogoMarquee logos={logos} duration={30} pauseOnHover={true} />
+            <LogoMarquee logos={clientLogos} duration={30} pauseOnHover={true} />
             <SmallSentence />
             <ExperienceSection />
             <ValueSection values={values} />

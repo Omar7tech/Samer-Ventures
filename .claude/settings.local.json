@@ -1,11 +1,12 @@
 {
+  "permissions": {
+    "allow": [
+      "PowerShell(npm run *)",
+      "Bash(npx tsc *)"
+    ]
+  },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "laravel-boost"
-  ],
-  "permissions": {
-    "allow": [
-      "PowerShell(npm run *)"
-    ]
-  }
+  ]
 }

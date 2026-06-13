@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClientLogo;
 use App\Models\Testimonial;
 use App\Models\ValueItem;
 use App\Models\WhatWeDo;
@@ -34,6 +35,19 @@ class HomeController extends Controller
                     'organization' => $testimonial->organization,
                     'avatar' => $testimonial->getFirstMediaUrl('avatar', 'thumb') ?: null,
                 ]),
+            'clientLogos' => ClientLogo::query()
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->with('media')
+                ->get()
+                ->map(fn (ClientLogo $clientLogo): ?array => $clientLogo->getFirstMediaUrl('logo', 'webp')
+                    ? [
+                        'id' => $clientLogo->id,
+                        'src' => $clientLogo->getFirstMediaUrl('logo', 'webp'),
+                    ]
+                    : null)
+                ->filter()
+                ->values(),
         ]);
     }
 }
