@@ -18,9 +18,10 @@ class ClientLogoForm
                     ->disk('public')
                     ->visibility('public')
                     ->image()
-                    ->conversion('webp')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg', 'image/webp'])
                     ->imageEditor()
                     ->required()
+                    ->helperText('Accepted formats: JPG, PNG, WEBP.')
                     ->columnSpanFull(),
 
                 Toggle::make('is_active')

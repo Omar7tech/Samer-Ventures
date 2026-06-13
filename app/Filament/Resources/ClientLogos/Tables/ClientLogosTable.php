@@ -20,8 +20,7 @@ class ClientLogosTable
             ->reorderable('sort_order')
             ->columns([
                 SpatieMediaLibraryImageColumn::make('logo')
-                    ->collection('logo')
-                    ->conversion('webp'),
+                    ->collection('logo'),
                 ToggleColumn::make('is_active')
                     ->label('Active'),
             ])

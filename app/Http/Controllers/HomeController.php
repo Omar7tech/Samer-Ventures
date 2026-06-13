@@ -40,10 +40,10 @@ class HomeController extends Controller
                 ->orderBy('sort_order')
                 ->with('media')
                 ->get()
-                ->map(fn (ClientLogo $clientLogo): ?array => $clientLogo->getFirstMediaUrl('logo', 'webp')
+                ->map(fn (ClientLogo $clientLogo): ?array => $clientLogo->getFirstMediaUrl('logo')
                     ? [
                         'id' => $clientLogo->id,
-                        'src' => $clientLogo->getFirstMediaUrl('logo', 'webp'),
+                        'src' => $clientLogo->getFirstMediaUrl('logo'),
                     ]
                     : null)
                 ->filter()
