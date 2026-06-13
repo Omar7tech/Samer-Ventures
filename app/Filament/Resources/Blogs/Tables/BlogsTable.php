@@ -32,7 +32,7 @@ class BlogsTable
                 IconColumn::make('have_video')
                     ->label('Video')
                     ->boolean()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
