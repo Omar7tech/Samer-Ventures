@@ -189,23 +189,23 @@ function Show({ blog }: { blog: Blog }) {
                                     <p>Content for this blog post is not yet available.</p>
                                 </div>
                             )}
-
-                            {videoId && (
-                                <div ref={videoSectionRef} className="mt-10 md:mt-14 scroll-mt-24">
-                                    <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Watch the Video</h2>
-                                    <div className="overflow-hidden rounded-2xl shadow-md shadow-gray-200/40 border border-gray-100 bg-gray-50 aspect-video">
-                                        <iframe
-                                            className="w-full h-full"
-                                            src={`https://www.youtube-nocookie.com/embed/${videoId}?modestbranding=1&rel=0&playsinline=1&controls=0${playVideo ? '&autoplay=1' : ''}`}
-                                            title={blog.title || 'Blog video'}
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                            referrerPolicy="strict-origin-when-cross-origin"
-                                            allowFullScreen
-                                        />
-                                    </div>
-                                </div>
-                            )}
                         </main>
+
+                        {videoId && (
+                            <div ref={videoSectionRef} className="mt-10 md:mt-14 w-full scroll-mt-24">
+                                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Watch the Video</h2>
+                                <div className="overflow-hidden rounded-2xl shadow-md shadow-gray-200/40 border border-gray-100 bg-gray-50 aspect-video">
+                                    <iframe
+                                        className="w-full h-full"
+                                        src={`https://www.youtube-nocookie.com/embed/${videoId}?modestbranding=1&rel=0&playsinline=1&controls=0${playVideo ? '&autoplay=1' : ''}`}
+                                        title={blog.title || 'Blog video'}
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allowFullScreen
+                                    />
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
