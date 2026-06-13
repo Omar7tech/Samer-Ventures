@@ -12,6 +12,8 @@ const placeholderBlog: Blog = {
   title: "Automotive",
   content: "",
   description: "Superchat for car dealerships, workshops and rental companies.",
+  have_video: false,
+  video_url: null,
   image:
     "https://images.unsplash.com/photo-1493195671595-30a332807d62?w=500&h=400&fit=crop",
   created_at: "",

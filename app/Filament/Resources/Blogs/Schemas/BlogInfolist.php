@@ -27,6 +27,16 @@ class BlogInfolist
                 IconEntry::make('active')
                     ->boolean(),
 
+                IconEntry::make('have_video')
+                    ->label('Has Video')
+                    ->boolean(),
+
+                TextEntry::make('video_url')
+                    ->label('Video URL')
+                    ->placeholder('-')
+                    ->url(fn ($record) => $record->video_url)
+                    ->openUrlInNewTab(),
+
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

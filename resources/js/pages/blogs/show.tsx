@@ -2,8 +2,9 @@ import MainLayout from '@/layouts/MainLayout';
 import { Blog } from '@/types';
 import { Head } from '@inertiajs/react';
 import { useFavorites } from '@/hooks/useFavorites';
-import { Share2, Heart, Clock } from 'lucide-react';
-import { useMemo, useState, memo } from 'react';
+import { getYouTubeVideoId } from '@/lib/utils';
+import { Share2, Heart, Clock, PlayCircle } from 'lucide-react';
+import { useMemo, useState, useRef, memo } from 'react';
 import ShareModal from '@/components/blogs/ShareModal';
 
 // Explicitly locked to English format ('en-US')
@@ -13,14 +14,16 @@ const formatDate = (dateString: string) => {
 };
 
 // Main Action Buttons - Always visible at the top
-const ActionButtons = memo(({ 
-    saved, 
-    onToggleFavorite, 
-    onShare 
-}: { 
-    saved: boolean; 
-    onToggleFavorite: () => void; 
-    onShare: () => void; 
+const ActionButtons = memo(({
+    saved,
+    onToggleFavorite,
+    onShare,
+    onWatchVideo,
+}: {
+    saved: boolean;
+    onToggleFavorite: () => void;
+    onShare: () => void;
+    onWatchVideo?: () => void;
 }) => (
     <>
         <button
@@ -43,6 +46,16 @@ const ActionButtons = memo(({
             <Share2 className="w-4 h-4 text-gray-500" />
             <span>Share</span>
         </button>
+
+        {onWatchVideo && (
+            <button
+                onClick={onWatchVideo}
+                className="flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 text-sm font-medium text-primary hover:bg-primary/10 transition-all duration-200 cursor-pointer select-none active:scale-[0.98] px-5 py-2.5"
+            >
+                <PlayCircle className="w-4 h-4" />
+                <span>Watch Video</span>
+            </button>
+        )}
     </>
 ));
 ActionButtons.displayName = 'ActionButtons';
@@ -50,6 +63,15 @@ ActionButtons.displayName = 'ActionButtons';
 function Show({ blog }: { blog: Blog }) {
     const { isFavorite, toggleFavorite } = useFavorites();
     const [showShareModal, setShowShareModal] = useState(false);
+    const [playVideo, setPlayVideo] = useState(false);
+    const videoSectionRef = useRef<HTMLDivElement>(null);
+
+    const videoId = useMemo(() => (blog.have_video && blog.video_url ? getYouTubeVideoId(blog.video_url) : null), [blog.have_video, blog.video_url]);
+
+    const handleWatchVideo = () => {
+        setPlayVideo(true);
+        videoSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
 
     const postContent = blog.content || '<p>This post is currently empty. Check back soon!</p>';
     const pageTitle = blog.title || 'Blog Post';
@@ -132,10 +154,11 @@ function Show({ blog }: { blog: Blog }) {
 
                             {/* Actions Container - Permanently visible on all screens here */}
                             <div className="mt-8 flex items-center gap-3 shrink-0">
-                                <ActionButtons 
-                                    saved={saved} 
-                                    onToggleFavorite={() => toggleFavorite(blog)} 
-                                    onShare={() => setShowShareModal(true)} 
+                                <ActionButtons
+                                    saved={saved}
+                                    onToggleFavorite={() => toggleFavorite(blog)}
+                                    onShare={() => setShowShareModal(true)}
+                                    onWatchVideo={videoId ? handleWatchVideo : undefined}
                                 />
                             </div>
                         </header>
@@ -164,6 +187,22 @@ function Show({ blog }: { blog: Blog }) {
                             ) : (
                                 <div className="py-16 text-gray-400 italic font-medium flex items-center justify-center border border-dashed border-gray-200 rounded-xl">
                                     <p>Content for this blog post is not yet available.</p>
+                                </div>
+                            )}
+
+                            {videoId && (
+                                <div ref={videoSectionRef} className="mt-10 md:mt-14 scroll-mt-24">
+                                    <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Watch the Video</h2>
+                                    <div className="overflow-hidden rounded-2xl shadow-md shadow-gray-200/40 border border-gray-100 bg-gray-50 aspect-video">
+                                        <iframe
+                                            className="w-full h-full"
+                                            src={`https://www.youtube.com/embed/${videoId}${playVideo ? '?autoplay=1' : ''}`}
+                                            title={blog.title || 'Blog video'}
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            referrerPolicy="strict-origin-when-cross-origin"
+                                            allowFullScreen
+                                        />
+                                    </div>
                                 </div>
                             )}
                         </main>

@@ -4,6 +4,8 @@ export interface Blog {
     slug: string;
     content: string;
     description: string;
+    have_video: boolean;
+    video_url: string | null;
     image: string | null;
     created_at: string;
     updated_at?: string;

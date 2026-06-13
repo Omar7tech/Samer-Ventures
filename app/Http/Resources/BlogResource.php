@@ -23,6 +23,8 @@ class BlogResource extends JsonResource
             'image' => $this->getFirstMediaUrl('images', 'webp') ?: null,
             'content' => $this->content,
             'description' => $this->description,
+            'have_video' => $this->have_video,
+            'video_url' => $this->video_url,
             'created_at' => $this->created_at->toFormattedDateString(),
         ];
     }

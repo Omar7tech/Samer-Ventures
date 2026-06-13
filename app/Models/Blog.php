@@ -26,6 +26,7 @@ class Blog extends Model implements HasMedia
     {
         return [
             'active' => 'boolean',
+            'have_video' => 'boolean',
         ];
     }
 

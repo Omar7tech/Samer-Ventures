@@ -8,6 +8,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 
 class BlogForm
@@ -53,6 +54,24 @@ class BlogForm
                             ])
                             ->maxSize(2048)
                             ->helperText('📸 Upload image (max 2MB)')
+                            ->columnSpanFull(),
+                    ])->columnSpanFull(),
+
+                Section::make('🎬 Video')
+                    ->description('Optionally attach a YouTube video to this blog post.')
+                    ->components([
+                        Toggle::make('have_video')
+                            ->label('Post Has a Video')
+                            ->live()
+                            ->inline(false)
+                            ->default(false),
+
+                        TextInput::make('video_url')
+                            ->label('YouTube Video URL')
+                            ->url()
+                            ->visible(fn (Get $get): bool => (bool) $get('have_video'))
+                            ->requiredIf('have_video', true)
+                            ->placeholder('https://www.youtube.com/watch?v=...')
                             ->columnSpanFull(),
                     ])->columnSpanFull(),
 
