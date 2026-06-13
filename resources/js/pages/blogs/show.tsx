@@ -196,7 +196,7 @@ function Show({ blog }: { blog: Blog }) {
                                     <div className="overflow-hidden rounded-2xl shadow-md shadow-gray-200/40 border border-gray-100 bg-gray-50 aspect-video">
                                         <iframe
                                             className="w-full h-full"
-                                            src={`https://www.youtube.com/embed/${videoId}${playVideo ? '?autoplay=1' : ''}`}
+                                            src={`https://www.youtube-nocookie.com/embed/${videoId}?modestbranding=1&rel=0&playsinline=1&controls=0${playVideo ? '&autoplay=1' : ''}`}
                                             title={blog.title || 'Blog video'}
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                             referrerPolicy="strict-origin-when-cross-origin"
