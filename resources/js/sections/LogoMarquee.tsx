@@ -107,7 +107,7 @@ const LogoMarquee = ({
                     <img
                       src={logo.src}
                       alt="Partner logo"
-                      className="h-12 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                      className="h-20 sm:h-24 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
                     />
                   </div>
                 ))}
