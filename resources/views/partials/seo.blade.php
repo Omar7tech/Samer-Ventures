@@ -34,25 +34,25 @@
 @endphp
 
 <title inertia>{{ $title }}</title>
-<meta name="description" content="{{ $description }}">
+<meta name="description" inertia content="{{ $description }}">
 @if ($keywords)
     <meta name="keywords" content="{{ $keywords }}">
 @endif
 <meta name="author" content="{{ $author ?? config('seo.name') }}">
 <meta name="robots" content="{{ $robots }}">
-<link rel="canonical" href="{{ $canonical }}">
+<link rel="canonical" href="{{ $canonical }}" inertia>
 
 {{-- Open Graph --}}
 <meta property="og:site_name" content="{{ config('seo.name') }}">
 <meta property="og:locale" content="{{ config('seo.locale') }}">
-<meta property="og:type" content="{{ $type }}">
-<meta property="og:title" content="{{ $title }}">
-<meta property="og:description" content="{{ $description }}">
-<meta property="og:url" content="{{ $canonical }}">
-<meta property="og:image" content="{{ $image }}">
+<meta property="og:type" inertia content="{{ $type }}">
+<meta property="og:title" inertia content="{{ $title }}">
+<meta property="og:description" inertia content="{{ $description }}">
+<meta property="og:url" inertia content="{{ $canonical }}">
+<meta property="og:image" inertia content="{{ $image }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{{ $imageAlt }}">
+<meta property="og:image:alt" inertia content="{{ $imageAlt }}">
 @if ($type === 'article')
     @if ($publishedTime)
         <meta property="article:published_time" content="{{ $publishedTime }}">
@@ -68,10 +68,10 @@
     <meta name="twitter:site" content="@{{ config('seo.twitter') }}">
     <meta name="twitter:creator" content="@{{ config('seo.twitter') }}">
 @endif
-<meta name="twitter:title" content="{{ $title }}">
-<meta name="twitter:description" content="{{ $description }}">
-<meta name="twitter:image" content="{{ $image }}">
-<meta name="twitter:image:alt" content="{{ $imageAlt }}">
+<meta name="twitter:title" inertia content="{{ $title }}">
+<meta name="twitter:description" inertia content="{{ $description }}">
+<meta name="twitter:image" inertia content="{{ $image }}">
+<meta name="twitter:image:alt" inertia content="{{ $imageAlt }}">
 
 {{-- Local SEO / geo --}}
 @if (config('seo.geo'))
