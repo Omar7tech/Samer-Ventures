@@ -88,6 +88,11 @@
   animation: logo-marquee-scroll var(--logo-marquee-duration) linear infinite;
 }
 
+.logo-marquee__track--static {
+  width: 100%;
+  will-change: auto;
+}
+
 .logo-marquee--pause:hover .logo-marquee__track {
   animation-play-state: paused;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { ClientLogo } from "@/types";
 
 interface LogoMarqueeProps {
@@ -6,6 +6,9 @@ interface LogoMarqueeProps {
   duration?: number;
   pauseOnHover?: boolean;
 }
+
+const LOGO_CLASSNAME =
+  "h-20 sm:h-24 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300";
 
 const LogoMarquee = ({
   logos = [],
@@ -17,8 +20,9 @@ const LogoMarquee = ({
 
   const [sequenceWidth, setSequenceWidth] = useState(0);
   const [containerWidth, setContainerWidth] = useState(0);
+  const [measured, setMeasured] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof window === "undefined") {
       return;
     }
@@ -41,6 +45,8 @@ const LogoMarquee = ({
       if (Number.isFinite(sw)) {
         setSequenceWidth(Math.ceil(sw));
       }
+
+      setMeasured(true);
     };
 
     update();
@@ -59,6 +65,9 @@ const LogoMarquee = ({
     return () => ro.disconnect();
   }, [logos]);
 
+  // Only loop the marquee once a single sequence of logos overflows the container.
+  const needsLoop = !measured || sequenceWidth > containerWidth;
+
   const copies = useMemo(() => {
     if (sequenceWidth <= 0 || containerWidth <= 0) {
       return 2;
@@ -70,8 +79,8 @@ const LogoMarquee = ({
   }, [sequenceWidth, containerWidth]);
 
   const sequences = useMemo(
-    () => Array.from({ length: copies }, (_, i) => i),
-    [copies],
+    () => Array.from({ length: needsLoop ? copies : 1 }, (_, i) => i),
+    [needsLoop, copies],
   );
 
   if (!logos || logos.length === 0) {
@@ -83,7 +92,7 @@ const LogoMarquee = ({
       <div className="relative before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-32 md:before:w-48 before:bg-linear-to-r before:from-white before:to-transparent before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-32 md:after:w-48 after:bg-linear-to-l after:from-white after:to-transparent after:content-['']">
         <div
           ref={containerRef}
-          className={`logo-marquee ${pauseOnHover ? "logo-marquee--pause" : ""}`}
+          className={`logo-marquee ${needsLoop && pauseOnHover ? "logo-marquee--pause" : ""}`}
           aria-label="Client logos"
           style={
             {
@@ -94,7 +103,11 @@ const LogoMarquee = ({
             } as React.CSSProperties
           }
         >
-          <div className="logo-marquee__track" aria-hidden>
+          <div
+            className={`logo-marquee__track ${needsLoop ? "" : "logo-marquee__track--static justify-center"}`}
+            aria-hidden
+            style={needsLoop ? undefined : { animation: "none" }}
+          >
             {sequences.map((seqIndex) => (
               <div
                 key={seqIndex}
@@ -107,7 +120,7 @@ const LogoMarquee = ({
                     <img
                       src={logo.src}
                       alt="Partner logo"
-                      className="h-20 sm:h-24 md:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                      className={LOGO_CLASSNAME}
                     />
                   </div>
                 ))}
