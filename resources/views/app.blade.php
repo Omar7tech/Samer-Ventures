@@ -12,13 +12,13 @@
     <meta name="apple-mobile-web-app-title" content="Samer Ventures" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    @include('partials.seo')
+
     @fonts
 
     @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
-    <x-inertia::head>
-        <title>{{ config('app.name', 'Laravel') }}</title>
-    </x-inertia::head>
+    <x-inertia::head />
 </head>
 
 <body class="bg-background font-sans antialiased">

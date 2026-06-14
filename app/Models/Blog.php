@@ -6,6 +6,7 @@ use Database\Factories\BlogFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -47,6 +48,9 @@ class Blog extends Model implements HasMedia
         static::addGlobalScope('active', function (Builder $builder): void {
             $builder->where('active', true)->orderByDesc('created_at');
         });
+
+        static::saved(fn () => Cache::forget('sitemap.xml'));
+        static::deleted(fn () => Cache::forget('sitemap.xml'));
     }
 
     public function registerMediaCollections(): void

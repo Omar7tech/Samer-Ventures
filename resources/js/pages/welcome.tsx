@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import SeoHead from '@/components/SeoHead';
 import MainLayout from '@/layouts/MainLayout';
 import AboutSection from '@/sections/AboutSection';
 import ExperienceSection from '@/sections/ExperienceSection';
@@ -21,7 +21,7 @@ interface WelcomeProps {
 const Welcome = ({ whatWeDo, values, testimonials = [], clientLogos = [] }: WelcomeProps) => {
     return (
         <>
-            <Head title="Welcome" />
+            <SeoHead />
             <HeroSection whatWeDo={whatWeDo} />
             <AboutSection />
             <LogoMarquee logos={clientLogos} duration={30} pauseOnHover={true} />

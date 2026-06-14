@@ -94,6 +94,24 @@ class BlogForm
                             ->helperText('A brief summary of the post (ideal for SEO and excerpts).')
                             ->columnSpanFull(),
                     ])->columnSpanFull(),
+
+                Section::make('🔍 SEO')
+                    ->description('Optional overrides for search engines and social sharing. Leave blank to fall back to the title and summary.')
+                    ->collapsed()
+                    ->components([
+                        TextInput::make('meta_title')
+                            ->label('Meta Title')
+                            ->maxLength(60)
+                            ->helperText('Recommended ≤ 60 characters. Defaults to the post title.')
+                            ->columnSpanFull(),
+
+                        Textarea::make('meta_description')
+                            ->label('Meta Description')
+                            ->maxLength(160)
+                            ->rows(2)
+                            ->helperText('Recommended ≤ 160 characters. Defaults to the summary description.')
+                            ->columnSpanFull(),
+                    ])->columnSpanFull(),
             ]);
     }
 }

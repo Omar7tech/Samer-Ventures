@@ -1,10 +1,10 @@
-import { Head } from '@inertiajs/react';
+import SeoHead from '@/components/SeoHead';
 import MainLayout from '@/layouts/MainLayout';
 
 const Contact = () => {
     return (
         <MainLayout>
-            <Head title="Contact Us" />
+            <SeoHead />
 
             {/* Contact Form Section */}
             <section className="py-16 md:py-24 bg-white font-inter">

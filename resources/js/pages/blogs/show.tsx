@@ -1,6 +1,6 @@
 import MainLayout from '@/layouts/MainLayout';
 import { Blog } from '@/types';
-import { Head } from '@inertiajs/react';
+import SeoHead from '@/components/SeoHead';
 import { useFavorites } from '@/hooks/useFavorites';
 import { getYouTubeVideoId } from '@/lib/utils';
 import { Share2, Heart, Clock, PlayCircle } from 'lucide-react';
@@ -74,18 +74,12 @@ function Show({ blog }: { blog: Blog }) {
     };
 
     const postContent = blog.content || '<p>This post is currently empty. Check back soon!</p>';
-    const pageTitle = blog.title || 'Blog Post';
-    
     const plainText = useMemo(
         () => (blog.content ? blog.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim() : ''),
         [blog.content],
     );
 
-    const description = blog.description || 
-        (plainText ? plainText.substring(0, 160) + '...' : 'Read our latest blog post for insights and updates.');
-    
     const imageUrl = blog.image || '/images/blogshowplaceholder.webp';
-    const siteUrl = typeof window !== 'undefined' ? window.location.origin + '/blog/' + blog.slug : '';
 
     const readTime = useMemo(() => {
         if (!plainText) return null;
@@ -102,15 +96,7 @@ function Show({ blog }: { blog: Blog }) {
 
     return (
         <MainLayout>
-            <Head>
-                <title>{`${pageTitle} - Blog`}</title>
-                <meta head-key="description" name="description" content={description} />
-                <meta head-key="og:title" property="og:title" content={pageTitle} />
-                <meta head-key="og:description" property="og:description" content={description} />
-                <meta head-key="og:image" property="og:image" content={imageUrl} />
-                <meta head-key="og:url" property="og:url" content={siteUrl} />
-                <meta head-key="og:type" property="og:type" content="article" />
-            </Head>
+            <SeoHead />
 
             <div className="min-h-screen overflow-x-hidden selection:bg-primary/10 selection:text-primary" dir={isRTL ? 'rtl' : 'ltr'}>
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

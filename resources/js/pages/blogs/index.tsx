@@ -2,7 +2,7 @@ import Card from '@/components/blogs/Card';
 import Pagination from '@/components/Pagination';
 import MainLayout from '@/layouts/MainLayout';
 import { Blog, PaginationProps } from '@/types';
-import { Head } from '@inertiajs/react';
+import SeoHead from '@/components/SeoHead';
 import { useFavorites } from '@/hooks/useFavorites';
 
 function Blogs({ blogs }: { blogs: PaginationProps<Blog> }) {
@@ -12,12 +12,7 @@ function Blogs({ blogs }: { blogs: PaginationProps<Blog> }) {
 
     return (
         <MainLayout>
-            <Head title="Blogs">
-                <meta head-key="description" name="description" content="Insights and stories from Samer Ventures covering business growth, sales, and strategy." />
-                <meta head-key="og:title" property="og:title" content="Blogs - Samer Ventures" />
-                <meta head-key="og:description" property="og:description" content="Insights and stories from Samer Ventures covering business growth, sales, and strategy." />
-                <meta head-key="og:type" property="og:type" content="website" />
-            </Head>
+            <SeoHead />
 
             <div className="max-w-[1700px] mx-auto px-6 md:px-12 lg:px-16 py-8 mb-10 text-[#3a3b3a]">
                 {/* Header Section */}

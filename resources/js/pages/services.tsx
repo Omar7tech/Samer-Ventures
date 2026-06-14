@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import SeoHead from '@/components/SeoHead';
 import MainLayout from '@/layouts/MainLayout';
 import ServicesAccordion from '@/sections/ServicesAccordion';
 import ServicesGrid from '@/sections/ServicesGrid';
@@ -13,7 +13,7 @@ interface ServicesProps {
 const Services = ({ services = [] }: ServicesProps) => {
   return (
     <>
-      <Head title="Services" />
+      <SeoHead />
       <ServicesHero />
       <ServicesGrid />
       <ServicesIntro />
