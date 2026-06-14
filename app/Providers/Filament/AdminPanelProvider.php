@@ -37,6 +37,7 @@ class AdminPanelProvider extends PanelProvider
             ->path(config('app.admin_url', 'admin'))
             ->spa(hasPrefetching: true)
             ->brandLogo(asset('logo/sv-logo.svg'))
+            ->darkModeBrandLogo(asset('logo/full-on-dark.png'))
             ->brandLogoHeight('40px')
             ->userMenu(position: UserMenuPosition::Sidebar)
             ->sidebarCollapsibleOnDesktop()
