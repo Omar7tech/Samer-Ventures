@@ -69,7 +69,6 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
-                FilamentInfoWidget::class,
             ])
             ->plugin(
                 AuthDesignerPlugin::make()
@@ -81,7 +80,10 @@ class AdminPanelProvider extends PanelProvider
                             ->themeToggle()
                     )
             )
-            ->plugin(FilamentRatingStarPlugin::make())
+            ->plugins([
+                FilamentRatingStarPlugin::make(), 
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
+            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
