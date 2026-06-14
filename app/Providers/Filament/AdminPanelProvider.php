@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
 use Caresome\FilamentAuthDesigner\Data\AuthPageConfig;
 use Caresome\FilamentAuthDesigner\Enums\MediaPosition;
@@ -17,7 +18,6 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Enums\Width;
 use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
@@ -81,8 +81,9 @@ class AdminPanelProvider extends PanelProvider
                     )
             )
             ->plugins([
-                FilamentRatingStarPlugin::make(), 
-                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
+                FilamentRatingStarPlugin::make(),
+                FilamentShieldPlugin::make()
+                    ->navigationGroup('Shield'),
             ])
             ->middleware([
                 EncryptCookies::class,
