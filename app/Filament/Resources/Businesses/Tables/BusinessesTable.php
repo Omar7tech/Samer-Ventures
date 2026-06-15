@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Businesses\Tables;
 
+use App\Filament\Resources\Businesses\BusinessResource;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -38,7 +39,8 @@ class BusinessesTable
                 TextColumn::make('salesAgents.name')
                     ->label('Sales agents')
                     ->badge()
-                    ->placeholder('Unassigned'),
+                    ->placeholder('Unassigned')
+                    ->visible(fn (): bool => ! BusinessResource::isSalesAgent()),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
