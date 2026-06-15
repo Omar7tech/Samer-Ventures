@@ -54,11 +54,11 @@ class ManageBusinessMedia extends EditRecord
                         ? [
                             Actions::make(
                                 $record->getMedia('files')->map(fn ($media) => MediaAction::make('preview-'.$media->getKey())
-                                    ->label($media->file_name)
+                                    ->label($media->name)
                                     ->icon('heroicon-o-eye')
                                     ->color('gray')
                                     ->media($media->getUrl())
-                                    ->modalHeading($media->file_name)
+                                    ->modalHeading($media->name)
                                 )->all()
                             )->columnSpanFull(),
                         ]

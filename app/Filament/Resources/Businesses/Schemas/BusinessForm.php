@@ -90,6 +90,7 @@ class BusinessForm
                             ->multiple()
                             ->reorderable()
                             ->appendFiles()
+                            ->preserveFilenames()
                             ->panelLayout('grid')
                             ->maxSize(10240)
                             ->helperText('Images, PDFs, video, audio and documents. Max 10MB per file.')
