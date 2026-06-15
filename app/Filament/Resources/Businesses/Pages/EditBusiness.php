@@ -10,6 +10,12 @@ class EditBusiness extends EditRecord
 {
     protected static string $resource = BusinessResource::class;
 
+    public static function canAccess(array $parameters = []): bool
+    {
+        // Hide the Edit sub-navigation item from sales agents (they cannot edit).
+        return ! BusinessResource::isSalesAgent();
+    }
+
     protected function getHeaderActions(): array
     {
         return [

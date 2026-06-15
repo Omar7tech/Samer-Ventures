@@ -30,7 +30,7 @@ class BusinessForm
                         Textarea::make('description')
                             ->rows(4)
                             ->columnSpanFull(),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Representative')
                     ->schema([
@@ -47,7 +47,7 @@ class BusinessForm
                             ->email()
                             ->required()
                             ->maxLength(255),
-                    ])->columns(2),
+                    ])->columns(2)->columnSpanFull(),
 
                 Section::make('Assigned Sales Agents')
                     ->description('Assign zero, one, or many sales agents. Each assignment has its own commission percentage.')
@@ -77,23 +77,24 @@ class BusinessForm
                             ->addActionLabel('Assign sales agent')
                             ->defaultItems(0)
                             ->columnSpanFull(),
-                    ]),
+                    ])->columnSpanFull(),
 
                 Section::make('Attached Files')
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('files')
+                            ->hiddenLabel()
                             ->collection('files')
                             ->disk('public')
                             ->visibility('public')
                             ->directory('businesses')
                             ->multiple()
                             ->reorderable()
-                            ->downloadable()
-                            ->openable()
+                            ->appendFiles()
+                            ->panelLayout('grid')
                             ->maxSize(10240)
-                            ->helperText('Attach any related files (max 10MB each).')
+                            ->helperText('Images, PDFs, video, audio and documents. Max 10MB per file.')
                             ->columnSpanFull(),
-                    ]),
+                    ])->columnSpanFull(),
             ]);
     }
 }

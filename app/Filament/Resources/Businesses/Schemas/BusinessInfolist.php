@@ -67,16 +67,6 @@ class BusinessInfolist
                             ->columns(2)
                             ->placeholder('No sales agents assigned.'),
                     ]),
-
-                Section::make('Attached Files')
-                    ->visible(fn (): bool => ! BusinessResource::isSalesAgent())
-                    ->schema([
-                        TextEntry::make('files')
-                            ->hiddenLabel()
-                            ->state(fn (Business $record): array => $record->getMedia('files')->map->file_name->all())
-                            ->badge()
-                            ->placeholder('No files attached.'),
-                    ]),
             ]);
     }
 }
