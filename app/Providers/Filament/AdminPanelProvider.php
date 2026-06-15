@@ -39,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(asset('logo/sv-logo.svg'))
             ->darkModeBrandLogo(asset('logo/full-on-dark.png'))
             ->brandLogoHeight('40px')
-            ->userMenu(position: UserMenuPosition::Sidebar)
+           
             ->sidebarCollapsibleOnDesktop()
             ->maxContentWidth(Width::Full)
             ->defaultThemeMode(ThemeMode::Light)
