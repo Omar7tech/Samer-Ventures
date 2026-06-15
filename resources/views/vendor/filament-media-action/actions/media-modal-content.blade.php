@@ -162,10 +162,12 @@
 
         @elseif ($mediaType === \Hugomyb\FilamentMediaAction\Actions\MediaAction::TYPE_PDF)
 
-            <iframe x-ref="mediaFrame" class="rounded-lg w-full block"
-                    style="width: 100%; min-height: 75vh; height: 75vh;"
-                    src="{{ $media }}#view=FitH"
-                    @load="loading = false"></iframe>
+            <div class="w-full" style="width: 100% !important; align-self: stretch;">
+                <iframe x-ref="mediaFrame" class="rounded-lg block"
+                        style="width: 100% !important; display: block; min-height: 80vh; height: 80vh; border: 0;"
+                        src="{{ $media }}#view=FitH"
+                        @load="loading = false"></iframe>
+            </div>
 
         @else
             @php
