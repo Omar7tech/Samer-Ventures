@@ -18,7 +18,7 @@ class ValueItemResource extends Resource
 {
     protected static ?string $model = ValueItem::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSparkles;
 
     public static function form(Schema $schema): Schema
     {

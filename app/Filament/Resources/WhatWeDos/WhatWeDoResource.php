@@ -18,7 +18,7 @@ class WhatWeDoResource extends Resource
 {
     protected static ?string $model = WhatWeDo::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedLightBulb;
 
     protected static ?string $modelLabel = 'What We Do Item';
 
