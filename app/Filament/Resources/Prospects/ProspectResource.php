@@ -15,7 +15,6 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Tabs\Tab;
-use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Filters\Filter;
@@ -181,17 +180,17 @@ class ProspectResource extends Resource
                     ->options(static::periodPresets())
                     ->default('this_month')
                     ->selectablePlaceholder(false)
-                    ->live(),
+                    ->columnSpanFull(),
                 DatePicker::make('from')
                     ->label('From')
                     ->native(false)
-                    ->visible(fn (Get $get): bool => $get('preset') === 'custom'),
+                    ->visibleJs("\$get('preset') === 'custom'"),
                 DatePicker::make('until')
                     ->label('Until')
                     ->native(false)
-                    ->visible(fn (Get $get): bool => $get('preset') === 'custom'),
+                    ->visibleJs("\$get('preset') === 'custom'"),
             ])
-            ->columns(3)
+            ->columns(2)
             ->query(function (Builder $query, array $data): Builder {
                 [$from, $until] = static::resolvePeriod($data);
 
