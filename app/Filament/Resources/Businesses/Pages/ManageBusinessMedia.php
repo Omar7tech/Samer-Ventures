@@ -7,6 +7,7 @@ use App\Models\Business;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Section;
@@ -27,30 +28,50 @@ class ManageBusinessMedia extends EditRecord
     }
 
     /**
-     * Media is viewable by admins and by the sales agents assigned to the business.
+     * The default EditRecord navigation gate requires canEdit(), which excludes
+     * sales agents. Media is managed by anyone who can reach the business (record
+     * scoping already limits sales agents to their assigned businesses), so we
+     * register the tab whenever the record is present.
+     */
+    public static function shouldRegisterNavigation(array $parameters = []): bool
+    {
+        return (bool) ($parameters['record'] ?? null);
+    }
+
+    /**
+     * Media is managed by admins and by the sales agents assigned to the business.
      * Record scoping in the resource already blocks unassigned businesses, so we
-     * simply bypass the resource's admin-only canEdit() gate here.
+     * bypass the resource's admin-only canEdit() gate here (also covers saving).
      */
     protected function authorizeAccess(): void
     {
         //
     }
 
-    /**
-     * This page only previews media (files are uploaded from the main form),
-     * so there is nothing to save.
-     */
-    protected function getFormActions(): array
-    {
-        return [];
-    }
-
     public function form(Schema $schema): Schema
     {
         return $schema
             ->components([
+                Section::make('Upload Files')
+                    ->description('Add images, PDFs, video, audio and documents. Max 10MB per file.')
+                    ->schema([
+                        SpatieMediaLibraryFileUpload::make('files')
+                            ->hiddenLabel()
+                            ->collection('files')
+                            ->disk('public')
+                            ->visibility('public')
+                            ->directory('businesses')
+                            ->multiple()
+                            ->reorderable()
+                            ->appendFiles()
+                            ->preserveFilenames()
+                            ->panelLayout('grid')
+                            ->maxSize(10240)
+                            ->columnSpanFull(),
+                    ])->columnSpanFull(),
+
                 Section::make('Attached Files')
-                    ->description('Files are uploaded when creating or editing the business. Open a file to preview it in a new tab, or download it.')
+                    ->description('Open a file to preview it in a new tab, or download it.')
                     ->schema(fn (?Business $record): array => $record && $record->getMedia('files')->isNotEmpty()
                         ? [
                             Actions::make(
