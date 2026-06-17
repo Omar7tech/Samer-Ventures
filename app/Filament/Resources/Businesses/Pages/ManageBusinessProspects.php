@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Businesses\Pages;
 use App\Filament\Resources\Businesses\BusinessResource;
 use App\Filament\Resources\Prospects\ProspectResource;
 use App\Filament\Resources\Prospects\Schemas\ProspectForm;
+use App\Filament\Resources\Prospects\Widgets\ProspectStatsOverview;
 use BackedEnum;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
@@ -38,6 +39,25 @@ class ManageBusinessProspects extends ManageRelatedRecords
     protected function authorizeAccess(): void
     {
         //
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            ProspectStatsOverview::class,
+        ];
+    }
+
+    /**
+     * Scope the prospect stats widget to the current business.
+     *
+     * @return array<string, mixed>
+     */
+    public function getWidgetData(): array
+    {
+        return [
+            'businessId' => $this->getRecord()->getKey(),
+        ];
     }
 
     /**
