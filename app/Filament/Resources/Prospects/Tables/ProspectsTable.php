@@ -37,6 +37,15 @@ class ProspectsTable
                     ->label('Created by')
                     ->placeholder('—')
                     ->toggleable(),
+                TextColumn::make('editor.name')
+                    ->label('Last updated by')
+                    ->placeholder('—')
+                    ->toggleable(),
+                TextColumn::make('updated_at')
+                    ->label('Last updated')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

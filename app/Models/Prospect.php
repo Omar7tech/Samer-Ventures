@@ -23,6 +23,7 @@ class Prospect extends Model
         'code',
         'deal_status',
         'created_by',
+        'updated_by',
     ];
 
     /**
@@ -44,6 +45,12 @@ class Prospect extends Model
 
             if (blank($prospect->code)) {
                 $prospect->code = static::generateCode($prospect);
+            }
+        });
+
+        static::saving(function (Prospect $prospect): void {
+            if (auth()->check()) {
+                $prospect->updated_by = auth()->id();
             }
         });
     }
@@ -97,5 +104,10 @@ class Prospect extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function editor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
     }
 }

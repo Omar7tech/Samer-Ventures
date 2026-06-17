@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('deal_status')->default(DealStatus::ColdDeal->value);
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

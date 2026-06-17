@@ -100,6 +100,15 @@ class ManageBusinessProspects extends ManageRelatedRecords
                     ->label('Created by')
                     ->placeholder('—')
                     ->toggleable(),
+                TextColumn::make('editor.name')
+                    ->label('Last updated by')
+                    ->placeholder('—')
+                    ->toggleable(),
+                TextColumn::make('updated_at')
+                    ->label('Last updated')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->deferLoading()
             ->deferFilters()
