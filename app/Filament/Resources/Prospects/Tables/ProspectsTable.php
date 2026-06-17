@@ -2,7 +2,10 @@
 
 namespace App\Filament\Resources\Prospects\Tables;
 
+use App\Filament\Resources\Prospects\ProspectResource;
+use App\Models\Prospect;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -54,11 +57,15 @@ class ProspectsTable
             ->deferLoading()
             ->deferFilters()
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->visible(fn (Prospect $record): bool => ProspectResource::canEdit($record)),
+                DeleteAction::make()
+                    ->visible(fn (Prospect $record): bool => ProspectResource::canDelete($record)),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->visible(fn (): bool => ProspectResource::canDeleteAny()),
                 ]),
             ]);
     }
