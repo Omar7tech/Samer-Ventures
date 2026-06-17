@@ -19,7 +19,7 @@ class ProspectsTable
             ->columns([
                 TextColumn::make('code')
                     ->label('Code')
-                    ->searchable()
+                    ->searchable(isIndividual: true)
                     ->sortable(),
                 TextColumn::make('business_name')
                     ->label('Business')
