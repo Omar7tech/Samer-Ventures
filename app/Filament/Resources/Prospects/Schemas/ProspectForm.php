@@ -15,7 +15,7 @@ class ProspectForm
     {
         return $schema
             ->components([
-                Section::make('Deal Details')
+                Section::make('Business')
                     ->schema([
                         Select::make('business_id')
                             ->label('Business')
@@ -23,7 +23,11 @@ class ProspectForm
                             ->searchable()
                             ->preload()
                             ->required()
-                            ->visible($withBusiness),
+                            ->columnSpanFull(),
+                    ])->visible($withBusiness)->columnSpanFull(),
+
+                Section::make('Deal Details')
+                    ->schema([
                         TextInput::make('business_name')
                             ->label('Business name')
                             ->required()
