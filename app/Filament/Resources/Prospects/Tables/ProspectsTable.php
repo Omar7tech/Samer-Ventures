@@ -57,7 +57,7 @@ class ProspectsTable
             ->deferLoading()
             ->deferFilters()
             ->filters([
-                ProspectResource::monthFilter(),
+                ProspectResource::periodFilter(),
             ])
             ->recordActions([
                 EditAction::make()

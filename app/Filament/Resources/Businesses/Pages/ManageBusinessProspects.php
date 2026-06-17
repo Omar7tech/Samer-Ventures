@@ -115,7 +115,7 @@ class ManageBusinessProspects extends ManageRelatedRecords
             ->deferLoading()
             ->deferFilters()
             ->filters([
-                ProspectResource::monthFilter(),
+                ProspectResource::periodFilter(),
             ])
             ->modifyQueryUsing(fn (Builder $query): Builder => ProspectResource::scopeForSalesAgent($query))
             ->headerActions([

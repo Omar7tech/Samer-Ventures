@@ -10,9 +10,12 @@ use App\Filament\Resources\Prospects\Schemas\ProspectForm;
 use App\Filament\Resources\Prospects\Tables\ProspectsTable;
 use App\Models\Prospect;
 use BackedEnum;
+use Carbon\CarbonInterface;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Filters\Filter;
@@ -128,29 +131,113 @@ class ProspectResource extends Resource
     }
 
     /**
-     * Month filter (calendar month picker) that scopes prospects to a single month
-     * by their creation date. Defaults to the current month.
+     * Smart period filter for prospects by creation date. Offers month-level presets
+     * (this/last month, etc.) plus a custom day range, and defaults to the current month.
+     *
+     * @return array<string, string>
      */
-    public static function monthFilter(): Filter
+    public static function periodPresets(): array
     {
-        return Filter::make('created_month')
+        return [
+            'today' => 'Today',
+            'yesterday' => 'Yesterday',
+            'this_week' => 'This week',
+            'this_month' => 'This month',
+            'last_month' => 'Last month',
+            'this_year' => 'This year',
+            'custom' => 'Custom range (days)',
+        ];
+    }
+
+    /**
+     * Resolve a preset (and optional custom dates) into a [from, until] range.
+     *
+     * @param  array<string, mixed>  $data
+     * @return array{0: ?CarbonInterface, 1: ?CarbonInterface}
+     */
+    public static function resolvePeriod(array $data): array
+    {
+        return match ($data['preset'] ?? null) {
+            'today' => [now()->startOfDay(), now()->endOfDay()],
+            'yesterday' => [now()->subDay()->startOfDay(), now()->subDay()->endOfDay()],
+            'this_week' => [now()->startOfWeek(), now()->endOfWeek()],
+            'this_month' => [now()->startOfMonth(), now()->endOfMonth()],
+            'last_month' => [now()->subMonthNoOverflow()->startOfMonth(), now()->subMonthNoOverflow()->endOfMonth()],
+            'this_year' => [now()->startOfYear(), now()->endOfYear()],
+            'custom' => [
+                filled($data['from'] ?? null) ? Carbon::parse($data['from'])->startOfDay() : null,
+                filled($data['until'] ?? null) ? Carbon::parse($data['until'])->endOfDay() : null,
+            ],
+            default => [null, null],
+        };
+    }
+
+    public static function periodFilter(): Filter
+    {
+        return Filter::make('period')
             ->schema([
-                DatePicker::make('month')
-                    ->label('Month')
+                Select::make('preset')
+                    ->label('Period')
+                    ->options(static::periodPresets())
+                    ->default('this_month')
+                    ->selectablePlaceholder(false)
+                    ->live(),
+                DatePicker::make('from')
+                    ->label('From')
                     ->native(false)
-                    ->displayFormat('F Y')
-                    ->closeOnDateSelection()
-                    ->default(now()->startOfMonth()),
+                    ->visible(fn (Get $get): bool => $get('preset') === 'custom'),
+                DatePicker::make('until')
+                    ->label('Until')
+                    ->native(false)
+                    ->visible(fn (Get $get): bool => $get('preset') === 'custom'),
             ])
-            ->query(fn (Builder $query, array $data): Builder => $query->when(
-                $data['month'] ?? null,
-                fn (Builder $query, string $month): Builder => $query
-                    ->whereYear('created_at', Carbon::parse($month)->year)
-                    ->whereMonth('created_at', Carbon::parse($month)->month),
-            ))
-            ->indicateUsing(fn (array $data): ?string => filled($data['month'] ?? null)
-                ? 'Month: '.Carbon::parse($data['month'])->translatedFormat('F Y')
-                : null);
+            ->columns(3)
+            ->query(function (Builder $query, array $data): Builder {
+                [$from, $until] = static::resolvePeriod($data);
+
+                return $query
+                    ->when($from, fn (Builder $query): Builder => $query->where('created_at', '>=', $from))
+                    ->when($until, fn (Builder $query): Builder => $query->where('created_at', '<=', $until));
+            })
+            ->indicateUsing(function (array $data): ?string {
+                if (blank($data['preset'] ?? null)) {
+                    return null;
+                }
+
+                [$from, $until] = static::resolvePeriod($data);
+                $label = static::formatPeriod($from, $until);
+
+                return $label ? 'Period: '.$label : null;
+            });
+    }
+
+    /**
+     * Render a [from, until] range as a friendly label: a single day, a whole month
+     * ("June 2026"), a whole year ("2026"), or a day range.
+     */
+    protected static function formatPeriod(?CarbonInterface $from, ?CarbonInterface $until): ?string
+    {
+        if (! $from && ! $until) {
+            return null;
+        }
+
+        if ($from && $until) {
+            if ($from->isSameDay($until)) {
+                return $from->translatedFormat('d M Y');
+            }
+
+            if ($from->isSameDay($from->copy()->startOfMonth()) && $until->isSameDay($from->copy()->endOfMonth())) {
+                return $from->translatedFormat('F Y');
+            }
+
+            if ($from->isSameDay($from->copy()->startOfYear()) && $until->isSameDay($from->copy()->endOfYear())) {
+                return $from->translatedFormat('Y');
+            }
+
+            return $from->translatedFormat('d M Y').' – '.$until->translatedFormat('d M Y');
+        }
+
+        return ($from?->translatedFormat('d M Y') ?? '…').' – '.($until?->translatedFormat('d M Y') ?? '…');
     }
 
     public static function form(Schema $schema): Schema
