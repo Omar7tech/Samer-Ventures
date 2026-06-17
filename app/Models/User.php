@@ -18,7 +18,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-#[Fillable(['name', 'email', 'phone_number', 'password'])]
+#[Fillable(['name', 'email', 'phone_number', 'password', 'prospect_permissions'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements FilamentUser, HasAppAuthentication, HasAppAuthenticationRecovery
 {
@@ -39,7 +39,16 @@ class User extends Authenticatable implements FilamentUser, HasAppAuthentication
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'prospect_permissions' => 'array',
         ];
+    }
+
+    /**
+     * Whether this user (a sales agent) was granted a specific prospect permission.
+     */
+    public function hasProspectPermission(string $permission): bool
+    {
+        return in_array($permission, $this->prospect_permissions ?? [], true);
     }
 
     /**

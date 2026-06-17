@@ -58,7 +58,11 @@ class BusinessResource extends Resource
 
     public static function canCreate(): bool
     {
-        return ! static::isSalesAgent();
+        if (static::isSalesAgent()) {
+            return (bool) auth()->user()?->hasProspectPermission('create_business');
+        }
+
+        return true;
     }
 
     public static function canEdit(Model $record): bool

@@ -2,10 +2,14 @@
 
 namespace App\Enums;
 
+use BackedEnum;
 use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Contracts\Support\Htmlable;
 
-enum DealStatus: string implements HasColor, HasLabel
+enum DealStatus: string implements HasColor, HasIcon, HasLabel
 {
     case ColdDeal = 'cold_deal';
     case FollowUp = 'follow_up';
@@ -13,7 +17,7 @@ enum DealStatus: string implements HasColor, HasLabel
     case Cancelled = 'cancelled';
     case Postponed = 'postponed';
 
-    public function getLabel(): string
+    public function getLabel(): string|Htmlable|null
     {
         return match ($this) {
             self::ColdDeal => 'Cold Deal',
@@ -24,7 +28,7 @@ enum DealStatus: string implements HasColor, HasLabel
         };
     }
 
-    public function getColor(): string
+    public function getColor(): string|array|null
     {
         return match ($this) {
             self::ColdDeal => 'info',
@@ -32,6 +36,17 @@ enum DealStatus: string implements HasColor, HasLabel
             self::Closed => 'success',
             self::Cancelled => 'danger',
             self::Postponed => 'gray',
+        };
+    }
+
+    public function getIcon(): string|BackedEnum|Htmlable|null
+    {
+        return match ($this) {
+            self::ColdDeal => Heroicon::OutlinedSparkles,
+            self::FollowUp => Heroicon::OutlinedArrowPath,
+            self::Closed => Heroicon::OutlinedCheckCircle,
+            self::Cancelled => Heroicon::OutlinedXCircle,
+            self::Postponed => Heroicon::OutlinedClock,
         };
     }
 }

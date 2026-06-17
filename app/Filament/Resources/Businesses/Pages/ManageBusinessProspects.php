@@ -6,6 +6,7 @@ use App\Filament\Resources\Businesses\BusinessResource;
 use App\Filament\Resources\Prospects\ProspectResource;
 use App\Filament\Resources\Prospects\Schemas\ProspectForm;
 use App\Filament\Resources\Prospects\Widgets\ProspectStatsOverview;
+use App\Models\Prospect;
 use BackedEnum;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
@@ -15,6 +16,7 @@ use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class ManageBusinessProspects extends ManageRelatedRecords
 {
@@ -112,13 +114,16 @@ class ManageBusinessProspects extends ManageRelatedRecords
             ])
             ->deferLoading()
             ->deferFilters()
+            ->modifyQueryUsing(fn (Builder $query): Builder => ProspectResource::scopeForSalesAgent($query))
             ->headerActions([
-                CreateAction::make(),
+                CreateAction::make()
+                    ->visible(fn (): bool => ProspectResource::canCreate()),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->visible(fn (Prospect $record): bool => ProspectResource::canEdit($record)),
                 DeleteAction::make()
-                    ->visible(fn (): bool => (bool) auth()->user()?->hasRole('super_admin')),
+                    ->visible(fn (Prospect $record): bool => ProspectResource::canDelete($record)),
             ]);
     }
 }

@@ -15,7 +15,7 @@ class ListBusinesses extends ListRecords
     {
         return [
             CreateAction::make()
-                ->visible(fn (): bool => ! BusinessResource::isSalesAgent()),
+                ->visible(fn (): bool => BusinessResource::canCreate()),
         ];
     }
 

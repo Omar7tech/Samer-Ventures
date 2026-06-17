@@ -27,17 +27,82 @@ class ProspectResource extends Resource
     protected static ?string $recordTitleAttribute = 'business_name';
 
     /**
-     * Only super admins may delete prospects. All other roles with access
-     * (including sales agents) can still create and edit.
+     * A user who is only a sales agent is governed by their per-user prospect permissions.
      */
+    public static function isSalesAgent(): bool
+    {
+        $user = auth()->user();
+
+        return (bool) ($user?->hasRole('sales_agent') && ! $user->hasRole('super_admin'));
+    }
+
+    public static function canCreate(): bool
+    {
+        if (static::isSalesAgent()) {
+            return (bool) auth()->user()?->hasProspectPermission('create');
+        }
+
+        return true;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        if (! static::isSalesAgent()) {
+            return true;
+        }
+
+        $user = auth()->user();
+
+        return $user->hasProspectPermission('edit_all')
+            || ($user->hasProspectPermission('edit_own') && $record->created_by === $user->id);
+    }
+
     public static function canDelete(Model $record): bool
     {
-        return (bool) auth()->user()?->hasRole('super_admin');
+        if (auth()->user()?->hasRole('super_admin')) {
+            return true;
+        }
+
+        if (! static::isSalesAgent()) {
+            return false;
+        }
+
+        $user = auth()->user();
+
+        return $user->hasProspectPermission('delete_all')
+            || ($user->hasProspectPermission('delete_own') && $record->created_by === $user->id);
     }
 
     public static function canDeleteAny(): bool
     {
-        return (bool) auth()->user()?->hasRole('super_admin');
+        if (auth()->user()?->hasRole('super_admin')) {
+            return true;
+        }
+
+        return static::isSalesAgent()
+            && (bool) auth()->user()?->hasProspectPermission('delete_all');
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return static::scopeForSalesAgent(parent::getEloquentQuery());
+    }
+
+    /**
+     * Sales agents without the "view all" permission only see prospects they created.
+     *
+     * @param  Builder<Prospect>  $query
+     * @return Builder<Prospect>
+     */
+    public static function scopeForSalesAgent(Builder $query): Builder
+    {
+        $user = auth()->user();
+
+        if (static::isSalesAgent() && ! $user->hasProspectPermission('view_all')) {
+            $query->where('created_by', $user->id);
+        }
+
+        return $query;
     }
 
     /**
