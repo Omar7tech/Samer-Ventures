@@ -15,6 +15,11 @@ class ProspectStatsOverview extends StatsOverviewWidget
      */
     public ?int $businessId = null;
 
+    public static function canView(): bool
+    {
+        return auth()->user()?->hasRole('super_admin') ?? false;
+    }
+
     protected function getStats(): array
     {
         $counts = $this->baseQuery()

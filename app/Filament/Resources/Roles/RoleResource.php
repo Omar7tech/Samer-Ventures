@@ -28,6 +28,7 @@ use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Unique;
 use Override;
@@ -49,13 +50,25 @@ class RoleResource extends Resource
     }
 
     /**
-     * Roles that may be edited but never deleted.
+     * Roles that are managed in code and must never be edited or deleted.
      *
      * @return array<int, string>
      */
     public static function getProtectedRoles(): array
     {
         return ['sales_agent'];
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return parent::canEdit($record)
+            && ! in_array($record->name, static::getProtectedRoles(), true);
+    }
+
+    public static function canView(Model $record): bool
+    {
+        return parent::canView($record)
+            && ! in_array($record->name, static::getProtectedRoles(), true);
     }
 
     #[Override]
@@ -132,7 +145,8 @@ class RoleResource extends Resource
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->hidden(fn ($record): bool => in_array($record->name, static::getProtectedRoles(), true)),
                 DeleteAction::make()
                     ->hidden(fn ($record): bool => in_array($record->name, static::getProtectedRoles(), true)),
             ])

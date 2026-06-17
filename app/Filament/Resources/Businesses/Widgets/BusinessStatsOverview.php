@@ -8,6 +8,11 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class BusinessStatsOverview extends StatsOverviewWidget
 {
+    public static function canView(): bool
+    {
+        return auth()->user()?->hasRole('super_admin') ?? false;
+    }
+
     protected function getStats(): array
     {
         $total = BusinessResource::getEloquentQuery()->count();
