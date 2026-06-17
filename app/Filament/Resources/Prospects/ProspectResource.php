@@ -10,13 +10,16 @@ use App\Filament\Resources\Prospects\Schemas\ProspectForm;
 use App\Filament\Resources\Prospects\Tables\ProspectsTable;
 use App\Models\Prospect;
 use BackedEnum;
+use Filament\Forms\Components\DatePicker;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class ProspectResource extends Resource
 {
@@ -122,6 +125,32 @@ class ProspectResource extends Resource
         }
 
         return $tabs;
+    }
+
+    /**
+     * Month filter (calendar month picker) that scopes prospects to a single month
+     * by their creation date. Defaults to the current month.
+     */
+    public static function monthFilter(): Filter
+    {
+        return Filter::make('created_month')
+            ->schema([
+                DatePicker::make('month')
+                    ->label('Month')
+                    ->native(false)
+                    ->displayFormat('F Y')
+                    ->closeOnDateSelection()
+                    ->default(now()->startOfMonth()),
+            ])
+            ->query(fn (Builder $query, array $data): Builder => $query->when(
+                $data['month'] ?? null,
+                fn (Builder $query, string $month): Builder => $query
+                    ->whereYear('created_at', Carbon::parse($month)->year)
+                    ->whereMonth('created_at', Carbon::parse($month)->month),
+            ))
+            ->indicateUsing(fn (array $data): ?string => filled($data['month'] ?? null)
+                ? 'Month: '.Carbon::parse($data['month'])->translatedFormat('F Y')
+                : null);
     }
 
     public static function form(Schema $schema): Schema

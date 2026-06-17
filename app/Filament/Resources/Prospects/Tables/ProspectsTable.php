@@ -56,6 +56,9 @@ class ProspectsTable
             ])
             ->deferLoading()
             ->deferFilters()
+            ->filters([
+                ProspectResource::monthFilter(),
+            ])
             ->recordActions([
                 EditAction::make()
                     ->visible(fn (Prospect $record): bool => ProspectResource::canEdit($record)),
