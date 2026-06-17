@@ -32,11 +32,6 @@ class ProspectForm
                             ->label('Business name')
                             ->required()
                             ->maxLength(255),
-                        TextInput::make('code')
-                            ->label('Code')
-                            ->placeholder('SV-001')
-                            ->required()
-                            ->maxLength(255),
                         Select::make('deal_status')
                             ->label('Deal status')
                             ->options(DealStatus::class)

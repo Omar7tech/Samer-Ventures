@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('deal_description')->nullable();
             $table->string('phone_number');
             $table->string('owner_name');
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('deal_status')->default(DealStatus::ColdDeal->value);
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
