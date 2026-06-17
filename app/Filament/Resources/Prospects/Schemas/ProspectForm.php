@@ -11,7 +11,7 @@ use Filament\Schemas\Schema;
 
 class ProspectForm
 {
-    public static function configure(Schema $schema): Schema
+    public static function configure(Schema $schema, bool $withBusiness = true): Schema
     {
         return $schema
             ->components([
@@ -22,7 +22,8 @@ class ProspectForm
                             ->relationship('business', 'name')
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->required()
+                            ->visible($withBusiness),
                         TextInput::make('business_name')
                             ->label('Business name')
                             ->required()

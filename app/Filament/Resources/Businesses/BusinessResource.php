@@ -6,6 +6,7 @@ use App\Filament\Resources\Businesses\Pages\CreateBusiness;
 use App\Filament\Resources\Businesses\Pages\EditBusiness;
 use App\Filament\Resources\Businesses\Pages\ListBusinesses;
 use App\Filament\Resources\Businesses\Pages\ManageBusinessMedia;
+use App\Filament\Resources\Businesses\Pages\ManageBusinessProspects;
 use App\Filament\Resources\Businesses\Pages\ViewBusiness;
 use App\Filament\Resources\Businesses\Schemas\BusinessForm;
 use App\Filament\Resources\Businesses\Schemas\BusinessInfolist;
@@ -93,7 +94,7 @@ class BusinessResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ProspectsRelationManager::class,
+            //
         ];
     }
 
@@ -102,6 +103,7 @@ class BusinessResource extends Resource
         return $page->generateNavigationItems([
             ViewBusiness::class,
             EditBusiness::class,
+            ManageBusinessProspects::class,
             ManageBusinessMedia::class,
         ]);
     }
@@ -113,6 +115,7 @@ class BusinessResource extends Resource
             'create' => CreateBusiness::route('/create'),
             'view' => ViewBusiness::route('/{record}'),
             'edit' => EditBusiness::route('/{record}/edit'),
+            'prospects' => ManageBusinessProspects::route('/{record}/prospects'),
             'media' => ManageBusinessMedia::route('/{record}/media'),
         ];
     }

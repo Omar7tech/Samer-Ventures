@@ -1,29 +1,49 @@
 <?php
 
-namespace App\Filament\Resources\Businesses\RelationManagers;
+namespace App\Filament\Resources\Businesses\Pages;
 
 use App\Enums\DealStatus;
+use App\Filament\Resources\Businesses\BusinessResource;
 use App\Filament\Resources\Prospects\Schemas\ProspectForm;
-use Filament\Actions\BulkActionGroup;
+use BackedEnum;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Resources\Pages\ManageRelatedRecords;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
-class ProspectsRelationManager extends RelationManager
+class ManageBusinessProspects extends ManageRelatedRecords
 {
+    protected static string $resource = BusinessResource::class;
+
     protected static string $relationship = 'prospects';
 
-    protected static ?string $recordTitleAttribute = 'business_name';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $title = 'Prospects';
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Prospects';
+    }
+
+    /**
+     * Prospects are managed by admins and by the sales agents assigned to the
+     * business. Record scoping in the resource already blocks unassigned
+     * businesses, so we bypass the resource's admin-only canEdit() gate here.
+     */
+    protected function authorizeAccess(): void
+    {
+        //
+    }
 
     public function form(Schema $schema): Schema
     {
-        return ProspectForm::configure($schema);
+        // business_id is auto-assigned from the owner Business record.
+        return ProspectForm::configure($schema, withBusiness: false);
     }
 
     public function table(Table $table): Table
@@ -65,12 +85,6 @@ class ProspectsRelationManager extends RelationManager
                 EditAction::make(),
                 DeleteAction::make()
                     ->visible(fn (): bool => (bool) auth()->user()?->hasRole('super_admin')),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make()
-                        ->visible(fn (): bool => (bool) auth()->user()?->hasRole('super_admin')),
-                ]),
             ]);
     }
 }
