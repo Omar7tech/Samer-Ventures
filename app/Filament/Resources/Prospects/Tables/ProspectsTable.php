@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Filament\Resources\Prospects\Tables;
+
+use App\Enums\DealStatus;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
+
+class ProspectsTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('quote')
+                    ->label('Quote')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('business_name')
+                    ->label('Business')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('owner_name')
+                    ->label('Owner')
+                    ->searchable(),
+                TextColumn::make('phone_number')
+                    ->label('Phone')
+                    ->searchable()
+                    ->toggleable(),
+                TextColumn::make('deal_status')
+                    ->label('Status')
+                    ->badge()
+                    ->sortable(),
+                TextColumn::make('creator.name')
+                    ->label('Created by')
+                    ->placeholder('—')
+                    ->toggleable(),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                SelectFilter::make('deal_status')
+                    ->label('Deal status')
+                    ->options(DealStatus::class),
+            ])
+            ->recordActions([
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}

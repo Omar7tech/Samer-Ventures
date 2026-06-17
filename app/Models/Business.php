@@ -50,6 +50,14 @@ class Business extends Model implements HasMedia
         return $this->hasMany(BusinessSalesAgent::class);
     }
 
+    /**
+     * Prospects / deals tracked for this business.
+     */
+    public function prospects(): HasMany
+    {
+        return $this->hasMany(Prospect::class);
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('files');
