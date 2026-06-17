@@ -81,6 +81,8 @@ class ManageBusinessProspects extends ManageRelatedRecords
                     ->placeholder('—')
                     ->toggleable(),
             ])
+            ->deferLoading()
+            ->deferFilters()
             ->headerActions([
                 CreateAction::make(),
             ])
