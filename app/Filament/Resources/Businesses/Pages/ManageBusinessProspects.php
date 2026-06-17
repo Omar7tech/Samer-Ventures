@@ -2,17 +2,17 @@
 
 namespace App\Filament\Resources\Businesses\Pages;
 
-use App\Enums\DealStatus;
 use App\Filament\Resources\Businesses\BusinessResource;
+use App\Filament\Resources\Prospects\ProspectResource;
 use App\Filament\Resources\Prospects\Schemas\ProspectForm;
 use BackedEnum;
 use Filament\Actions\CreateAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ManageRelatedRecords;
+use Filament\Schemas\Components\Tabs\Tab;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ManageBusinessProspects extends ManageRelatedRecords
@@ -38,6 +38,14 @@ class ManageBusinessProspects extends ManageRelatedRecords
     protected function authorizeAccess(): void
     {
         //
+    }
+
+    /**
+     * @return array<string, Tab>
+     */
+    public function getTabs(): array
+    {
+        return ProspectResource::statusTabs();
     }
 
     public function form(Schema $schema): Schema
@@ -72,11 +80,6 @@ class ManageBusinessProspects extends ManageRelatedRecords
                     ->label('Created by')
                     ->placeholder('—')
                     ->toggleable(),
-            ])
-            ->filters([
-                SelectFilter::make('deal_status')
-                    ->label('Deal status')
-                    ->options(DealStatus::class),
             ])
             ->headerActions([
                 CreateAction::make(),

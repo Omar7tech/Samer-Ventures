@@ -2,12 +2,10 @@
 
 namespace App\Filament\Resources\Prospects\Tables;
 
-use App\Enums\DealStatus;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ProspectsTable
@@ -43,11 +41,6 @@ class ProspectsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                SelectFilter::make('deal_status')
-                    ->label('Deal status')
-                    ->options(DealStatus::class),
             ])
             ->recordActions([
                 EditAction::make(),
