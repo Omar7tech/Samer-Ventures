@@ -42,6 +42,8 @@ class ProspectsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->deferLoading()
+            ->deferFilters()
             ->recordActions([
                 EditAction::make(),
             ])
