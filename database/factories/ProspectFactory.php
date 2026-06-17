@@ -26,7 +26,7 @@ class ProspectFactory extends Factory
             'deal_description' => fake()->sentence(),
             'phone_number' => fake()->phoneNumber(),
             'owner_name' => fake()->name(),
-            'quote' => 'SV-'.str_pad((string) fake()->unique()->numberBetween(1, 999), 3, '0', STR_PAD_LEFT),
+            'code' => 'SV-'.str_pad((string) fake()->unique()->numberBetween(1, 999), 3, '0', STR_PAD_LEFT),
             'deal_status' => fake()->randomElement(DealStatus::cases()),
             'created_by' => User::factory(),
         ];

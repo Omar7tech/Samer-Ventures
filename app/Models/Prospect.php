@@ -19,7 +19,7 @@ class Prospect extends Model
         'deal_description',
         'phone_number',
         'owner_name',
-        'quote',
+        'code',
         'deal_status',
         'created_by',
     ];

@@ -32,8 +32,8 @@ class ProspectForm
                             ->label('Business name')
                             ->required()
                             ->maxLength(255),
-                        TextInput::make('quote')
-                            ->label('Quote')
+                        TextInput::make('code')
+                            ->label('Code')
                             ->placeholder('SV-001')
                             ->required()
                             ->maxLength(255),

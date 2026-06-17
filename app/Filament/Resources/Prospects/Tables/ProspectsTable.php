@@ -14,8 +14,8 @@ class ProspectsTable
     {
         return $table
             ->columns([
-                TextColumn::make('quote')
-                    ->label('Quote')
+                TextColumn::make('code')
+                    ->label('Code')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('business_name')

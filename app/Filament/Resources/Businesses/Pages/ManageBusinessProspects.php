@@ -79,8 +79,8 @@ class ManageBusinessProspects extends ManageRelatedRecords
         return $table
             ->recordTitleAttribute('business_name')
             ->columns([
-                TextColumn::make('quote')
-                    ->label('Quote')
+                TextColumn::make('code')
+                    ->label('Code')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('business_name')
