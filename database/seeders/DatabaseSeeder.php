@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
             WhatWeDoSeeder::class,
             ValueItemSeeder::class,
             TestimonialSeeder::class,
-            BlogSeeder::class,
             ServiceSeeder::class,
         ]);
     }
